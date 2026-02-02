@@ -54,6 +54,7 @@ module matrix_multiply
 	localparam MAC = 2'b10;
 
 	reg[1:0] state;
+	reg first_mac_cycle;
 
 	// Counters
 	localparam M_BITS = (m > 1) ? $clog2(m) : 1;
@@ -84,12 +85,19 @@ module matrix_multiply
 			mul		<= 0;
 			acc		<= 0;
 			RES_write_address	<= 0;
+			first_mac_cycle <= 0;
 
-			if (Start == 1)		state	<= MAC;
+			if (Start == 1)		
+			begin
+				state		<= MAC;
+				first_mac_cycle <= 1;
+			end
 		end
 
 		MAC:
 		begin
+			if (first_mac_cycle) first_mac_cycle <= 0;
+			if ((m_counter == m-1) && (n_counter == n-1) && (p_counter == p-1)) 	Done <= 1;
 			// last element has been written to RES
 			if (Done)		state		<= Idle;
 		end
@@ -105,16 +113,16 @@ module matrix_multiply
 			// n_counter increments and wraps every clk cycle
 			if (n_counter == n-1)	n_counter	<= 0; else 	n_counter	<= n_counter + 1;
 
-			// m_counter increments every wrapping of n_counter 
+			// p_counter increments every wrapping of n_counter 
 			if (n_counter == n-1)
 			begin
-				if (m_counter == m-1)	m_counter	<= 0; else m_counter	<= m_counter + 1;	
+				if (p_counter == p-1)	p_counter	<= 0; else p_counter	<= p_counter + 1;	
 			end
 
-			// p_counter increments every wrapping of n_counter && m_counter
-			if ((n_counter == n-1) && (m_counter == m-1))
+			// m_counter increments every wrapping of n_counter && p_counter
+			if ((n_counter == n-1) && (p_counter == p-1))
 			begin
-				if (p_counter == p-1)	p_counter	<= 0; else	p_counter	<= p_counter + 1;
+				if (m_counter == m-1)	m_counter	<= 0; else	m_counter	<= m_counter + 1;
 			end
 		end 
 	end
@@ -124,8 +132,9 @@ module matrix_multiply
 	begin
 	if (state == MAC)
 		begin
+		    if (Start) acc <= 0;
 			// reset acc for next element in RES
-			if (RES_write_en)	acc	<= mul; else acc <= acc + mul;
+			if (RES_write_en)	acc	<= mul; else 	acc <= acc + mul;
         end
 	end 
 
@@ -135,7 +144,7 @@ module matrix_multiply
 		// set default values for write enable
 		RES_write_en <= 0;
 
-		if ((state == MAC) && (n_counter == n-1))	RES_write_en <= 1;
+		if ((state == MAC) && (n_counter == 0) && (!first_mac_cycle))			RES_write_en <= 1;
 		
 		// prev clk cycle has written to prev address
 		if ((state == MAC) && (RES_write_en))		RES_write_address <= RES_write_address + 1;
@@ -144,8 +153,8 @@ module matrix_multiply
 	// FSM State Comb block
 	always @(*)
 	begin
-		A_read_address = (p_counter * n) + n_counter;
-		B_read_address = m_counter + (n_counter * p);
+		A_read_address = (m_counter * n) + n_counter;
+		B_read_address = (n_counter * p)+ p_counter;
 		mul = A_read_data_out * B_read_data_out;
 
 		// divide by 256 equivalent to LSR by 8 bits 
@@ -165,10 +174,7 @@ module matrix_multiply
 			// keep read enables high for entire MAC state 
 			A_read_en = 1;
 			B_read_en = 1; 
-
-			// last element of RES has been written 
-			if (RES_write_en && (m_counter == 0) && (n_counter == 0) && (p_counter == 0))				Done = 1;
-			
+            if (Start) mul = 0;			
 		end
 		endcase
 	end
