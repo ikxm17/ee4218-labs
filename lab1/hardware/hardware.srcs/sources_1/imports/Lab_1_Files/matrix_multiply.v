@@ -28,10 +28,11 @@ module matrix_multiply
 		parameter p = 1			// B cols
 	) 
 	(
-		input clk,										
+		input clk,		
+		input ARESETN, 								
 		input Start,									// myip_v1_0 -> matrix_multiply_0.
 		output reg Done,									// matrix_multiply_0 -> myip_v1_0. Possibly reg.
-		
+
 		output reg A_read_en,  								// matrix_multiply_0 -> A_RAM. Possibly reg.
 		output reg [A_depth_bits-1:0] A_read_address, 		// matrix_multiply_0 -> A_RAM. Possibly reg.
 		input [width-1:0] A_read_data_out,				// A_RAM -> matrix_multiply_0.
@@ -71,6 +72,8 @@ module matrix_multiply
 	// FSM State Sync Block 
 	always @(posedge clk)
 	begin
+		if (!ARESETN) state <= Idle; 
+		else
 		case (state)
 
 		Idle: 
