@@ -30,19 +30,19 @@ module matrix_multiply
 	(
 		input clk,										
 		input Start,									// myip_v1_0 -> matrix_multiply_0.
-		output Done,									// matrix_multiply_0 -> myip_v1_0. Possibly reg.
+		output reg Done,									// matrix_multiply_0 -> myip_v1_0. Possibly reg.
 		
-		output A_read_en,  								// matrix_multiply_0 -> A_RAM. Possibly reg.
-		output [A_depth_bits-1:0] A_read_address, 		// matrix_multiply_0 -> A_RAM. Possibly reg.
+		output reg A_read_en,  								// matrix_multiply_0 -> A_RAM. Possibly reg.
+		output reg [A_depth_bits-1:0] A_read_address, 		// matrix_multiply_0 -> A_RAM. Possibly reg.
 		input [width-1:0] A_read_data_out,				// A_RAM -> matrix_multiply_0.
 		
-		output B_read_en, 								// matrix_multiply_0 -> B_RAM. Possibly reg.
-		output [B_depth_bits-1:0] B_read_address, 		// matrix_multiply_0 -> B_RAM. Possibly reg.
+		output reg B_read_en, 								// matrix_multiply_0 -> B_RAM. Possibly reg.
+		output reg [B_depth_bits-1:0] B_read_address, 		// matrix_multiply_0 -> B_RAM. Possibly reg.
 		input [width-1:0] B_read_data_out,				// B_RAM -> matrix_multiply_0.
 		
-		output RES_write_en, 							// matrix_multiply_0 -> RES_RAM. Possibly reg.
-		output [RES_depth_bits-1:0] RES_write_address, 	// matrix_multiply_0 -> RES_RAM. Possibly reg.
-		output [width-1:0] RES_write_data_in 			// matrix_multiply_0 -> RES_RAM. Possibly reg.
+		output reg RES_write_en, 							// matrix_multiply_0 -> RES_RAM. Possibly reg.
+		output reg [RES_depth_bits-1:0] RES_write_address, 	// matrix_multiply_0 -> RES_RAM. Possibly reg.
+		output reg [width-1:0] RES_write_data_in 			// matrix_multiply_0 -> RES_RAM. Possibly reg.
 	);
 	
 	// implement the logic to read A_RAM, read B_RAM, do the multiplication and write the results to RES_RAM
@@ -80,85 +80,49 @@ module matrix_multiply
 			p_counter 	<= 0;
 			mul		<= 0;
 			acc		<= 0;
-
-			// TODO: Check if the following is legal move
-			A_read_address		<= 0;
-			B_read_address		<= 0;
 			RES_write_address	<= 0;
 
-			if (Start == 1)
-			begin
-				state	<= MAC;
-			end 
+			if (Start == 1)		state	<= MAC;
 		end
 
 		MAC:
 		begin
-			if (Done)
 			// last element has been written to RES
-			begin
-			state		<= Idle;
-			end
+			if (Done)		state		<= Idle;
 		end
+		endcase
 	end
 	
 	// Sync block for counter incrementing 
 	// all counters wrap after reaching max_val - 1
 	always @(posedge clk) 
 	begin
-	if (state == MAC)
-	begin
-		// n_counter increments and wraps every clk cycle
-		if (n_counter == n-1)
+		if (state == MAC)
 		begin
-			n_counter	<= 0;
-		end 
-		else 
-		begin
-			n_counter	<= n_counter + 1;
-		end 
+			// n_counter increments and wraps every clk cycle
+			if (n_counter == n-1)	n_counter	<= 0; else 	n_counter	<= n_counter + 1;
 
-		// m_counter increments every wrapping of n_counter 
-		if (n_counter == n-1)
-		begin
-			if (m_counter == m-1)
+			// m_counter increments every wrapping of n_counter 
+			if (n_counter == n-1)
 			begin
-				m_counter	<= 0;
-			end 
-			else 
-			begin 
-				m_counter	<= m_counter + 1;
-			end 
-		end
+				if (m_counter == m-1)	m_counter	<= 0; else m_counter	<= m_counter + 1;	
+			end
 
-		// p_counter increments every wrapping of n_counter && m_counter
-		if ((n_counter == n-1) && (m_counter == m-1))
-		begin
-			if (p_counter == p-1)
+			// p_counter increments every wrapping of n_counter && m_counter
+			if ((n_counter == n-1) && (m_counter == m-1))
 			begin
-				p_counter	<= 0;
-			end 
-			else 
-			begin 
-				p_counter	<= p_counter + 1;
-			end 
-		end
-	end 
+				if (p_counter == p-1)	p_counter	<= 0; else	p_counter	<= p_counter + 1;
+			end
+		end 
+	end
 
 	// synchronous block to handle accumulates
 	always @(posedge clk) 
 	begin
 	if (state == MAC)
 		begin
-			if (RES_write_en)
 			// reset acc for next element in RES
-			begin
-				acc	<= mul;
-			end 
-			else 
-			begin
-				acc <= acc + mul;
-			end 
+			if (RES_write_en)	acc	<= mul; else acc <= acc + mul;
         end
 	end 
 
@@ -168,16 +132,10 @@ module matrix_multiply
 		// set default values for write enable
 		RES_write_en <= 0;
 
-		if ((state == MAC) && (n_counter == n-1))
-		begin
-			RES_write_en <= 1;
-		end 
-
-		if ((state == MAC) && (RES_write_en))
+		if ((state == MAC) && (n_counter == n-1))	RES_write_en <= 1;
+		
 		// prev clk cycle has written to prev address
-		begin
-			RES_write_address <= RES_write_address + 1;
-		end 
+		if ((state == MAC) && (RES_write_en))		RES_write_address <= RES_write_address + 1;
 	end
 
 	// FSM State Comb block
@@ -205,13 +163,11 @@ module matrix_multiply
 			A_read_en = 1;
 			B_read_en = 1; 
 
-			if (RES_write_en && (m_counter == 0) && (n_counter == 0) && (p_counter == 0))
 			// last element of RES has been written 
-			begin
-				Done = 1;
-			end
+			if (RES_write_en && (m_counter == 0) && (n_counter == 0) && (p_counter == 0))				Done = 1;
 			
 		end
+		endcase
 	end
 endmodule
 
