@@ -27,6 +27,7 @@
 .hbs/
 .cache/
 xsim.dir/
+*.ip_user_files/
 
 worklib.tb.wdb
 fsm_encoding.os
