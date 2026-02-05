@@ -178,7 +178,7 @@ module myip_v1_0
 	always_comb begin: output_logic
 		case(state)
 			Idle: begin
-				S_AXIS_TREADY = 1'b0;
+				S_AXIS_TREADY = '0;
 				M_AXIS_TVALID = '0;
 				M_AXIS_TLAST = '0;
 				A_write_en = '0;
