@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="154,995 ps"></ZoomStartTime>
-      <ZoomEndTime time="155,009 ps"></ZoomEndTime>
-      <Cursor1Time time="155,000 ps"></Cursor1Time>
+      <ZoomStartTime time="0 ps"></ZoomStartTime>
+      <ZoomEndTime time="32 ps"></ZoomEndTime>
+      <Cursor1Time time="175,000 ps"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="297"></NameColumnWidth>
-      <ValueColumnWidth column_width="330"></ValueColumnWidth>
+      <NameColumnWidth column_width="357"></NameColumnWidth>
+      <ValueColumnWidth column_width="381"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="23" />
    <wvobject type="logic" fp_name="/tb_myip_v1_0/ACLK">
@@ -88,8 +88,8 @@
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_myip_v1_0/dut/write_counter">
-      <obj_property name="ElementShortName">write_counter[1:0]</obj_property>
-      <obj_property name="ObjectShortName">write_counter[1:0]</obj_property>
+      <obj_property name="ElementShortName">write_counter[0:0]</obj_property>
+      <obj_property name="ObjectShortName">write_counter[0:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_myip_v1_0/expected_RES_memory">
       <obj_property name="ElementShortName">expected_RES_memory[0:1][7:0]</obj_property>
@@ -106,6 +106,7 @@
    <wvobject type="array" fp_name="/tb_myip_v1_0/input_word_count">
       <obj_property name="ElementShortName">input_word_count[31:0]</obj_property>
       <obj_property name="ObjectShortName">input_word_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_myip_v1_0/output_word_count">
       <obj_property name="ElementShortName">output_word_count[31:0]</obj_property>

@@ -256,10 +256,9 @@ module tb_myip_v1_0(
 					S_AXIS_TLAST = 1'b0;
 				input_word_count = input_word_count + 1;
 				check_read_inputs_state();
-			end						
-			repeat(1) @(posedge ACLK); 	// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
+			end							
+			#10;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
 										// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
-			
 		end
 		S_AXIS_TDATA = 32'hxxxx; // no valid data
 		S_AXIS_TVALID = 1'b0; // deassert S_AXIS_TVALID since no more data to send
@@ -278,7 +277,7 @@ module tb_myip_v1_0(
 				output_words_memory[output_word_count] = M_AXIS_TDATA;
 				output_word_count = output_word_count + 1;
 			end
-			repeat(1) @(posedge ACLK); // wait for one clock cycle for data to be captured
+			#10;
 		end
 		M_AXIS_TREADY = 1'b0; // deassert M_AXIS_TREADY since no more data to receive
 
