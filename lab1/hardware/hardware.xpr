@@ -113,24 +113,7 @@
           <Attr Name="ImportPath" Val="$PPRDIR/../../lab_manuals/docs/Lab_1/Lab_1_Files/matrix_multiply.vhd"/>
           <Attr Name="ImportTime" Val="1769589564"/>
           <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Lab_1_Files/memory_RAM.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../lab_manuals/docs/Lab_1/Lab_1_Files/memory_RAM.vhd"/>
-          <Attr Name="ImportTime" Val="1769589564"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Lab_1_Files/myip_v1_0.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../lab_manuals/docs/Lab_1/Lab_1_Files/myip_v1_0.vhd"/>
-          <Attr Name="ImportTime" Val="1769589564"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -144,17 +127,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Lab_1_Files/myip_v1_0.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../lab_manuals/docs/Lab_1/Lab_1_Files/myip_v1_0.v"/>
-          <Attr Name="ImportTime" Val="1769589564"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/Lab_1_Files/matrix_multiply.v">
+      <File Path="$PSRCDIR/sources_1/imports/Lab_1_Files/myip_v1_0.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../lab_manuals/docs/Lab_1/Lab_1_Files/matrix_multiply.v"/>
           <Attr Name="ImportTime" Val="1769589564"/>
@@ -194,20 +167,6 @@
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/Lab_1_Files/tb_myip_v1_0.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../lab_manuals/docs/Lab_1/Lab_1_Files/tb_myip_v1_0.vhd"/>
-          <Attr Name="ImportTime" Val="1769589564"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/tb_myip_v1_0_behav.wcfg">
-        <FileInfo>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
