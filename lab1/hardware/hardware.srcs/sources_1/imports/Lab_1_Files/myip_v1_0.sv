@@ -203,6 +203,7 @@ module myip_v1_0
 				end
 			end
 			Compute: begin
+				S_AXIS_TREADY = 1'b0; // deassert S_AXIS_TREADY once all inputs are read
 				A_write_en = 1'b0;
 				B_write_en = 1'b0;
 				Start = 1'b0; // deassert Start once in Compute state
