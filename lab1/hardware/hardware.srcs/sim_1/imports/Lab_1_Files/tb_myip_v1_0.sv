@@ -149,7 +149,7 @@ module tb_myip_v1_0(
 
 	task automatic verify_res_ram();
 		integer i;
-		integer res_errors;
+		integer res_errors = 0;
 
 		$display("Checking RES RAM contents against expected values.");
 		// Check RES RAM contents
