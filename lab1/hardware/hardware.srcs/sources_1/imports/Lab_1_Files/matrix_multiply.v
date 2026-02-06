@@ -79,13 +79,8 @@ module matrix_multiply
 
 		Idle: 
 		begin
-			m_counter 	<= 0;
-			n_counter 	<= 0;
-			p_counter 	<= 0;
-			mul		<= 0;
-			acc		<= 0;
-			RES_write_address	<= 0;
 			first_mac_cycle <= 0;
+			Done 	<= 0;
 
 			if (Start == 1)		
 			begin
@@ -108,34 +103,49 @@ module matrix_multiply
 	// all counters wrap after reaching max_val - 1
 	always @(posedge clk) 
 	begin
-		if (state == MAC)
-		begin
-			// n_counter increments and wraps every clk cycle
-			if (n_counter == n-1)	n_counter	<= 0; else 	n_counter	<= n_counter + 1;
-
-			// p_counter increments every wrapping of n_counter 
-			if (n_counter == n-1)
+		case (state)
+		Idle:
 			begin
-				if (p_counter == p-1)	p_counter	<= 0; else p_counter	<= p_counter + 1;	
+				m_counter 	<= 0;
+				n_counter 	<= 0;
+				p_counter 	<= 0;
 			end
-
-			// m_counter increments every wrapping of n_counter && p_counter
-			if ((n_counter == n-1) && (p_counter == p-1))
+		MAC:
+			if (state == MAC)
 			begin
-				if (m_counter == m-1)	m_counter	<= 0; else	m_counter	<= m_counter + 1;
-			end
-		end 
+				// n_counter increments and wraps every clk cycle
+				if (n_counter == n-1)	n_counter	<= 0; else 	n_counter	<= n_counter + 1;
+
+				// p_counter increments every wrapping of n_counter 
+				if (n_counter == n-1)
+				begin
+					if (p_counter == p-1)	p_counter	<= 0; else p_counter	<= p_counter + 1;	
+				end
+
+				// m_counter increments every wrapping of n_counter && p_counter
+				if ((n_counter == n-1) && (p_counter == p-1))
+				begin
+					if (m_counter == m-1)	m_counter	<= 0; else	m_counter	<= m_counter + 1;
+				end
+			end 
+		endcase
 	end
 
 	// synchronous block to handle accumulates
 	always @(posedge clk) 
 	begin
-	if (state == MAC)
-		begin
-		    if (Start) acc <= 0;
-			// reset acc for next element in RES
-			if (RES_write_en)	acc	<= mul; else 	acc <= acc + mul;
-        end
+		case(state)
+		Idle:
+		begin 
+			acc		<= 0;
+		end
+		MAC:
+			begin
+				if (Start) acc <= 0;
+				// reset acc for next element in RES
+				if (RES_write_en)	acc	<= mul; else 	acc <= acc + mul;
+			end
+		endcase
 	end 
 
 	// synchronous block to handle RES writing during MAC
@@ -143,6 +153,7 @@ module matrix_multiply
 	begin
 		// set default values for write enable
 		RES_write_en <= 0;
+		if (state == Idle) RES_write_address <= 0;
 
 		if ((state == MAC) && (n_counter == 0) && (!first_mac_cycle))			RES_write_en <= 1;
 		
@@ -166,7 +177,6 @@ module matrix_multiply
 		begin
 			A_read_en = Start;
 			B_read_en = Start; 
-			Done = 0;
 		end
 
 		MAC:
