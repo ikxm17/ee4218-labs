@@ -196,11 +196,14 @@ module myip_v1_0
 					B_write_en = S_AXIS_TVALID; // only write when data is valid
 					A_write_en = 1'b0;
 				end
+				if (read_counter == NUMBER_OF_INPUT_WORDS - 1) begin
+					Start = 1'b1; // assert Start to start matrix multiplication
+				end
 			end
 			Compute: begin
 				A_write_en = 1'b0;
 				B_write_en = 1'b0;
-				Start = 1'b1; // start matrix multiplication
+				Start = 1'b0; // deassert Start once in Compute state
 			end
 			Write_Outputs: begin
 				M_AXIS_TVALID = 1'b1;
