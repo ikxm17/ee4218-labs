@@ -222,13 +222,15 @@ module myip_v1_0
 		.depth_bits(A_depth_bits)
 	) A_RAM 
 	(
-		.clk(ACLK),
-		.write_en(A_write_en),
-		.write_address(A_write_address),
-		.write_data_in(A_write_data_in),
-		.read_en(A_read_en),    
-		.read_address(A_read_address),
-		.read_data_out(A_read_data_out)
+		.clka(ACLK),
+		.clkb(ACLK),
+		.ena(A_write_en),
+		.wea(A_write_en),
+		.addra(A_write_address),
+		.dia(A_write_data_in),
+		.enb(A_read_en),    
+		.addrb(A_read_address),
+		.dob(A_read_data_out)
 	);
 										
 										
@@ -238,29 +240,32 @@ module myip_v1_0
 		.depth_bits(B_depth_bits)
 	) B_RAM 
 	(
-		.clk(ACLK),
-		.write_en(B_write_en),
-		.write_address(B_write_address),
-		.write_data_in(B_write_data_in),
-		.read_en(B_read_en),    
-		.read_address(B_read_address),
-		.read_data_out(B_read_data_out)
+		.clka(ACLK),
+		.clkb(ACLK),
+		.ena(B_write_en),
+		.wea(B_write_en),
+		.addra(B_write_address),
+		.dia(B_write_data_in),
+		.enb(B_read_en),
+		.addrb(B_read_address),
+		.dob(B_read_data_out)
 	);
-										
-										
+																			
 	memory_RAM 
 	#(
 		.width(width), 
 		.depth_bits(RES_depth_bits)
 	) RES_RAM 
 	(
-		.clk(ACLK),
-		.write_en(RES_write_en),
-		.write_address(RES_write_address),
-		.write_data_in(RES_write_data_in),
-		.read_en(RES_read_en),    
-		.read_address(RES_read_address),
-		.read_data_out(RES_read_data_out)
+		.clka(ACLK),
+		.clkb(ACLK),
+		.ena(RES_write_en),
+		.wea(RES_write_en),
+		.addra(RES_write_address),
+		.dia(RES_write_data_in),
+		.enb(RES_read_en),	
+		.addrb(RES_read_address),
+		.dob(RES_read_data_out)
 	);
 										
 	matrix_multiply 
