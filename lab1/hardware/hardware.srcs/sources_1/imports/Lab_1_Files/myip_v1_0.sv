@@ -170,8 +170,10 @@ module myip_v1_0
 	always_comb begin: datapath
 		A_write_data_in = S_AXIS_TDATA[width-1:0];
 		B_write_data_in = S_AXIS_TDATA[width-1:0];
+		M_AXIS_TDATA[width-1:0] = RES_read_data_out;
 		A_write_address = read_counter;
 		B_write_address = read_counter;
+		RES_read_address = write_counter;
 	end
 
 	/* Output Logic */
