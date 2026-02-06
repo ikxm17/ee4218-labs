@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_myip_v1_0_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_myip_v1_0" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0 ps"></ZoomStartTime>
+      <ZoomEndTime time="32 ps"></ZoomEndTime>
+      <Cursor1Time time="175,000 ps"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="357"></NameColumnWidth>
+      <ValueColumnWidth column_width="381"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="23" />
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/ACLK">
+      <obj_property name="ElementShortName">ACLK</obj_property>
+      <obj_property name="ObjectShortName">ACLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/ARESETN">
+      <obj_property name="ElementShortName">ARESETN</obj_property>
+      <obj_property name="ObjectShortName">ARESETN</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/S_AXIS_TREADY">
+      <obj_property name="ElementShortName">S_AXIS_TREADY</obj_property>
+      <obj_property name="ObjectShortName">S_AXIS_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/S_AXIS_TDATA">
+      <obj_property name="ElementShortName">S_AXIS_TDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXIS_TDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/S_AXIS_TLAST">
+      <obj_property name="ElementShortName">S_AXIS_TLAST</obj_property>
+      <obj_property name="ObjectShortName">S_AXIS_TLAST</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/S_AXIS_TVALID">
+      <obj_property name="ElementShortName">S_AXIS_TVALID</obj_property>
+      <obj_property name="ObjectShortName">S_AXIS_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/M_AXIS_TREADY">
+      <obj_property name="ElementShortName">M_AXIS_TREADY</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/M_AXIS_TDATA">
+      <obj_property name="ElementShortName">M_AXIS_TDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_TDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/M_AXIS_TLAST">
+      <obj_property name="ElementShortName">M_AXIS_TLAST</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_TLAST</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/M_AXIS_TVALID">
+      <obj_property name="ElementShortName">M_AXIS_TVALID</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/dut/state">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/dut/read_counter">
+      <obj_property name="ElementShortName">read_counter[3:0]</obj_property>
+      <obj_property name="ObjectShortName">read_counter[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/expected_A_memory">
+      <obj_property name="ElementShortName">expected_A_memory[0:7][7:0]</obj_property>
+      <obj_property name="ObjectShortName">expected_A_memory[0:7][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/dut/A_RAM/RAM">
+      <obj_property name="ElementShortName">RAM[0:7][7:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM[0:7][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/expected_B_memory">
+      <obj_property name="ElementShortName">expected_B_memory[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">expected_B_memory[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/RAM">
+      <obj_property name="ElementShortName">RAM[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM[0:3][7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/dut/write_counter">
+      <obj_property name="ElementShortName">write_counter[0:0]</obj_property>
+      <obj_property name="ObjectShortName">write_counter[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/expected_RES_memory">
+      <obj_property name="ElementShortName">expected_RES_memory[0:1][7:0]</obj_property>
+      <obj_property name="ObjectShortName">expected_RES_memory[0:1][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/input_words_memory">
+      <obj_property name="ElementShortName">input_words_memory[0:11][7:0]</obj_property>
+      <obj_property name="ObjectShortName">input_words_memory[0:11][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/output_words_memory">
+      <obj_property name="ElementShortName">output_words_memory[0:1][7:0]</obj_property>
+      <obj_property name="ObjectShortName">output_words_memory[0:1][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/input_word_count">
+      <obj_property name="ElementShortName">input_word_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">input_word_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_myip_v1_0/output_word_count">
+      <obj_property name="ElementShortName">output_word_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_word_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_myip_v1_0/dut/B_write_en">
+      <obj_property name="ElementShortName">B_write_en</obj_property>
+      <obj_property name="ObjectShortName">B_write_en</obj_property>
+   </wvobject>
+</wave_config>
