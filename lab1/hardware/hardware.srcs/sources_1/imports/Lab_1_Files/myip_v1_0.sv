@@ -211,7 +211,7 @@ module myip_v1_0
 			Write_Outputs: begin
 				M_AXIS_TVALID = 1'b1;
 				RES_read_en = 1'b1;
-				M_AXIS_TLAST = (write_counter == NUMBER_OF_OUTPUT_WORDS -1) ? 1'b1 : 1'b0;
+				M_AXIS_TLAST = (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) ? 1'b1 : 1'b0;
 			end
 		endcase
 	end
