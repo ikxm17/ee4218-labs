@@ -265,11 +265,12 @@ module tb_myip_v1_0(
 		
 		
 		wait(dut.state == dut.Compute);
-		repeat(1) @(posedge ACLK); // wait for one clock cycle to ensure all data are captured in A and B RAMs
+		#10; // wait for one clock cycle to ensure all data are captured in A and B RAMs
 		check_compute_state();
 		
 		/* Simulating as the slave */
 		wait(dut.state == dut.Write_Outputs);
+		#10; // wait for one clock cycle to ensure all data are captured in A and B RAMs
 		check_write_outputs_state();
 		M_AXIS_TREADY = 1'b1; // assert to indicate ready to receive data from co-processor
 		while (M_AXIS_TLAST | ~prev_M_AXIS_TLAST) begin // receive data until the falling edge of M_AXIS_TLAST
