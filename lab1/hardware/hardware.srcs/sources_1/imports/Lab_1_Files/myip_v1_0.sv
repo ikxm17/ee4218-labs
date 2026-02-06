@@ -197,7 +197,11 @@ module myip_v1_0
 					A_write_en = 1'b0;
 				end
 			end
-			Compute: Start = 1'b1; // start matrix multiplication
+			Compute: begin
+				A_write_en = 1'b0;
+				B_write_en = 1'b0;
+				Start = 1'b1; // start matrix multiplication
+			end
 			Write_Outputs: begin
 				M_AXIS_TVALID = 1'b1;
 				RES_read_en = 1'b1;
