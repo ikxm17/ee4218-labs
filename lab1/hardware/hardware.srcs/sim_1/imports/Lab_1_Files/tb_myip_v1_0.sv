@@ -112,7 +112,7 @@ module tb_myip_v1_0(
         end
     endtask
 
-	task verify_a_b_ram();
+	task automatic verify_a_b_ram();
 		integer i;
 		integer a_errors = 0;
 		integer b_errors = 0;
@@ -147,7 +147,7 @@ module tb_myip_v1_0(
     	end
 	endtask
 
-	task verify_res_ram();
+	task automatic verify_res_ram();
 		integer i;
 		integer res_errors;
 
@@ -170,7 +170,7 @@ module tb_myip_v1_0(
 		end
 	endtask
 
-	task verify_output();
+	task automatic verify_output();
 		integer i;
 		integer output_errors;
 
