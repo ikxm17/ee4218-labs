@@ -56,7 +56,7 @@ module myip_v1_0
 	input					S_AXIS_TVALID;  // Data in is valid
 	// master out interface
 	output	reg				M_AXIS_TVALID;  // Data out is valid
-	output	[31 : 0]		M_AXIS_TDATA;   // Data Out
+	output 	reg [31 : 0]	M_AXIS_TDATA;   // Data Out
 	output	reg				M_AXIS_TLAST;   // Optional data out qualifier
 	input					M_AXIS_TREADY;  // Connected slave device is ready to accept data out
 
