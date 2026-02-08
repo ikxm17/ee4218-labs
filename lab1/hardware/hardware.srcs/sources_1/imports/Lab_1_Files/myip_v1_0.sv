@@ -140,13 +140,23 @@ module myip_v1_0
 			Read_Inputs: if ((read_counter == NUMBER_OF_INPUT_WORDS - 1) || S_AXIS_TLAST) next_state = Compute; else next_state = Read_Inputs;
 			Compute: if (Done) next_state = Write_Outputs; else next_state = Compute;
 			Write_Outputs: if (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) next_state = Idle; else next_state = Write_Outputs;
+			default: next_state = Idle;
 		endcase
 	end
 		
 	/* State Memory */
 	always_ff @(posedge ACLK) begin: state_memory
+		M_AXIS_TVALID <= 1'b0;
+		M_AXIS_TLAST <= 1'b0;
 		if (!ARESETN) state <= Idle;
 		else state <= next_state;
+		case (state)
+			Compute: M_AXIS_TVALID <= Done;
+			Write_Outputs: begin
+				M_AXIS_TVALID <= 1'b1;
+				M_AXIS_TLAST <= (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) ? 1'b1 : 1'b0;
+		end
+		endcase
 	end
 	
 	/* Counters */
@@ -180,16 +190,13 @@ module myip_v1_0
 
 	/* Output Logic */
 	always_comb begin: output_logic
+		S_AXIS_TREADY = '0;
+		A_write_en = '0;
+		B_write_en = '0;
+		RES_read_en = '0;
+		Start = '0;
 		case(state)
-			Idle: begin
-				S_AXIS_TREADY = '0;
-				M_AXIS_TVALID = '0;
-				M_AXIS_TLAST = '0;
-				A_write_en = '0;
-				B_write_en = '0;
-				RES_read_en = '0;
-				Start = '0;
-			end
+			Idle: ;
 			Read_Inputs: begin
 				S_AXIS_TREADY = 1'b1;
 				// assert enable based on read_counter value
@@ -212,7 +219,7 @@ module myip_v1_0
 				RES_read_en = Done; // assert RES read_en when Done is asserted to account for one cycle latency of RAM reads
 			end
 			Write_Outputs: RES_read_en = M_AXIS_TREADY; // only read when slave is ready to accept data
-			end
+			default: ;
 		endcase
 	end
 
