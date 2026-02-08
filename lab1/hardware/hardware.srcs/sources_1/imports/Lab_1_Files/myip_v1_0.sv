@@ -160,8 +160,10 @@ module myip_v1_0
 					read_counter <= '0;
 					write_counter <= '0;
 				end
-				Read_Inputs: read_counter <= S_AXIS_TVALID ? read_counter + 1 : read_counter; // increment read counter only if data is valid
-				Write_Outputs: write_counter <= M_AXIS_TREADY ? write_counter + 1 : write_counter; // increment write counter only if slave is ready to accept data
+				default: begin
+					read_counter <= (A_write_en || B_write_en) ? read_counter + 1 : read_counter; // increment read counter only if data is valid (which asserts either A_write_en or B_write_en)
+					write_counter <= (Done && M_AXIS_TREADY) ? write_counter + 1 : write_counter; // increment write counter only if both Done is asserted and slave is ready to accept data
+				end
 			endcase
 		end
 	end
