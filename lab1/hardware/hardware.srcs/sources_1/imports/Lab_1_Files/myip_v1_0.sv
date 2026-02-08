@@ -146,17 +146,7 @@ module myip_v1_0
 		
 	/* State Memory */
 	always_ff @(posedge ACLK) begin: state_memory
-		M_AXIS_TVALID <= 1'b0;
-		M_AXIS_TLAST <= 1'b0;
-		if (!ARESETN) state <= Idle;
-		else state <= next_state;
-		case (state)
-			Compute: M_AXIS_TVALID <= Done;
-			Write_Outputs: begin
-				M_AXIS_TVALID <= 1'b1;
-				M_AXIS_TLAST <= (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) ? 1'b1 : 1'b0;
-		end
-		endcase
+		if (!ARESETN) state <= Idle; else state <= next_state;
 	end
 	
 	/* Counters */
@@ -186,6 +176,20 @@ module myip_v1_0
 		A_write_address = read_counter;
 		B_write_address = read_counter;
 		RES_read_address = write_counter;
+	end
+
+	/* Output Registers */
+	always_ff @(posedge ACLK) begin: output_registers
+		// M_AXIS_TVALID and M_AXIS_TLAST are registered to align with one clock cycle RES_RAM read latency
+		M_AXIS_TVALID <= 1'b0;
+		M_AXIS_TLAST <= 1'b0;
+		case (state)
+			Compute: M_AXIS_TVALID <= Done;
+			Write_Outputs: begin
+				M_AXIS_TVALID <= 1'b1;
+				M_AXIS_TLAST <= (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) ? 1'b1 : 1'b0;
+			end
+		endcase
 	end
 
 	/* Output Logic */
