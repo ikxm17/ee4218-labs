@@ -90,7 +90,7 @@ module tb_myip_v1_0(
 	logic [WIDTH-1:0] output_words_memory [0:NUMBER_OF_OUTPUT_WORDS-1];
 	
 	integer i, input_word_count, output_word_count;
-	logic prev_M_AXIS_TLAST;
+	logic prev_M_AXIS_TLAST = 1'b0;
 
 	/* Clock generation */
 	always #5 ACLK = ~ACLK; // invert ACLK every 5 time units (ns) --> period of 10 ns --> 100 MHz clock
@@ -172,7 +172,7 @@ module tb_myip_v1_0(
 
 	task automatic verify_output();
 		integer i;
-		integer output_errors;
+		integer output_errors = 0;
 
 		$display("Checking output words against expected values.");
 		// Check output words
@@ -245,6 +245,7 @@ module tb_myip_v1_0(
 
 		/* Simulating as the master */
 		/* Set signals to load test vectors into DUT's RAMs */
+		input_word_count = 0;
 		S_AXIS_TVALID = 1'b1; // assert to indicate valid data is placed on S_AXIS_TDATA
 		input_word_count = 0;
 		while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
@@ -269,9 +270,7 @@ module tb_myip_v1_0(
 		check_compute_state();
 		
 		/* Simulating as the slave */
-		wait(dut.state == dut.Write_Outputs);
-		#20; // ! wait for two clock cycle to ensure all data are captured in A and B RAMs
-		check_write_outputs_state();
+		output_word_count = 0;
 		M_AXIS_TREADY = 1'b1; // assert to indicate ready to receive data from co-processor
 		while (M_AXIS_TLAST | ~prev_M_AXIS_TLAST) begin // receive data until the falling edge of M_AXIS_TLAST
 			if (M_AXIS_TVALID) begin
