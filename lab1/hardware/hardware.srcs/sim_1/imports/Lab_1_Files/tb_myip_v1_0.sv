@@ -15,6 +15,7 @@
 ----------------------------------------------------------------------------------
 */
 
+`define BEHAV_SIM // ! Uncomment when running post-synthesis simulations. This can be automated by making another simulation set
 
 module tb_myip_v1_0(
 
@@ -98,21 +99,22 @@ module tb_myip_v1_0(
 	always #5 ACLK = ~ACLK; // invert ACLK every 5 time units (ns) --> period of 10 ns --> 100 MHz clock
     always_ff @(posedge ACLK) prev_M_AXIS_TLAST <= M_AXIS_TLAST; 
 
-    task calculate_expected();
-        integer i, j, k;
-        logic [31:0] accum;
-        for (i = 0; i < NUMBER_OF_A_ROWS; i = i + 1) begin
-            for (j = 0; j < NUMBER_OF_B_COLS; j = j + 1) begin
-                accum = 0;
-                for (k = 0; k < NUMBER_OF_INNER_DIMENSIONS; k = k + 1) begin
-                    // Row-major indexing: (row * row_width) + col
-                    accum = accum + (expected_A_memory[i*NUMBER_OF_INNER_DIMENSIONS + k] * expected_B_memory[k*NUMBER_OF_B_COLS + j]);
-                end
-                // Apply the scaling factor (acc >> 8) used in your design
-                expected_RES_memory[i*NUMBER_OF_B_COLS + j] = accum[15:8]; 
-            end
-        end
-    endtask
+`ifdef BEHAV_SIM
+	task check_idle_state();
+		assert(dut.state == dut.Idle) else $fatal(1, "DUT not in IDLE state when expected - stopping simulation");
+	endtask
+
+	task check_read_inputs_state();
+		assert(dut.state == dut.Read_Inputs) else $fatal(1, "DUT not in READ_INPUTS state when expected - stopping simulation");
+	endtask
+
+	task check_compute_state();
+		assert(dut.state == dut.Compute) else $fatal(1, "DUT not in COMPUTE state when expected - stopping simulation");
+	endtask
+
+	task check_write_outputs_state();
+		assert(dut.state == dut.Write_Outputs) else $fatal(1, "DUT not in WRITE_OUTPUTS state when expected - stopping simulation");
+	endtask
 
 	task automatic verify_a_b_ram();
 		integer i;
@@ -171,6 +173,23 @@ module tb_myip_v1_0(
 			$fatal(1, "RES RAM verification failed - stopping simulation");
 		end
 	endtask
+`endif
+
+    task calculate_expected();
+        integer i, j, k;
+        logic [31:0] accum;
+        for (i = 0; i < NUMBER_OF_A_ROWS; i = i + 1) begin
+            for (j = 0; j < NUMBER_OF_B_COLS; j = j + 1) begin
+                accum = 0;
+                for (k = 0; k < NUMBER_OF_INNER_DIMENSIONS; k = k + 1) begin
+                    // Row-major indexing: (row * row_width) + col
+                    accum = accum + (expected_A_memory[i*NUMBER_OF_INNER_DIMENSIONS + k] * expected_B_memory[k*NUMBER_OF_B_COLS + j]);
+                end
+                // Apply the scaling factor (acc >> 8) used in your design
+                expected_RES_memory[i*NUMBER_OF_B_COLS + j] = accum[15:8]; 
+            end
+        end
+	endtask	
 
 	task automatic verify_output();
 		integer i;
@@ -193,22 +212,6 @@ module tb_myip_v1_0(
 			$display("Output words total errors: %0d", output_errors);
 			$fatal(1, "Output words verification failed - stopping simulation");
 		end
-	endtask
-
-	task check_idle_state();
-		assert(dut.state == dut.Idle) else $fatal(1, "DUT not in IDLE state when expected - stopping simulation");
-	endtask
-
-	task check_read_inputs_state();
-		assert(dut.state == dut.Read_Inputs) else $fatal(1, "DUT not in READ_INPUTS state when expected - stopping simulation");
-	endtask
-
-	task check_compute_state();
-		assert(dut.state == dut.Compute) else $fatal(1, "DUT not in COMPUTE state when expected - stopping simulation");
-	endtask
-
-	task check_write_outputs_state();
-		assert(dut.state == dut.Write_Outputs) else $fatal(1, "DUT not in WRITE_OUTPUTS state when expected - stopping simulation");
 	endtask
 
 	initial begin
@@ -276,8 +279,10 @@ module tb_myip_v1_0(
 			
 			// check all RAM and output contents
 			$display("Verifying Testcase %0d Results:", testcase_num + 1);
+`ifdef BEHAV_SIM 
 			verify_a_b_ram();
 			verify_res_ram();
+`endif
 			verify_output();
 		end
 
