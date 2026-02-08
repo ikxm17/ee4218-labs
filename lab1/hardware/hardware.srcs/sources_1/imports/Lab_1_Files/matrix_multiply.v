@@ -55,6 +55,7 @@ module matrix_multiply
 
 	reg[1:0] state;
 	reg first_mac_cycle;
+	reg last_mac_cycle;
 
 	// Counters
 	localparam M_BITS = (m > 1) ? $clog2(m) : 1;
@@ -80,6 +81,7 @@ module matrix_multiply
 		Idle: 
 		begin
 			first_mac_cycle <= 0;
+			last_mac_cycle 	<= 0;
 			Done 	<= 0;
 
 			if (Start == 1)		
@@ -92,9 +94,14 @@ module matrix_multiply
 		MAC:
 		begin
 			if (first_mac_cycle) first_mac_cycle <= 0;
-			if ((m_counter == m-1) && (n_counter == n-1) && (p_counter == p-1)) 	Done <= 1;
+			if ((m_counter == m-1) && (n_counter == n-1) && (p_counter == p-1)) 	last_mac_cycle <= 1;
 			// last element has been written to RES
-			if (Done)		state		<= Idle;
+			if (last_mac_cycle)
+			begin
+				last_mac_cycle <= 0;
+				Done <= 1;
+				state <= Idle;
+			end
 		end
 		endcase
 	end

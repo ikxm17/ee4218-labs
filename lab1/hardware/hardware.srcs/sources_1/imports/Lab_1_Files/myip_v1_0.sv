@@ -170,7 +170,7 @@ module myip_v1_0
 	always_comb begin: datapath
 		A_write_data_in = S_AXIS_TDATA[width-1:0];
 		B_write_data_in = S_AXIS_TDATA[width-1:0];
-		M_AXIS_TDATA[width-1:0] = RES_read_data_out;
+		M_AXIS_TDATA = {24'b0,  RES_read_data_out}; // zero-extend to 32 bits
 		A_write_address = read_counter;
 		B_write_address = read_counter;
 		RES_read_address = write_counter;
@@ -207,6 +207,7 @@ module myip_v1_0
 				A_write_en = 1'b0;
 				B_write_en = 1'b0;
 				Start = 1'b0; // deassert Start once in Compute state
+				RES_read_en = Done; // assert RES_read_en once computation is  done
 			end
 			Write_Outputs: begin
 				M_AXIS_TVALID = 1'b1;
