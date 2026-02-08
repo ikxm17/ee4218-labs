@@ -96,7 +96,9 @@ module tb_myip_v1_0(
 	logic prev_M_AXIS_TLAST = 1'b0;
 
 	/* Clock generation */
-	always #5 ACLK = ~ACLK; // invert ACLK every 5 time units (ns) --> period of 10 ns --> 100 MHz clock
+	localparam CLOCK_PERIOD = 100;
+	localparam CLOCK_HALF_PERIOD = CLOCK_PERIOD / 2;
+	always #CLOCK_HALF_PERIOD ACLK = ~ACLK; // invert ACLK every 5 time units (ns) --> period of 10 ns --> 100 MHz clock
     always_ff @(posedge ACLK) prev_M_AXIS_TLAST <= M_AXIS_TLAST; 
 
 `ifdef BEHAV_SIM
@@ -228,7 +230,7 @@ module tb_myip_v1_0(
 		S_AXIS_TLAST = 1'b0; 	// not required unless we are dealing with an unknown number of inputs. Ignored by the coprocessor. We will be asserting it correctly anyway
 		M_AXIS_TREADY = 1'b0;	// not ready to receive data from the co-processor yet.   
 
-		#10				// hold reset for 10 ns.
+		#CLOCK_PERIOD		// hold reset for CLOCK_PERIOD
 		ARESETN = 1'b1;	// release reset
 		for (testcase_num = 0; testcase_num < NUMBER_OF_TESTCASES; testcase_num = testcase_num + 1) begin
 			/* Simulating as the master */
@@ -244,7 +246,7 @@ module tb_myip_v1_0(
 						S_AXIS_TLAST = 1'b0;
 					input_word_count = input_word_count + 1;
 				end							
-				#10;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
+				#CLOCK_PERIOD;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
 											// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
 			end
 			// no longer give data to co-processor
@@ -260,7 +262,7 @@ module tb_myip_v1_0(
 					output_words_memory[output_word_count] = M_AXIS_TDATA;
 					output_word_count = output_word_count + 1;
 				end
-				#10;
+				#CLOCK_PERIOD;
 			end
 			M_AXIS_TREADY = 1'b0; // deassert M_AXIS_TREADY since no more data to receive
 
