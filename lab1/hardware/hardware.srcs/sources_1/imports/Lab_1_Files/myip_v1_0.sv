@@ -207,12 +207,9 @@ module myip_v1_0
 				A_write_en = 1'b0;
 				B_write_en = 1'b0;
 				Start = 1'b0; // deassert Start once in Compute state
-				RES_read_en = Done; // assert RES_read_en once computation is  done
+				RES_read_en = Done; // assert RES read_en when Done is asserted to account for one cycle latency of RAM reads
 			end
-			Write_Outputs: begin
-				M_AXIS_TVALID = 1'b1;
-				RES_read_en = 1'b1;
-				M_AXIS_TLAST = (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) ? 1'b1 : 1'b0;
+			Write_Outputs: RES_read_en = M_AXIS_TREADY; // only read when slave is ready to accept data
 			end
 		endcase
 	end
