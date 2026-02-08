@@ -203,12 +203,10 @@ module tb_myip_v1_0(
 
 	task check_compute_state();
 		assert(dut.state == dut.Compute) else $fatal(1, "DUT not in COMPUTE state when expected - stopping simulation");
-		verify_a_b_ram();
 	endtask
 
 	task check_write_outputs_state();
 		assert(dut.state == dut.Write_Outputs) else $fatal(1, "DUT not in WRITE_OUTPUTS state when expected - stopping simulation");
-		verify_res_ram();
 	endtask
 
 	initial begin
@@ -216,18 +214,6 @@ module tb_myip_v1_0(
 		// Load test vectors from .mem file
 		$display("Loading Memory.");
 		$readmemh("test_input.mem", input_words_memory, 0, NUMBER_OF_INPUT_WORDS-1); // load input words
-
-		// Separate A and B matrices
-		for (i = 0; i < NUMBER_OF_A_WORDS; i = i + 1) begin
-			expected_A_memory[i] = input_words_memory[i];
-		end
-
-		for (i = 0; i < NUMBER_OF_B_WORDS; i = i + 1) begin
-			expected_B_memory[i] = input_words_memory[NUMBER_OF_A_WORDS + i];
-		end
-
-		// Calculate expected result
-		calculate_expected();
 
 		/* Set signals to reset co-processor */
 		#25						// needed to make inputs and capture from testbench not aligned with clock edges
@@ -240,14 +226,10 @@ module tb_myip_v1_0(
 		#10				// hold reset for 10 ns.
 		ARESETN = 1'b1;	// release reset
 
-		wait(dut.state == dut.Idle);
-		check_idle_state();
-
 		/* Simulating as the master */
 		/* Set signals to load test vectors into DUT's RAMs */
 		input_word_count = 0;
 		S_AXIS_TVALID = 1'b1; // assert to indicate valid data is placed on S_AXIS_TDATA
-		input_word_count = 0;
 		while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
 			if (S_AXIS_TREADY) begin // S_AXIS_TREADY is asserted by the co-processor in response to assertion of S_AXIS_TVALID
 				S_AXIS_TDATA = input_words_memory[input_word_count];
@@ -256,7 +238,6 @@ module tb_myip_v1_0(
 				else
 					S_AXIS_TLAST = 1'b0;
 				input_word_count = input_word_count + 1;
-				check_read_inputs_state();
 			end							
 			#10;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
 										// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
@@ -278,6 +259,22 @@ module tb_myip_v1_0(
 		end
 		M_AXIS_TREADY = 1'b0; // deassert M_AXIS_TREADY since no more data to receive
 
+		repeat (1) @(posedge ACLK); // wait for a one clock cycle before checking results
+
+		/* Check results */
+		// Separate A and B matrices
+		for (i = 0; i < NUMBER_OF_A_WORDS; i = i + 1) begin
+			expected_A_memory[i] = input_words_memory[i];
+		end
+		for (i = 0; i < NUMBER_OF_B_WORDS; i = i + 1) begin
+			expected_B_memory[i] = input_words_memory[NUMBER_OF_A_WORDS + i];
+		end
+
+		calculate_expected(); // Calculate expected result for matrix multiplication
+		
+		// check all RAM and output contents
+		verify_a_b_ram();
+		verify_res_ram();
 		verify_output();
 		
 		$finish;       	
