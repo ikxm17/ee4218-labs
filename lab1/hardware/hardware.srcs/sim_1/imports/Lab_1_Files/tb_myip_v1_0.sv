@@ -261,13 +261,10 @@ module tb_myip_v1_0(
 			#10;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
 										// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
 		end
+		// no longer give data to co-processor
 		S_AXIS_TDATA = 32'hxxxx; // no valid data
 		S_AXIS_TVALID = 1'b0; // deassert S_AXIS_TVALID since no more data to send
-		
-		
-		wait(dut.state == dut.Compute);
-		#10; // wait for one clock cycle to ensure all data are captured in A and B RAMs
-		check_compute_state();
+		S_AXIS_TLAST = 1'b0; // deassert S_AXIS_TLAST
 		
 		/* Simulating as the slave */
 		output_word_count = 0;
