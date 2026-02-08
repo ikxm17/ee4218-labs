@@ -66,6 +66,8 @@ module tb_myip_v1_0(
 		4. Wait for M_AXIS_TLAST to be asserted, and check the stored array against the expected results
 	*/
 	
+	localparam NUMBER_OF_TESTCASES = 2;
+
 	// ! The elements in the matrices are stored in a flattened array, so additional localparams are used to define their shapes 
 	localparam WIDTH  = 8;  // width of an input vector
 	// Parameters for matrix A
@@ -86,10 +88,10 @@ module tb_myip_v1_0(
 	logic [WIDTH-1:0] expected_B_memory [0:NUMBER_OF_B_WORDS-1];
 	logic [WIDTH-1:0] expected_RES_memory [0:NUMBER_OF_OUTPUT_WORDS-1]; // to store results from
 
-	logic [WIDTH-1:0] input_words_memory [0:NUMBER_OF_INPUT_WORDS-1]; 
+	logic [WIDTH-1:0] input_words_memory [0:NUMBER_OF_TESTCASES * NUMBER_OF_INPUT_WORDS - 1]; 
 	logic [WIDTH-1:0] output_words_memory [0:NUMBER_OF_OUTPUT_WORDS-1];
 	
-	integer i, input_word_count, output_word_count;
+	integer i, testcase_num, input_word_count, output_word_count;
 	logic prev_M_AXIS_TLAST = 1'b0;
 
 	/* Clock generation */
@@ -213,7 +215,7 @@ module tb_myip_v1_0(
 		/* Store test vectors and calculate expected results */
 		// Load test vectors from .mem file
 		$display("Loading Memory.");
-		$readmemh("test_input.mem", input_words_memory, 0, NUMBER_OF_INPUT_WORDS-1); // load input words
+		$readmemh("test_input.mem", input_words_memory, 0, (NUMBER_OF_TESTCASES * NUMBER_OF_INPUT_WORDS) - 1); // load input words
 
 		/* Set signals to reset co-processor */
 		#25						// needed to make inputs and capture from testbench not aligned with clock edges
@@ -225,58 +227,60 @@ module tb_myip_v1_0(
 
 		#10				// hold reset for 10 ns.
 		ARESETN = 1'b1;	// release reset
-
-		/* Simulating as the master */
-		/* Set signals to load test vectors into DUT's RAMs */
-		input_word_count = 0;
-		S_AXIS_TVALID = 1'b1; // assert to indicate valid data is placed on S_AXIS_TDATA
-		while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
-			if (S_AXIS_TREADY) begin // S_AXIS_TREADY is asserted by the co-processor in response to assertion of S_AXIS_TVALID
-				S_AXIS_TDATA = input_words_memory[input_word_count];
-				if (input_word_count == NUMBER_OF_INPUT_WORDS - 1)
-					S_AXIS_TLAST = 1'b1; // indicate last word
-				else
-					S_AXIS_TLAST = 1'b0;
-				input_word_count = input_word_count + 1;
-			end							
-			#10;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
-										// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
-		end
-		// no longer give data to co-processor
-		S_AXIS_TDATA = 32'hxxxx; // no valid data
-		S_AXIS_TVALID = 1'b0; // deassert S_AXIS_TVALID since no more data to send
-		S_AXIS_TLAST = 1'b0; // deassert S_AXIS_TLAST
-		
-		/* Simulating as the slave */
-		output_word_count = 0;
-		M_AXIS_TREADY = 1'b1; // assert to indicate ready to receive data from co-processor
-		while (M_AXIS_TLAST | ~prev_M_AXIS_TLAST) begin // receive data until the falling edge of M_AXIS_TLAST
-			if (M_AXIS_TVALID) begin
-				output_words_memory[output_word_count] = M_AXIS_TDATA;
-				output_word_count = output_word_count + 1;
+		for (testcase_num = 0; testcase_num < NUMBER_OF_TESTCASES; testcase_num = testcase_num + 1) begin
+			/* Simulating as the master */
+			/* Set signals to load test vectors into DUT's RAMs */
+			input_word_count = 0;
+			S_AXIS_TVALID = 1'b1; // assert to indicate valid data is placed on S_AXIS_TDATA
+			while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
+				if (S_AXIS_TREADY) begin // S_AXIS_TREADY is asserted by the co-processor in response to assertion of S_AXIS_TVALID
+					S_AXIS_TDATA = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + input_word_count];
+					if (input_word_count == (NUMBER_OF_INPUT_WORDS) - 1)
+						S_AXIS_TLAST = 1'b1; // indicate last word
+					else
+						S_AXIS_TLAST = 1'b0;
+					input_word_count = input_word_count + 1;
+				end							
+				#10;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
+											// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
 			end
-			#10;
-		end
-		M_AXIS_TREADY = 1'b0; // deassert M_AXIS_TREADY since no more data to receive
+			// no longer give data to co-processor
+			S_AXIS_TDATA = 32'hxxxx; // no valid data
+			S_AXIS_TVALID = 1'b0; // deassert S_AXIS_TVALID since no more data to send
+			S_AXIS_TLAST = 1'b0; // deassert S_AXIS_TLAST
+			
+			/* Simulating as the slave */
+			output_word_count = 0;
+			M_AXIS_TREADY = 1'b1; // assert to indicate ready to receive data from co-processor
+			while (M_AXIS_TLAST | ~prev_M_AXIS_TLAST) begin // receive data until the falling edge of M_AXIS_TLAST
+				if (M_AXIS_TVALID) begin
+					output_words_memory[output_word_count] = M_AXIS_TDATA;
+					output_word_count = output_word_count + 1;
+				end
+				#10;
+			end
+			M_AXIS_TREADY = 1'b0; // deassert M_AXIS_TREADY since no more data to receive
 
-		repeat (1) @(posedge ACLK); // wait for a one clock cycle before checking results
+			repeat (1) @(posedge ACLK); // wait for a one clock cycle before checking results
 
-		/* Check results */
-		// Separate A and B matrices
-		for (i = 0; i < NUMBER_OF_A_WORDS; i = i + 1) begin
-			expected_A_memory[i] = input_words_memory[i];
-		end
-		for (i = 0; i < NUMBER_OF_B_WORDS; i = i + 1) begin
-			expected_B_memory[i] = input_words_memory[NUMBER_OF_A_WORDS + i];
+			/* Check results */
+			// Separate A and B matrices
+			for (i = 0; i < NUMBER_OF_A_WORDS; i = i + 1) begin
+				expected_A_memory[i] = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + i];
+			end
+			for (i = 0; i < NUMBER_OF_B_WORDS; i = i + 1) begin
+				expected_B_memory[i] = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + NUMBER_OF_A_WORDS + i];
+			end
+
+			calculate_expected(); // Calculate expected result for matrix multiplication
+			
+			// check all RAM and output contents
+			$display("Verifying Testcase %0d Results:", testcase_num + 1);
+			verify_a_b_ram();
+			verify_res_ram();
+			verify_output();
 		end
 
-		calculate_expected(); // Calculate expected result for matrix multiplication
-		
-		// check all RAM and output contents
-		verify_a_b_ram();
-		verify_res_ram();
-		verify_output();
-		
 		$finish;       	
 	end
 endmodule
