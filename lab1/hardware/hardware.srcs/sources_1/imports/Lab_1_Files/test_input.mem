@@ -7,11 +7,19 @@
 3C
 46
 50
+02
+04
+06
+08
 // second input vector
 02
 04
 06
 08
+0A
+0C
+0E
+10
 // first input vector
 0A
 14
@@ -21,8 +29,16 @@
 3C
 46
 50
-// second input vector
+02
 04
+06
 08
-0C
-10
+// second input vector
+0A
+14
+1E
+28
+32
+3C
+46
+50

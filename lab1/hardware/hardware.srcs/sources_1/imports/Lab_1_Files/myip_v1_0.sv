@@ -31,8 +31,15 @@
 -------------------------------------------------------------------------------
 */
 
-module myip_v1_0 
-	(
+module myip_v1_0 # (
+	parameter NUMBER_OF_A_ROWS = 2, // m
+	parameter NUMBER_OF_INNER_DIMENSIONS = 4, // n
+	parameter NUMBER_OF_B_COLS = 1, // p
+	parameter NUMBER_OF_A_WORDS = 8,
+	parameter NUMBER_OF_B_WORDS = 4,
+	parameter NUMBER_OF_INPUT_WORDS = 12,
+	parameter NUMBER_OF_OUTPUT_WORDS = 2
+	)(
 		// DO NOT EDIT BELOW THIS LINE ////////////////////
 		ACLK,
 		ARESETN,
@@ -75,9 +82,9 @@ module myip_v1_0
 
 
 	// RAM parameters for assignment 1
-	localparam A_depth_bits = 3;  	// 8 elements (A is a 2x4 matrix)
-	localparam B_depth_bits = 2; 	// 4 elements (B is a 4x1 matrix)
-	localparam RES_depth_bits = 1;	// 2 elements (RES is a 2x1 matrix)
+	localparam A_depth_bits = $clog2(NUMBER_OF_A_WORDS);  	// 8 elements (A is a 2x4 matrix)
+	localparam B_depth_bits = $clog2(NUMBER_OF_B_WORDS); 	// 4 elements (B is a 4x1 matrix)
+	localparam RES_depth_bits = $clog2(NUMBER_OF_OUTPUT_WORDS);	// 2 elements (RES is a 2x1 matrix)
 	localparam width = 8;			// all 8-bit data
 	
 	// wires (or regs) to connect to RAMs and matrix_multiply_0 for assignment 1
@@ -104,12 +111,6 @@ module myip_v1_0
 	// wires (or regs) to connect to matrix_multiply for assignment 1
 	reg		Start; 								// myip_v1_0 -> matrix_multiply_0. To be assigned within myip_v1_0. Possibly reg.
 	wire	Done;								// matrix_multiply_0 -> myip_v1_0. 
-			
-	// Total number of input data.
-	localparam NUMBER_OF_INPUT_WORDS  = 12; // 2**A_depth_bits + 2**B_depth_bits = 12 for assignment 1
-
-	// Total number of output data
-	localparam NUMBER_OF_OUTPUT_WORDS = 2; // 2**RES_depth_bits = 2 for assignment 1
 
 	// Define the states of state machine (one hot encoding)
 	localparam Idle  = 4'b1000;
@@ -173,7 +174,7 @@ module myip_v1_0
 		B_write_data_in = S_AXIS_TDATA[width-1:0];
 		M_AXIS_TDATA = {24'b0,  RES_read_data_out}; // zero-extend to 32 bits
 		A_write_address = read_counter;
-		B_write_address = read_counter;
+		B_write_address = read_counter - NUMBER_OF_A_WORDS;
 		RES_read_address = write_counter;
 	end
 
@@ -203,10 +204,11 @@ module myip_v1_0
 			Read_Inputs: begin
 				S_AXIS_TREADY = 1'b1;
 				// assert enable based on read_counter value
-				if (read_counter < 2 ** A_depth_bits) begin
+				if (read_counter < NUMBER_OF_A_WORDS) begin
 					A_write_en = S_AXIS_TVALID; // only write when data is valid
 					B_write_en = 1'b0;
-				end else begin
+				end
+				if ((read_counter >= NUMBER_OF_A_WORDS) && (read_counter < NUMBER_OF_INPUT_WORDS)) begin
 					B_write_en = S_AXIS_TVALID; // only write when data is valid
 					A_write_en = 1'b0;
 				end
@@ -283,7 +285,10 @@ module myip_v1_0
 		.width(width), 
 		.A_depth_bits(A_depth_bits), 
 		.B_depth_bits(B_depth_bits), 
-		.RES_depth_bits(RES_depth_bits) 
+		.RES_depth_bits(RES_depth_bits),
+		.m(NUMBER_OF_A_ROWS),
+		.n(NUMBER_OF_INNER_DIMENSIONS),
+		.p(NUMBER_OF_B_COLS)
 	) matrix_multiply_0
 	(									
 		.clk(ACLK),

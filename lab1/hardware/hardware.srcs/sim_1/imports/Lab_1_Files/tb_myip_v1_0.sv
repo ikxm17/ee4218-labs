@@ -37,19 +37,55 @@ module tb_myip_v1_0(
 	logic M_AXIS_TLAST;   						// Optional data out qualifier
     logic M_AXIS_TVALID;  						// Data out is valid
     
+	localparam NUMBER_OF_TESTCASES = 2;
+
+	// ! The elements in the matrices are stored in a flattened array, so additional localparams are used to define their shapes 
+	localparam WIDTH  = 8;  // width of an input vector
+	// Inner dimension of matrix A and B
+	localparam NUMBER_OF_INNER_DIMENSIONS = 4;
+	// Parameters for matrix A
+	localparam NUMBER_OF_A_ROWS = 3;
+	localparam NUMBER_OF_A_WORDS = NUMBER_OF_A_ROWS * NUMBER_OF_INNER_DIMENSIONS; 
+	// Parameters for matrix B
+	localparam NUMBER_OF_B_COLS = 2;
+	localparam NUMBER_OF_B_WORDS = NUMBER_OF_INNER_DIMENSIONS * NUMBER_OF_B_COLS;
+	// Total number of input words
+	localparam NUMBER_OF_INPUT_WORDS = NUMBER_OF_A_WORDS + NUMBER_OF_B_WORDS;
+	// Total number of output words
+	localparam NUMBER_OF_OUTPUT_WORDS = NUMBER_OF_A_ROWS * NUMBER_OF_B_COLS;
+
+	// Inputs for A and B matrices are loaded from test_input.mem
+	logic [WIDTH-1:0] expected_A_memory [0:NUMBER_OF_A_WORDS-1];
+	logic [WIDTH-1:0] expected_B_memory [0:NUMBER_OF_B_WORDS-1];
+	logic [WIDTH-1:0] expected_RES_memory [0:NUMBER_OF_OUTPUT_WORDS-1]; // to store results from
+
+	logic [WIDTH-1:0] input_words_memory [0:NUMBER_OF_TESTCASES * NUMBER_OF_INPUT_WORDS - 1]; 
+	logic [WIDTH-1:0] output_words_memory [0:NUMBER_OF_OUTPUT_WORDS-1];
+	
+	integer i, testcase_num, input_word_count, output_word_count;
+	logic prev_M_AXIS_TLAST = 1'b0;
+
 	/* DUT instantiation */
-    myip_v1_0 dut ( 
-		.ACLK(ACLK),
-		.ARESETN(ARESETN),
-		.S_AXIS_TREADY(S_AXIS_TREADY),
-		.S_AXIS_TDATA(S_AXIS_TDATA),
-		.S_AXIS_TLAST(S_AXIS_TLAST),
-		.S_AXIS_TVALID(S_AXIS_TVALID),
-		.M_AXIS_TVALID(M_AXIS_TVALID),
-		.M_AXIS_TDATA(M_AXIS_TDATA),
-		.M_AXIS_TLAST(M_AXIS_TLAST),
-		.M_AXIS_TREADY(M_AXIS_TREADY)
-	);
+    myip_v1_0 #(
+        .NUMBER_OF_A_ROWS(NUMBER_OF_A_ROWS),
+        .NUMBER_OF_INNER_DIMENSIONS(NUMBER_OF_INNER_DIMENSIONS),
+        .NUMBER_OF_B_COLS(NUMBER_OF_B_COLS),
+		.NUMBER_OF_A_WORDS(NUMBER_OF_A_WORDS),
+		.NUMBER_OF_B_WORDS(NUMBER_OF_B_WORDS),
+		.NUMBER_OF_INPUT_WORDS(NUMBER_OF_INPUT_WORDS),
+		.NUMBER_OF_OUTPUT_WORDS(NUMBER_OF_OUTPUT_WORDS)
+    ) dut (
+        .ACLK(ACLK),
+        .ARESETN(ARESETN),
+        .S_AXIS_TREADY(S_AXIS_TREADY),
+        .S_AXIS_TDATA(S_AXIS_TDATA),
+        .S_AXIS_TLAST(S_AXIS_TLAST),
+        .S_AXIS_TVALID(S_AXIS_TVALID),
+        .M_AXIS_TVALID(M_AXIS_TVALID),
+        .M_AXIS_TDATA(M_AXIS_TDATA),
+        .M_AXIS_TLAST(M_AXIS_TLAST),
+        .M_AXIS_TREADY(M_AXIS_TREADY)
+    );
 
 	/* DUT states */
 	typedef enum logic [2:0] {
@@ -66,34 +102,6 @@ module tb_myip_v1_0(
 		4. In Write_Outputs state, at every clock cycle, store  M_AXIS_TDATA into an array 
 		4. Wait for M_AXIS_TLAST to be asserted, and check the stored array against the expected results
 	*/
-	
-	localparam NUMBER_OF_TESTCASES = 2;
-
-	// ! The elements in the matrices are stored in a flattened array, so additional localparams are used to define their shapes 
-	localparam WIDTH  = 8;  // width of an input vector
-	// Parameters for matrix A
-	localparam NUMBER_OF_A_WORDS = 8; 
-	localparam NUMBER_OF_A_ROWS = 2;
-	// Parameters for matrix B
-	localparam NUMBER_OF_B_WORDS = 4;
-	localparam NUMBER_OF_B_COLS = 1;
-	// Inner dimension of matrix A and B
-	localparam NUMBER_OF_INNER_DIMENSIONS = 4;
-	// Total number of input words
-	localparam NUMBER_OF_INPUT_WORDS = NUMBER_OF_A_WORDS + NUMBER_OF_B_WORDS;
-	// Total number of output words
-	localparam NUMBER_OF_OUTPUT_WORDS = NUMBER_OF_A_ROWS * NUMBER_OF_B_COLS;
-	
-	// Inputs for A and B matrices are loaded from test_input.mem
-	logic [WIDTH-1:0] expected_A_memory [0:NUMBER_OF_A_WORDS-1];
-	logic [WIDTH-1:0] expected_B_memory [0:NUMBER_OF_B_WORDS-1];
-	logic [WIDTH-1:0] expected_RES_memory [0:NUMBER_OF_OUTPUT_WORDS-1]; // to store results from
-
-	logic [WIDTH-1:0] input_words_memory [0:NUMBER_OF_TESTCASES * NUMBER_OF_INPUT_WORDS - 1]; 
-	logic [WIDTH-1:0] output_words_memory [0:NUMBER_OF_OUTPUT_WORDS-1];
-	
-	integer i, testcase_num, input_word_count, output_word_count;
-	logic prev_M_AXIS_TLAST = 1'b0;
 
 	/* Clock generation */
 	localparam CLOCK_PERIOD = 100;
