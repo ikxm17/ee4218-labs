@@ -15,7 +15,7 @@
 ----------------------------------------------------------------------------------
 */
 
-`define BEHAV_SIM // ! Uncomment when running post-synthesis simulations. This can be automated by making another simulation set
+`define BEHAV_SIM // ! Comment when running post-synthesis simulations. This can be automated by making another simulation set
 
 module tb_myip_v1_0(
 
