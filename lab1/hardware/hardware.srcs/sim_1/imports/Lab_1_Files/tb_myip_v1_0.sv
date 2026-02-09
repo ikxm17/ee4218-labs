@@ -233,6 +233,15 @@ module tb_myip_v1_0(
 		#CLOCK_PERIOD		// hold reset for CLOCK_PERIOD
 		ARESETN = 1'b1;	// release reset
 		for (testcase_num = 0; testcase_num < NUMBER_OF_TESTCASES; testcase_num = testcase_num + 1) begin
+			// Separate A and B matrices
+			for (i = 0; i < NUMBER_OF_A_WORDS; i = i + 1) begin
+				expected_A_memory[i] = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + i];
+			end
+			for (i = 0; i < NUMBER_OF_B_WORDS; i = i + 1) begin
+				expected_B_memory[i] = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + NUMBER_OF_A_WORDS + i];
+			end
+
+			calculate_expected(); // Calculate expected result for matrix multiplication
 			/* Simulating as the master */
 			/* Set signals to load test vectors into DUT's RAMs */
 			input_word_count = 0;
@@ -269,16 +278,6 @@ module tb_myip_v1_0(
 			repeat (1) @(posedge ACLK); // wait for a one clock cycle before checking results
 
 			/* Check results */
-			// Separate A and B matrices
-			for (i = 0; i < NUMBER_OF_A_WORDS; i = i + 1) begin
-				expected_A_memory[i] = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + i];
-			end
-			for (i = 0; i < NUMBER_OF_B_WORDS; i = i + 1) begin
-				expected_B_memory[i] = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + NUMBER_OF_A_WORDS + i];
-			end
-
-			calculate_expected(); // Calculate expected result for matrix multiplication
-			
 			// check all RAM and output contents
 			$display("Verifying Testcase %0d Results:", testcase_num + 1);
 `ifdef BEHAV_SIM 
