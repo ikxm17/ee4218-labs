@@ -263,7 +263,7 @@ module tb_myip_v1_0(
 						S_AXIS_TLAST = 1'b0;
 					input_word_count = input_word_count + 1;
 				end							
-				#CLOCK_PERIOD;						// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
+				#CLOCK_PERIOD;				// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
 											// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
 			end
 			// no longer give data to co-processor
