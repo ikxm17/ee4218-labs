@@ -62,7 +62,7 @@ module tb_myip_v1_0(
 	logic [WIDTH-1:0] input_words_memory [0:NUMBER_OF_TESTCASES * NUMBER_OF_INPUT_WORDS - 1]; 
 	logic [WIDTH-1:0] output_words_memory [0:NUMBER_OF_OUTPUT_WORDS-1];
 	
-	integer i, testcase_num, input_word_count, output_word_count;
+	integer i, testcase_num, input_word_count, output_word_count, cycle_count;
 	logic prev_M_AXIS_TLAST = 1'b0;
 
 	/* DUT instantiation */
@@ -91,7 +91,8 @@ module tb_myip_v1_0(
 	localparam CLOCK_PERIOD = 100;
 	localparam CLOCK_HALF_PERIOD = CLOCK_PERIOD / 2;
 	always #CLOCK_HALF_PERIOD ACLK = ~ACLK; // invert ACLK every 5 time units (ns) --> period of 10 ns --> 100 MHz clock
-    always_ff @(posedge ACLK) prev_M_AXIS_TLAST <= M_AXIS_TLAST; 
+    always @(posedge ACLK) cycle_count = cycle_count + 1;
+	always_ff @(posedge ACLK) prev_M_AXIS_TLAST <= M_AXIS_TLAST;
 
 `ifdef BEHAV_SIM
 	task check_idle_state();
@@ -236,6 +237,7 @@ module tb_myip_v1_0(
 			calculate_expected(); // Calculate expected result for matrix multiplication
 			/* Simulating as the master */
 			/* Set signals to load test vectors into DUT's RAMs */
+			cycle_count = 0; // reset cycle counter everytime a new testcase starts
 			input_word_count = 0;
 			S_AXIS_TVALID = 1'b1; // assert to indicate valid data is placed on S_AXIS_TDATA
 			while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
@@ -270,13 +272,19 @@ module tb_myip_v1_0(
 			repeat (1) @(posedge ACLK); // wait for a one clock cycle before checking results
 
 			/* Check results */
+			$display("=========================================");
+			$display("Testcase %0d:", testcase_num + 1);
+			$display("  Matrix A: %0d x %0d", NUMBER_OF_A_ROWS, NUMBER_OF_INNER_DIMENSIONS);
+			$display("  Matrix B: %0d x %0d", NUMBER_OF_INNER_DIMENSIONS, NUMBER_OF_B_COLS);
+			$display("  Result:   %0d x %0d", NUMBER_OF_A_ROWS, NUMBER_OF_B_COLS);
+			$display("  Cycles Used:   %0d", cycle_count);
 			// check all RAM and output contents
-			$display("Verifying Testcase %0d Results:", testcase_num + 1);
 `ifdef BEHAV_SIM 
 			verify_a_b_ram();
 			verify_res_ram();
 `endif
 			verify_output();
+			$display("=========================================");
 		end
 
 		$finish;       	
