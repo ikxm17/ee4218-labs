@@ -15,7 +15,7 @@
 ----------------------------------------------------------------------------------
 */
 
-`define BEHAV_SIM // ! Comment when running post-synthesis simulations. This can be automated by making another simulation set
+`define BEHAV_SIM // ! Comment when running post-synthesis simulations. This can be automated by making another simulation set.
 
 module tb_myip_v1_0(
 
@@ -86,22 +86,6 @@ module tb_myip_v1_0(
         .M_AXIS_TLAST(M_AXIS_TLAST),
         .M_AXIS_TREADY(M_AXIS_TREADY)
     );
-
-	/* DUT states */
-	typedef enum logic [2:0] {
-		IDLE = 4'b1000,
-		READ_INPUTS = 4'b0100,
-		COMPUTE = 4'b0010,
-		WRITE_OUTPUTS = 4'b0001
-	} state_t;
-	
-	/* TODO: 
-		1. Load test vectors and calculate expected results (copy hannah's golden model), store them in some array
-		2. Load the test vectors into the dut, and check the RAM contents in Compute state
-		3. Check the RES_RAM contents in Write_Outputs state
-		4. In Write_Outputs state, at every clock cycle, store  M_AXIS_TDATA into an array 
-		4. Wait for M_AXIS_TLAST to be asserted, and check the stored array against the expected results
-	*/
 
 	/* Clock generation */
 	localparam CLOCK_PERIOD = 100;
