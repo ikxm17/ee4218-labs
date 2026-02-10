@@ -37,17 +37,17 @@ module tb_myip_v1_0(
 	logic M_AXIS_TLAST;   						// Optional data out qualifier
     logic M_AXIS_TVALID;  						// Data out is valid
     
-	localparam NUMBER_OF_TESTCASES = 2;
+	localparam NUMBER_OF_TESTCASES = 3;
 
 	// ! The elements in the matrices are stored in a flattened array, so additional localparams are used to define their shapes 
 	localparam WIDTH  = 8;  // width of an input vector
 	// Inner dimension of matrix A and B
 	localparam NUMBER_OF_INNER_DIMENSIONS = 4;
 	// Parameters for matrix A
-	localparam NUMBER_OF_A_ROWS = 3;
+	localparam NUMBER_OF_A_ROWS = 2;
 	localparam NUMBER_OF_A_WORDS = NUMBER_OF_A_ROWS * NUMBER_OF_INNER_DIMENSIONS; 
 	// Parameters for matrix B
-	localparam NUMBER_OF_B_COLS = 2;
+	localparam NUMBER_OF_B_COLS = 1;
 	localparam NUMBER_OF_B_WORDS = NUMBER_OF_INNER_DIMENSIONS * NUMBER_OF_B_COLS;
 	// Total number of input words
 	localparam NUMBER_OF_INPUT_WORDS = NUMBER_OF_A_WORDS + NUMBER_OF_B_WORDS;

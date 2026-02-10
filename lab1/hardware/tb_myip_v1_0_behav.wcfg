@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="10,591.352 ns"></ZoomStartTime>
-      <ZoomEndTime time="10,901.730 ns"></ZoomEndTime>
-      <Cursor1Time time="10,850.000 ns"></Cursor1Time>
+      <ZoomStartTime time="6,767.318 ns"></ZoomStartTime>
+      <ZoomEndTime time="7,706.537 ns"></ZoomEndTime>
+      <Cursor1Time time="7,550.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="505"></NameColumnWidth>
-      <ValueColumnWidth column_width="1376"></ValueColumnWidth>
+      <NameColumnWidth column_width="327"></NameColumnWidth>
+      <ValueColumnWidth column_width="339"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="5" />
    <wvobject type="group" fp_name="group127">
@@ -69,8 +69,8 @@
          <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/read_counter">
-         <obj_property name="ElementShortName">read_counter[4:0]</obj_property>
-         <obj_property name="ObjectShortName">read_counter[4:0]</obj_property>
+         <obj_property name="ElementShortName">read_counter[3:0]</obj_property>
+         <obj_property name="ObjectShortName">read_counter[3:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/input_word_count">
@@ -79,40 +79,40 @@
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/input_words_memory">
-         <obj_property name="ElementShortName">input_words_memory[0:39][7:0]</obj_property>
-         <obj_property name="ObjectShortName">input_words_memory[0:39][7:0]</obj_property>
+         <obj_property name="ElementShortName">input_words_memory[0:35][7:0]</obj_property>
+         <obj_property name="ObjectShortName">input_words_memory[0:35][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/expected_A_memory">
-         <obj_property name="ElementShortName">expected_A_memory[0:11][7:0]</obj_property>
-         <obj_property name="ObjectShortName">expected_A_memory[0:11][7:0]</obj_property>
+         <obj_property name="ElementShortName">expected_A_memory[0:7][7:0]</obj_property>
+         <obj_property name="ObjectShortName">expected_A_memory[0:7][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/A_RAM/RAM">
-         <obj_property name="ElementShortName">RAM[0:15][7:0]</obj_property>
-         <obj_property name="ObjectShortName">RAM[0:15][7:0]</obj_property>
+         <obj_property name="ElementShortName">RAM[0:7][7:0]</obj_property>
+         <obj_property name="ObjectShortName">RAM[0:7][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/expected_B_memory">
-         <obj_property name="ElementShortName">expected_B_memory[0:7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">expected_B_memory[0:7][7:0]</obj_property>
+         <obj_property name="ElementShortName">expected_B_memory[0:3][7:0]</obj_property>
+         <obj_property name="ObjectShortName">expected_B_memory[0:3][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/RAM">
-         <obj_property name="ElementShortName">RAM[0:7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">RAM[0:7][7:0]</obj_property>
+         <obj_property name="ElementShortName">RAM[0:3][7:0]</obj_property>
+         <obj_property name="ObjectShortName">RAM[0:3][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/write_counter">
-         <obj_property name="ElementShortName">write_counter[2:0]</obj_property>
-         <obj_property name="ObjectShortName">write_counter[2:0]</obj_property>
+         <obj_property name="ElementShortName">write_counter[0:0]</obj_property>
+         <obj_property name="ObjectShortName">write_counter[0:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/expected_RES_memory">
-         <obj_property name="ElementShortName">expected_RES_memory[0:5][7:0]</obj_property>
-         <obj_property name="ObjectShortName">expected_RES_memory[0:5][7:0]</obj_property>
+         <obj_property name="ElementShortName">expected_RES_memory[0:1][7:0]</obj_property>
+         <obj_property name="ObjectShortName">expected_RES_memory[0:1][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/RES_RAM/RAM">
-         <obj_property name="ElementShortName">RAM[0:7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">RAM[0:7][7:0]</obj_property>
+         <obj_property name="ElementShortName">RAM[0:1][7:0]</obj_property>
+         <obj_property name="ObjectShortName">RAM[0:1][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/output_words_memory">
-         <obj_property name="ElementShortName">output_words_memory[0:5][7:0]</obj_property>
-         <obj_property name="ObjectShortName">output_words_memory[0:5][7:0]</obj_property>
+         <obj_property name="ElementShortName">output_words_memory[0:1][7:0]</obj_property>
+         <obj_property name="ObjectShortName">output_words_memory[0:1][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/output_word_count">
          <obj_property name="ElementShortName">output_word_count[31:0]</obj_property>
@@ -143,12 +143,12 @@
          <obj_property name="ObjectShortName">wea</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/addra">
-         <obj_property name="ElementShortName">addra[2:0]</obj_property>
-         <obj_property name="ObjectShortName">addra[2:0]</obj_property>
+         <obj_property name="ElementShortName">addra[1:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[1:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/addrb">
-         <obj_property name="ElementShortName">addrb[2:0]</obj_property>
-         <obj_property name="ObjectShortName">addrb[2:0]</obj_property>
+         <obj_property name="ElementShortName">addrb[1:0]</obj_property>
+         <obj_property name="ObjectShortName">addrb[1:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/dia">
          <obj_property name="ElementShortName">dia[7:0]</obj_property>
@@ -159,8 +159,8 @@
          <obj_property name="ObjectShortName">dob[7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/RAM">
-         <obj_property name="ElementShortName">RAM[0:7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">RAM[0:7][7:0]</obj_property>
+         <obj_property name="ElementShortName">RAM[0:3][7:0]</obj_property>
+         <obj_property name="ObjectShortName">RAM[0:3][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/B_RAM/width">
          <obj_property name="ElementShortName">width[31:0]</obj_property>
@@ -175,8 +175,8 @@
       <obj_property name="label">RES RAM</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/RES_RAM/RAM">
-         <obj_property name="ElementShortName">RAM[0:7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">RAM[0:7][7:0]</obj_property>
+         <obj_property name="ElementShortName">RAM[0:1][7:0]</obj_property>
+         <obj_property name="ObjectShortName">RAM[0:1][7:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/RES_RAM/width">
          <obj_property name="ElementShortName">width[31:0]</obj_property>
@@ -190,6 +190,7 @@
    <wvobject type="group" fp_name="group160">
       <obj_property name="label">MAT MUL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/clk">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -211,8 +212,8 @@
          <obj_property name="ObjectShortName">A_read_en</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/A_read_address">
-         <obj_property name="ElementShortName">A_read_address[3:0]</obj_property>
-         <obj_property name="ObjectShortName">A_read_address[3:0]</obj_property>
+         <obj_property name="ElementShortName">A_read_address[2:0]</obj_property>
+         <obj_property name="ObjectShortName">A_read_address[2:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/A_read_data_out">
          <obj_property name="ElementShortName">A_read_data_out[7:0]</obj_property>
@@ -223,8 +224,8 @@
          <obj_property name="ObjectShortName">B_read_en</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/B_read_address">
-         <obj_property name="ElementShortName">B_read_address[2:0]</obj_property>
-         <obj_property name="ObjectShortName">B_read_address[2:0]</obj_property>
+         <obj_property name="ElementShortName">B_read_address[1:0]</obj_property>
+         <obj_property name="ObjectShortName">B_read_address[1:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/B_read_data_out">
          <obj_property name="ElementShortName">B_read_data_out[7:0]</obj_property>
@@ -235,12 +236,13 @@
          <obj_property name="ObjectShortName">RES_write_en</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/RES_write_address">
-         <obj_property name="ElementShortName">RES_write_address[2:0]</obj_property>
-         <obj_property name="ObjectShortName">RES_write_address[2:0]</obj_property>
+         <obj_property name="ElementShortName">RES_write_address[0:0]</obj_property>
+         <obj_property name="ObjectShortName">RES_write_address[0:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/RES_write_data_in">
          <obj_property name="ElementShortName">RES_write_data_in[7:0]</obj_property>
          <obj_property name="ObjectShortName">RES_write_data_in[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/state">
          <obj_property name="ElementShortName">state[1:0]</obj_property>
@@ -252,8 +254,8 @@
          <obj_property name="ObjectShortName">first_mac_cycle</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/m_counter">
-         <obj_property name="ElementShortName">m_counter[1:0]</obj_property>
-         <obj_property name="ObjectShortName">m_counter[1:0]</obj_property>
+         <obj_property name="ElementShortName">m_counter[0:0]</obj_property>
+         <obj_property name="ObjectShortName">m_counter[0:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/n_counter">
          <obj_property name="ElementShortName">n_counter[1:0]</obj_property>
@@ -266,10 +268,12 @@
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/mul">
          <obj_property name="ElementShortName">mul[31:0]</obj_property>
          <obj_property name="ObjectShortName">mul[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/matrix_multiply_0/acc">
          <obj_property name="ElementShortName">acc[31:0]</obj_property>
          <obj_property name="ObjectShortName">acc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group260">
@@ -297,8 +301,8 @@
          <obj_property name="ObjectShortName">RES_read_en</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/RES_read_address">
-         <obj_property name="ElementShortName">RES_read_address[2:0]</obj_property>
-         <obj_property name="ObjectShortName">RES_read_address[2:0]</obj_property>
+         <obj_property name="ElementShortName">RES_read_address[0:0]</obj_property>
+         <obj_property name="ObjectShortName">RES_read_address[0:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/RES_read_data_out">
          <obj_property name="ElementShortName">RES_read_data_out[7:0]</obj_property>
@@ -325,8 +329,8 @@
          <obj_property name="ObjectShortName">prev_M_AXIS_TLAST</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/dut/write_counter">
-         <obj_property name="ElementShortName">write_counter[2:0]</obj_property>
-         <obj_property name="ObjectShortName">write_counter[2:0]</obj_property>
+         <obj_property name="ElementShortName">write_counter[0:0]</obj_property>
+         <obj_property name="ObjectShortName">write_counter[0:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/output_word_count">
          <obj_property name="ElementShortName">output_word_count[31:0]</obj_property>
@@ -334,8 +338,8 @@
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_myip_v1_0/output_words_memory">
-         <obj_property name="ElementShortName">output_words_memory[0:5][7:0]</obj_property>
-         <obj_property name="ObjectShortName">output_words_memory[0:5][7:0]</obj_property>
+         <obj_property name="ElementShortName">output_words_memory[0:1][7:0]</obj_property>
+         <obj_property name="ObjectShortName">output_words_memory[0:1][7:0]</obj_property>
          <obj_property name="isExpanded"></obj_property>
       </wvobject>
    </wvobject>
