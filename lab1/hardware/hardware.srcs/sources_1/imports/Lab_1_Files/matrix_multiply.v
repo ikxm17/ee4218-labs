@@ -174,7 +174,8 @@ module matrix_multiply
 		A_read_address = (m_counter * n) + n_counter;
 		B_read_address = (n_counter * p)+ p_counter;
 		mul = A_read_data_out * B_read_data_out;
-
+        A_read_en = 1'b0;
+        B_read_en = 1'b0;
 		// divide by 256 equivalent to LSR by 8 bits 
 		RES_write_data_in = acc >> 8; 
 
