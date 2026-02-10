@@ -114,7 +114,7 @@ module matrix_multiply
 		Idle:
 			begin
 				m_counter 	<= 0;
-				n_counter 	<= 0;
+				n_counter 	<= (Start) ? n_counter + 1 : 0;
 				p_counter 	<= 0;
 			end
 		MAC:
