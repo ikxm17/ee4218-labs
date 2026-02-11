@@ -1,0 +1,28 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.556",
+   "Default View_TopLeft":"10,-3",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 320 -y 310 -defaultsOSRD
+preplace inst axi_fifo_mm_s_0 -pg 1 -lvl 3 -x 1090 -y 330 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 760 -y 310 -defaultsOSRD
+preplace inst rst_ps8_0_99M -pg 1 -lvl 1 -x 320 -y 120 -defaultsOSRD
+preplace inst axi_timer_0 -pg 1 -lvl 3 -x 1090 -y 110 -defaultsOSRD
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 3 30 220 620 220 920
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 2 20 20 610
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 2 630 160 890
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 N 290
+preplace netloc axi_smc_M00_AXI 1 2 1 N 290
+preplace netloc axi_smc_M01_AXI 1 2 1 910 310n
+preplace netloc axi_fifo_mm_s_0_AXI_STR_TXD 1 2 2 930 220 1250
+preplace netloc axi_smc_M02_AXI 1 2 1 900 60n
+levelinfo -pg 1 0 320 760 1090 1270
+pagesize -pg 1 -db -bbox -sgen 0 0 1270 440
+"
+}
+{
+   "da_axi4_cnt":"3",
+   "da_zynq_ultra_ps_e_cnt":"1"
+}
