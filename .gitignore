@@ -7,19 +7,19 @@
 ##  License    : MIT                                                                   ##
 #########################################################################################
 
-## log files
+# log files
 *.log
 *.rpt
 
-## bitstream
+# bitstream
 *.bit
 
-## netlist
+# netlist
 *.edf
 *.edif
 *.vn
 
-## SDF
+# SDF
 *.sdf
 
 # for Xilinx Vivado|ISE
