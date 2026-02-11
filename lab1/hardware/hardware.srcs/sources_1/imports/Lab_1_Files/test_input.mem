@@ -1,10 +1,42 @@
-//first input vector
-01
+// A matrix
+0A
+14
+1E
+28
+32
+3C
+46
+50
+// B matrix
 02
-03
 04
-//second input vector
+06
+08
+// A matrix
+FF
+00
+FF
+00
+00
+FF
+00
+FF
+// B matrix
 02
 03
 04
 05
+// A matrix
+80
+40
+20
+10
+10
+20
+40
+80
+// B matrix
+10
+08
+04
+02
