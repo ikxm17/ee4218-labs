@@ -49,6 +49,5 @@ xvlog.*
 *.hw
 *.backup.*
 *.debug
-*.dcp
 
 unisims
