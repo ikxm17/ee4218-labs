@@ -3,7 +3,7 @@ set(CMAKE_HOST_SYSTEM_NAME "Windows")
 set(CMAKE_HOST_SYSTEM_VERSION "10.0.26200")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "AMD64")
 
-include("C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/cortexa53_toolchain.cmake")
+include("C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/cortexa53_toolchain.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")

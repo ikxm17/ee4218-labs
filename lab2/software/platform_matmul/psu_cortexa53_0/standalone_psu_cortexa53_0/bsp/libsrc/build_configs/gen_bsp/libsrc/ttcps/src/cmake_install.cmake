@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/ttcps/src
+# Install script for directory: C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/ttcps/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

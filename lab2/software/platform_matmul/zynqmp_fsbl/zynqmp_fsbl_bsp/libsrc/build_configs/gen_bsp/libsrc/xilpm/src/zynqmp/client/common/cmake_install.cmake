@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/libsrc/xilpm/src/zynqmp/client/common
+# Install script for directory: C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/libsrc/xilpm/src/zynqmp/client/common
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

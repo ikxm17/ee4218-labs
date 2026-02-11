@@ -67,7 +67,7 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include-fixed;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/include")
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include-fixed;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;c;gcc")
 set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/lib64")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

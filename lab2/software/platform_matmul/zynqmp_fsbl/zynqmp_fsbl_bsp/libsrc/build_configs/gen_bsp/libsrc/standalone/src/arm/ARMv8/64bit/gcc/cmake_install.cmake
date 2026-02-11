@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/libsrc/standalone/src/arm/ARMv8/64bit/gcc
+# Install script for directory: C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/libsrc/standalone/src/arm/ARMv8/64bit/gcc
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

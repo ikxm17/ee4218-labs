@@ -17,7 +17,7 @@ while(${index} LESS ${no_of_drivers})
     set(exp_dir "${drv_dir}/examples")
     add_custom_target(
         ${drv}_example ALL
-        COMMAND lopper -f -O C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/${drv} C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/hw_artifacts/psu_cortexa53_0_baremetal.dts -- bmcmake_metadata_xlnx psu_cortexa53_0 ${exp_dir} drvcmake_metadata
+        COMMAND lopper -f -O C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/libsrc/${drv} C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/hw_artifacts/psu_cortexa53_0_baremetal.dts -- bmcmake_metadata_xlnx psu_cortexa53_0 ${exp_dir} drvcmake_metadata
         BYPRODUCTS x${drv}_exlist.yaml)
     MATH(EXPR index "${index}+1")
 endwhile()

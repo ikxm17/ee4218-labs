@@ -1,6 +1,6 @@
 sdt: hw_artifacts/psu_cortexa53_0_baremetal.dts
 family: ZynqMP
-path: C:\Users\User\Downloads\EE4218_Labs\ee4218-labs\lab2\software\platform_matmul\psu_cortexa53_0\standalone_psu_cortexa53_0\bsp
+path: C:\Users\User\Downloads\ee4218-labs\lab2\software\platform_matmul\psu_cortexa53_0\standalone_psu_cortexa53_0\bsp
 config: None
 os: standalone
 os_info:

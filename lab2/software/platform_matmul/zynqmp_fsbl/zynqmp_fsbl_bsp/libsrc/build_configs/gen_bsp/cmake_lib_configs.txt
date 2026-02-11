@@ -14,7 +14,7 @@
 -- Found assembler: C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-gcc.exe
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/libsrc/build_configs/gen_bsp
+-- Build files have been written to: C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/libsrc/build_configs/gen_bsp
 -- Cache values
 // BOARD
 BOARD:STRING=kv260_som
@@ -32,10 +32,10 @@ CMAKE_MACHINE:STRING=ZynqMP
 CMAKE_SIZE:FILEPATH=aarch64-none-elf-size
 
 // Specs file path for using CMAKE toolchain files
-CMAKE_SPECS_FILE:STRING=C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/Xilinx.spec
+CMAKE_SPECS_FILE:STRING=C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/Xilinx.spec
 
 // The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/cortexa53_toolchain.cmake
+CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/zynqmp_fsbl_bsp/cortexa53_toolchain.cmake
 
 // Device Id
 DEVICE_ID:STRING=xck26
