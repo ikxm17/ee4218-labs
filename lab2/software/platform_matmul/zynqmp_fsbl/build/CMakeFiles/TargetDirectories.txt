@@ -1,4 +1,0 @@
-C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/build/CMakeFiles/fsbl.elf.dir
-C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/build/CMakeFiles/print_build_info.dir
-C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/build/CMakeFiles/edit_cache.dir
-C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/zynqmp_fsbl/build/CMakeFiles/rebuild_cache.dir
