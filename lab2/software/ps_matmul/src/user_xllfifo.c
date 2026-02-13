@@ -58,7 +58,7 @@ u8 XLlFifo_RxReceive(XLlFifo_RxConfig *RxConfig)
         *(RxConfig->destination_addr + len) = rx_word;
     }
 
-    if (XllFIfo_IsRxDone(RxConfig->instance_ptr) != TRUE)
+    if (XLlFifo_IsRxDone(RxConfig->instance_ptr) != TRUE)
     {
         return XST_FAILURE;
     }

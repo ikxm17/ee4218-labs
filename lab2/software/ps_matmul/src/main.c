@@ -68,7 +68,7 @@ int main(void)
 	StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
 
 	// Receive data from UART	
-	UART_RxToBuffer(&Uart_Ps, *ReceiveBuffer, INPUT_BYTES);
+	UART_RxToBuffer(&Uart_Ps, ReceiveBuffer, INPUT_BYTES);
 	if (Status != XST_SUCCESS) {
 		xil_printf("Axi Streaming FIFO Polling Example Test Failed\n\r");
 		xil_printf("--- Exiting main() ---\n\r");

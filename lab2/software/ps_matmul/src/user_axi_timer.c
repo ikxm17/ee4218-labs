@@ -3,17 +3,13 @@
 #include "xtmrctr.h"
 #include "xil_printf.h"
 
-// Variable definitions 
-XTmrCtr TimerCounter; /* The instance of the Tmrctr Device */
-
-
 // FUNCTIONS 
 
 //initialise Timer, return Status
 #ifndef SDT
-int TIMER_Init(XTmrCtr *TmrCtrInstancePtr, u16 DeviceId, u8 TmrCtrNumber)
+	int TIMER_Init(XTmrCtr *TmrCtrInstancePtr, u16 DeviceId, u8 TmrCtrNumber)
 #else
-int TIMER_Init(UINTPTR BaseAddr, u8 TmrCtrNumber)
+	int TIMER_Init(XTmrCtr *TmrCtrInstancePtr, UINTPTR BaseAddr, u8 TmrCtrNumber)
 #endif
 {
 	int Status;
@@ -27,6 +23,7 @@ int TIMER_Init(UINTPTR BaseAddr, u8 TmrCtrNumber)
 #else
 	Status = XTmrCtr_Initialize(TmrCtrInstancePtr, BaseAddr);
 #endif
+
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	}

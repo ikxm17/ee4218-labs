@@ -17,9 +17,9 @@
 /**************************************************************************/
 /* Init function for UART Driver Instance */
 #ifndef SDT
-int UART_Init(XUartPs *Uart_Ps, u16 DeviceId)
+	int UART_Init(XUartPs *Uart_Ps, u16 DeviceId)
 #else
-int UART_Init(XUartPs *Uart_Ps, UINTPTR BaseAddress)
+	int UART_Init(XUartPs *Uart_Ps, UINTPTR BaseAddress)
 #endif
 {	
 	int Status = XST_SUCCESS;
@@ -38,12 +38,12 @@ int UART_Init(XUartPs *Uart_Ps, UINTPTR BaseAddress)
 		return XST_FAILURE;
 	}
 
-	Status = XUartPs_CfgInitialize(&Uart_Ps, Config, Config->BaseAddress);
+	Status = XUartPs_CfgInitialize(Uart_Ps, Config, Config->BaseAddress);
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;
 	}
 
-	XUartPs_SetBaudRate(&Uart_Ps, 115200);
+	XUartPs_SetBaudRate(Uart_Ps, 115200);
 	return Status;
 }
 
