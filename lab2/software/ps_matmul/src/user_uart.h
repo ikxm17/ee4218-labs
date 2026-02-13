@@ -10,12 +10,12 @@
 /************************** Function Prototypes ****************************/
 
 #ifndef SDT
-int initUart(XUartPs *Uart_Ps, u16 DeviceId);
+int UART_Init(XUartPs *Uart_Ps, u16 DeviceId);
 #else
-int initUart(XUartPs *Uart_Ps, UINTPTR BaseAddress);
+int UART_Init(XUartPs *Uart_Ps, UINTPTR BaseAddress);
 #endif
 
-u32 uartToBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes);
-u32 bufferToUart(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes);
+u32 UART_RxToBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes);
+u32 UART_TxFromBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes);
 
 #endif /* USER_UART_H */

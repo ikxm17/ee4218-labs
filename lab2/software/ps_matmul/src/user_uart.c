@@ -17,9 +17,9 @@
 /**************************************************************************/
 /* Init function for UART Driver Instance */
 #ifndef SDT
-int initUart(XUartPs *Uart_Ps, u16 DeviceId)
+int UART_Init(XUartPs *Uart_Ps, u16 DeviceId)
 #else
-int initUart(XUartPs *Uart_Ps, UINTPTR BaseAddress)
+int UART_Init(XUartPs *Uart_Ps, UINTPTR BaseAddress)
 #endif
 {	
 	int Status = XST_SUCCESS;
@@ -48,11 +48,11 @@ int initUart(XUartPs *Uart_Ps, UINTPTR BaseAddress)
 }
 
 /* Read from UART into Buffer */
-u32 uartToBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes){
+u32 UART_RxToBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes){
 	// returns number of bytes received
 	return XUartPs_Recv(Uart_Ps, BufferPtr, NumBytes);
 }
 /* Read from Buffer into UART */
-u32 bufferToUart(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes){
+u32 UART_TxFromBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes){
 	return XUartPs_Send(Uart_Ps, BufferPtr, NumBytes);
 }
