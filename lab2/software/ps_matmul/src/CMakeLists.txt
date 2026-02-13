@@ -6,7 +6,7 @@ include(${CMAKE_SOURCE_DIR}/Empty_applicationExample.cmake)
 # Include any additional CMake files here
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/UserConfig.cmake)
-set(APP_NAME xuartps_hello_world_example)
+set(APP_NAME ps_matmul)
 project(${APP_NAME})
 
 find_package(common)

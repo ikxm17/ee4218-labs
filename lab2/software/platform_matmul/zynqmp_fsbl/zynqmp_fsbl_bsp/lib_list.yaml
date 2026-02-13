@@ -5,19 +5,19 @@ psu_cortexa53_0:
       depends_libs:
       - xiltimer
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\ThirdParty\sw_services\libmetal_v2_9
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/ThirdParty/sw_services/libmetal_v2_9
       examples: {}
     lwip220:
       description: lwip220 library lwIP (light weight IP) is an open source TCP/IP stack configured for AMD hard and soft Ethernet MACs.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\ThirdParty\sw_services\lwip220_v1_3
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/ThirdParty/sw_services/lwip220_v1_3
       examples: {}
     xilffs:
       description: Generic Fat File System Library.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilffs_v5_5
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilffs_v5_5
       examples:
         xilffs_polled_example.c: []
     xilfpga:
@@ -26,7 +26,7 @@ psu_cortexa53_0:
       - xilsecure
       - xilmailbox
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilfpga_v6_9
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilfpga_v6_9
       examples:
         xfpga_partialbitstream_load_example.c: []
         xfpga_readback_example.c: []
@@ -36,14 +36,14 @@ psu_cortexa53_0:
       description: Xilinx IPI Mailbox Library.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilmailbox_v1_12
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilmailbox_v1_12
       examples:
         xilmailbox_example.c: []
     xilpm:
       description: Platform Management API Library for ZynqMP and Versal.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilpm_v6_1
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilpm_v6_1
       examples:
         xilpm_selfsuspend_example.c:
         - timer.c
@@ -54,7 +54,7 @@ psu_cortexa53_0:
       description: Xilinx Secure Library provides interface to AES, RSA and SHA hardware engines on ZynqMP Soc and Versal.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilsecure_v5_6
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilsecure_v5_6
       examples:
         xilsecure_aes_example.c: []
         xilsecure_rsa_example.c: []
@@ -65,7 +65,7 @@ psu_cortexa53_0:
       description: Xilinx Secure Key Library supports programming efuse and bbram.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilskey_v7_8
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilskey_v7_8
       examples:
         xilskey_efuse_example.c:
         - xilskey_input.h
@@ -81,7 +81,7 @@ psu_cortexa53_0:
       description: Xiltimer library provides generic timer interface for the timer IP's.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xiltimer_v2_3
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xiltimer_v2_3
       examples: {}
   freertos:
     libmetal:
@@ -89,19 +89,19 @@ psu_cortexa53_0:
       depends_libs:
       - xiltimer
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\ThirdParty\sw_services\libmetal_v2_9
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/ThirdParty/sw_services/libmetal_v2_9
       examples: {}
     lwip220:
       description: lwip220 library lwIP (light weight IP) is an open source TCP/IP stack configured for AMD hard and soft Ethernet MACs.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\ThirdParty\sw_services\lwip220_v1_3
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/ThirdParty/sw_services/lwip220_v1_3
       examples: {}
     xilffs:
       description: Generic Fat File System Library.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilffs_v5_5
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilffs_v5_5
       examples:
         xilffs_polled_example.c: []
     xilfpga:
@@ -110,7 +110,7 @@ psu_cortexa53_0:
       - xilsecure
       - xilmailbox
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilfpga_v6_9
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilfpga_v6_9
       examples:
         xfpga_partialbitstream_load_example.c: []
         xfpga_readback_example.c: []
@@ -120,14 +120,14 @@ psu_cortexa53_0:
       description: Xilinx IPI Mailbox Library.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilmailbox_v1_12
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilmailbox_v1_12
       examples:
         xilmailbox_example.c: []
     xilpm:
       description: Platform Management API Library for ZynqMP and Versal.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilpm_v6_1
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilpm_v6_1
       examples:
         xilpm_selfsuspend_example.c:
         - timer.c
@@ -138,7 +138,7 @@ psu_cortexa53_0:
       description: Xilinx Secure Library provides interface to AES, RSA and SHA hardware engines on ZynqMP Soc and Versal.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilsecure_v5_6
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilsecure_v5_6
       examples:
         xilsecure_aes_example.c: []
         xilsecure_rsa_example.c: []
@@ -149,7 +149,7 @@ psu_cortexa53_0:
       description: Xilinx Secure Key Library supports programming efuse and bbram.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xilskey_v7_8
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xilskey_v7_8
       examples:
         xilskey_efuse_example.c:
         - xilskey_input.h
@@ -165,5 +165,5 @@ psu_cortexa53_0:
       description: Xiltimer library provides generic timer interface for the timer IP's.
       depends_libs: []
       path:
-      - C:\AMDDesignTools\2025.2\Vitis\data\embeddedsw\lib\sw_services\xiltimer_v2_3
+      - /opt/Xilinx/2025.2/Vitis/data/embeddedsw/lib/sw_services/xiltimer_v2_3
       examples: {}

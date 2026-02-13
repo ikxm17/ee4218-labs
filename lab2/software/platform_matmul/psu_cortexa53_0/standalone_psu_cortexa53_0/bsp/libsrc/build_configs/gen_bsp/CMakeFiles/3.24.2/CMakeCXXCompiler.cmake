@@ -1,4 +1,4 @@
-set(CMAKE_CXX_COMPILER "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-g++.exe")
+set(CMAKE_CXX_COMPILER "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-g++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_COMPILER_VERSION "13.3.0")
@@ -19,15 +19,15 @@ set(CMAKE_CXX_SIMULATE_ID "")
 set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "")
 set(CMAKE_CXX_SIMULATE_VERSION "")
 
-set(CMAKE_CXX_COMPILER_SYSROOT "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin//../aarch64-xilinx-elf/usr")
-set(CMAKE_COMPILER_SYSROOT "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin//../aarch64-xilinx-elf/usr")
+set(CMAKE_CXX_COMPILER_SYSROOT "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr")
+set(CMAKE_COMPILER_SYSROOT "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/../aarch64-xilinx-elf/usr")
 
 
 set(CMAKE_AR "aarch64-none-elf-ar")
-set(CMAKE_CXX_COMPILER_AR "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-gcc-ar.exe")
-set(CMAKE_RANLIB "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-ranlib.exe")
-set(CMAKE_CXX_COMPILER_RANLIB "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-gcc-ranlib.exe")
-set(CMAKE_LINKER "C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/bin/aarch64-none-elf-ld.exe")
+set(CMAKE_CXX_COMPILER_AR "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-gcc-ar")
+set(CMAKE_RANLIB "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-ranlib")
+set(CMAKE_CXX_COMPILER_RANLIB "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-gcc-ranlib")
+set(CMAKE_LINKER "/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-ld")
 set(CMAKE_MT "")
 set(CMAKE_COMPILER_IS_GNUCXX 1)
 set(CMAKE_CXX_COMPILER_LOADED 1)
@@ -78,7 +78,7 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "C:/Users/User/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include-fixed;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/include/c++/13.3.0;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/include/c++/13.3.0/aarch64-xilinx-elf;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/include/c++/13.3.0/backward;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/home/leeey/Downloads/ee4218-labs/lab2/software/platform_matmul/psu_cortexa53_0/standalone_psu_cortexa53_0/bsp/include;/opt/Xilinx/2025.2/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include;/opt/Xilinx/2025.2/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0/include-fixed;/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/aarch64-xilinx-elf/usr/include/c++/13.3.0;/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/aarch64-xilinx-elf/usr/include/c++/13.3.0/aarch64-xilinx-elf;/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/aarch64-xilinx-elf/usr/include/c++/13.3.0/backward;/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/aarch64-xilinx-elf/usr/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;gcc;c;gcc")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0;C:/AMDDesignTools/2025.2/gnu/aarch64/nt/aarch64-none/x86_64-oesdk-mingw32/usr/lib/aarch64-xilinx-elf/gcc;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0;C:/AMDDesignTools/2025.2/Vitis/gnu/aarch64/nt/aarch64-none/aarch64-xilinx-elf/usr/lib64")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/opt/Xilinx/2025.2/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/lib/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/13.3.0;/opt/Xilinx/2025.2/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/lib/aarch64-xilinx-elf/gcc;/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/aarch64-xilinx-elf/usr/lib64/aarch64-xilinx-elf/13.3.0;/opt/Xilinx/2025.2/Vitis/gnu/aarch64/lin/aarch64-none/aarch64-xilinx-elf/usr/lib64")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

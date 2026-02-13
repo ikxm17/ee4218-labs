@@ -1,5 +1,5 @@
 {
-  "name": "xuartps_hello_world_example",
+  "name": "ps_matmul",
   "type": "HOST",
   "platform": "platform_matmul",
   "domain": "standalone_psu_cortexa53_0",

@@ -3,7 +3,7 @@
   "type": "PLATFORM",
   "configuration": {
     "description": "",
-    "xsa": "C:/Users/User/Downloads/ee4218-labs/lab2/hardware/hardware.platforms/design_1_wrapper.xsa",
+    "xsa": "/home/leeey/Downloads/ee4218-labs/lab2/hardware/hardware.platforms/design_1_wrapper.xsa",
     "xsaPathInPlatform": "platform_matmul/hw/design_1_wrapper.xsa",
     "emulationXsa": "",
     "emulationXsaPathInPlatform": "",

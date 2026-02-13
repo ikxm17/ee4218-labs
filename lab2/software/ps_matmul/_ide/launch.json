@@ -4,7 +4,7 @@
     {
       "type": "tcf-debug",
       "request": "launch",
-      "name": "xuartps_hello_world_example_app_hw_1",
+      "name": "ps_matmul_app_hw_1",
       "debugType": "baremetal-zu",
       "attachToRunningTargetOptions": {
         "targetSetupMode": "standalone",
@@ -30,18 +30,18 @@
         "enableRPUSplitMode": false,
         "resetAPU": false,
         "resetRPU": false,
-        "bitstreamFile": "${workspaceFolder}\\xuartps_hello_world_example\\_ide\\bitstream\\design_1_wrapper.bit",
+        "bitstreamFile": "${workspaceFolder}/ps_matmul/_ide/bitstream/design_1_wrapper.bit",
         "zuInitialization": {
           "isFsbl": true,
           "usingFSBL": {
             "initWithFSBL": true,
-            "fsblFile": "${workspaceFolder}\\platform_matmul\\export\\platform_matmul\\sw\\boot\\fsbl.elf",
+            "fsblFile": "${workspaceFolder}/platform_matmul/export/platform_matmul/sw/boot/fsbl.elf",
             "fsblExitSymbol": "XFsbl_Exit"
           },
           "usingPsuInit": {
             "runPsuInit": true,
             "plPowerup": true,
-            "psuInitTclFile": "${workspaceFolder}\\xuartps_hello_world_example\\_ide\\psinit\\psu_init.tcl"
+            "psuInitTclFile": "${workspaceFolder}/ps_matmul/_ide/psinit/psu_init.tcl"
           }
         },
         "zuTraceOptions": {
@@ -54,7 +54,7 @@
           {
             "core": "psu_cortexa53_0",
             "resetProcessor": true,
-            "elfFile": "${workspaceFolder}\\xuartps_hello_world_example\\build\\xuartps_hello_world_example.elf",
+            "elfFile": "${workspaceFolder}/ps_matmul/build/ps_matmul.elf",
             "stopAtEntry": false,
             "isSelfRelocatingApp": false,
             "relativeAddress": ""
