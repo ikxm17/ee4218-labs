@@ -1,50 +1,14 @@
-# Ignore build output directory
-/build
-/export
+# ignore everything
+*
 
-# Ignore object files and dependent files
-.o
-.d
-
-#Ignore logs folder and log files
-/logs
-.log
-
-#Ignore lock files
-.lock
-
-.bin
-.pdi
-.vitisWorkspace.json
-
-_ide/logs
-_ide/.wsdata
-
-# include
-!.xsa
-!*.bit
-!*.h
-!*.c
-!*.cpp
+# unignore
+!.gitignore
+!ps_matmul/
+ps_matmul/*
+!ps_matmul/src/
+!ps_matmul/src/**
 
 # ignore
-build/
-Debug/
-Release/
-.rigel_lopper
-.rigel_lopper_temp_platform
-.peers.ini
-settings.json
-version.ini
-workspace_journal*.py
-.vitisPlatformRepo.json
-cmake_install.cmake
-CMakeCache.txt
-compile_commands.json
-.ninja_log
-build.ninja
-rules.ninja
-bsp.yaml
-*.a
-*.obj
-*.o
+ps_matmul/src/app.yaml
+ps_matmul/src/compile_commands.json
+ps_matmul/src/.cache

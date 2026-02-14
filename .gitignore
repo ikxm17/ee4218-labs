@@ -51,3 +51,6 @@ xvlog.*
 *.debug
 
 unisims
+
+# for Vitis
+_ide/
