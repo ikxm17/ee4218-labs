@@ -30,7 +30,7 @@ XTmrCtr TimerCounter;
 
 
 
-#define NO_INPUT_ELEMENTS 20
+#define NO_INPUT_ELEMENTS 4
 #define ELEMENT_SIZE_IN_BYTES 4
 #define INPUT_BYTES NO_INPUT_ELEMENTS*ELEMENT_SIZE_IN_BYTES
 /***************************************************************************/
@@ -70,10 +70,11 @@ int main(void)
 	// Receive data from UART	
 	UART_RxToBuffer(&Uart_Ps, ReceiveBuffer, INPUT_BYTES);
 	if (Status != XST_SUCCESS) {
-		xil_printf("Axi Streaming FIFO Polling Example Test Failed\n\r");
+		xil_printf("Failed to read into ReceiveBuffer \n\r");
 		xil_printf("--- Exiting main() ---\n\r");
 		return XST_FAILURE;
 	}
+	
 
 	// After completing write to UART
 	Duration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
