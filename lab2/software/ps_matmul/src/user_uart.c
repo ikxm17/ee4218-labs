@@ -48,13 +48,17 @@
 }
 
 /* Read from UART into Buffer */
-u32 UART_RxToBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes){
+u32 UART_RxToBuffer(XUartPs *Uart_Ps, u32 *BufferPtr, u32 NumBytes){
 	/* Block receiving the buffer before data is fully transferred */
 	u32 ReceivedCount = 0;
+	u32 Received = 0;
+	u8 TempByte;
 	while (ReceivedCount < NumBytes) {
-		ReceivedCount +=
-			XUartPs_Recv(Uart_Ps, (BufferPtr + ReceivedCount),
-				      (NumBytes - ReceivedCount));
+		Received = XUartPs_Recv(Uart_Ps, &TempByte, 1);
+		if (Received) {
+			BufferPtr[ReceivedCount] = (u32) TempByte;
+			ReceivedCount = ReceivedCount + Received;
+		}
 	}
 	// returns number of bytes received
 	return ReceivedCount;

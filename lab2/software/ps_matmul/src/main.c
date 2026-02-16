@@ -1,6 +1,7 @@
 /***************************** Include Files *******************************/
 #include "user_uart.h"
 #include "user_axi_timer.h"
+#include "user_xllfifo.h"
 #include "xparameters.h"
 #include "xstatus.h"
 #include "xil_types.h"
@@ -19,7 +20,9 @@
 XLlFifo FifoInstance;
 XUartPs Uart_Ps;
 XTmrCtr TimerCounter;
+XLlFifo AxiFifo;
 uint8_t result_matrix[64];
+
 
 // Constant definitions
 #ifndef SDT
@@ -34,15 +37,35 @@ uint8_t result_matrix[64];
 #define XTMRCTR_BASEADDRESS	XPAR_XTMRCTR_0_BASEADDR
 #endif
 #define TIMER_COUNTER_0	 0
+// AXI FIFO constants
+#ifndef SDT
+#define FIFO_DEV_ID	XPAR_AXI_FIFO_0_DEVICE_ID
+#else
+#define XLLFIFO_BASEADDRESS XPAR_XLLFIFO_0_BASEADDR
+#endif
 
+#define NUM_ROWS_A 2
+#define NUM_INNER_DIM 4
+#define NUM_COLS_B 1
 
-
-#define NO_INPUT_ELEMENTS 4
-#define ELEMENT_SIZE_IN_BYTES 4
+#define NO_INPUT_ELEMENTS (NUM_ROWS_A * NUM_INNER_DIM + NUM_INNER_DIM * NUM_COLS_B)
+#define ELEMENT_SIZE_IN_BYTES 1
 #define INPUT_BYTES NO_INPUT_ELEMENTS*ELEMENT_SIZE_IN_BYTES
+#define OUTPUT_BYTES (NUM_ROWS_A * NUM_COLS_B)*ELEMENT_SIZE_IN_BYTES 
+
+const XLlFifo_TxParams TX_PARAMS = {
+	.word_size = 4, // in bytes
+	.number_of_packets = 1,
+	.max_packet_length = INPUT_BYTES, 
+	.transmission_length = 4 * INPUT_BYTES // in bytes
+};
+
+const XLlFifo_RxParams RX_PARAMS = {
+	.word_size = 4
+};
 
 /* Function prototypes */
-void matrix_multiply(uint8_t* matrix_a, uint8_t* matrix_b, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b);
+void matrix_multiply(u32* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b);
 
 /***************************************************************************/
 /**
@@ -56,17 +79,10 @@ void matrix_multiply(uint8_t* matrix_a, uint8_t* matrix_b, uint8_t* result, uint
 ****************************************************************************/
 int main(void)
 {	
-	matrix_multiply(matrix_a, matrix_b, result_matrix, 64, 8, 1);
-	for (size_t i = 0; i < 64; i++)
-	{
-		xil_printf("Result: %d, Label: %d\n", result_matrix[i], labels_matrix[i]);
-	}
-	
-
-	while(1);
-
 	int Status = XST_SUCCESS;
-	u8 ReceiveBuffer[INPUT_BYTES];
+	u32 UART_ReceiveBuffer[INPUT_BYTES];
+	u32 AXI_ReceiveBuffer[INPUT_BYTES];
+	u8 UART_TransmitBuffer[OUTPUT_BYTES];
 	u32 StartTime;
 	u32 Duration; 
 
@@ -84,33 +100,74 @@ int main(void)
 	TIMER_Init(&TimerCounter, XTMRCTR_BASEADDRESS, TIMER_COUNTER_0);
 	#endif
 
-	// Start Timer
-	StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
+	// Initialise AXI
+	XLlFifo_Config *Config;
+	#ifndef SDT
+	Config = XLlFfio_LookupConfig(FIFO_DEV_ID);
+	#else
+	Config = XLlFfio_LookupConfig(XLLFIFO_BASEADDRESS);
+	#endif
 
-	// Receive data from UART	
-	UART_RxToBuffer(&Uart_Ps, ReceiveBuffer, INPUT_BYTES);
+	Status = XLlFifo_CfgInitialize(&AxiFifo, Config, Config->BaseAddress);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Failed to initialize AXI FIFO \n\r");
+		xil_printf("--- Exiting main() ---\n\r");
+		return XST_FAILURE;
+	}
+
+	Status = XLlFifo_Status(&AxiFifo);
+	XLlFifo_IntClear(&AxiFifo,0xffffffff);
+	Status = XLlFifo_Status(&AxiFifo);
+	if(Status != 0x0) {
+		xil_printf("\n ERROR : Reset value of ISR0 : 0x%x\t"
+			    "Expected : 0x0\n\r",
+			    XLlFifo_Status(&AxiFifo));
+		return XST_FAILURE;
+	};
+
+	// Initalise AXI FIFO
+	XLlFifo_TxConfig XLlFifo_TxConfig = {&AxiFifo, UART_ReceiveBuffer, &TX_PARAMS};
+	XLlFifo_RxConfig XLlFifo_RxConfig = {&AxiFifo, AXI_ReceiveBuffer, &RX_PARAMS};
+
+	// Receive data from UART to Rxbuffer
+	UART_RxToBuffer(&Uart_Ps, UART_ReceiveBuffer, INPUT_BYTES);
 	if (Status != XST_SUCCESS) {
 		xil_printf("Failed to read into ReceiveBuffer \n\r");
 		xil_printf("--- Exiting main() ---\n\r");
 		return XST_FAILURE;
 	}
+	// Start Timer
+	StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
 	
-
+	// Send data from RxBuffer to AXI FIFO
+	XLlFifo_TxSend(&XLlFifo_TxConfig);
+	// Receive data from AXI FIFO in loopback mode
+	XLlFifo_RxReceive(&XLlFifo_RxConfig);
+	// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
+	matrix_multiply(AXI_ReceiveBuffer, result_matrix, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
+#ifdef USE_TEST_MATRICES
+	for (size_t i = 0; i < 64; i++)
+	{
+		xil_printf("Result: %d, Label: %d\n", result_matrix[i], labels_matrix[i]);
+	}
+#endif
+	// Write to UART 
+	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
 	// After completing write to UART
 	Duration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
 	Status = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
 	xil_printf("Time taken to receive %d bytes over UART: %d clock cycles\n\r", INPUT_BYTES, Duration);
-	xil_printf("Successfully ran Axi Streaming FIFO Polling Example\n\r");
+	xil_printf("Successfully \n\r");
 	xil_printf("--- Exiting main() ---\n\r");
 
 	return XST_SUCCESS;
 }
 
-void matrix_multiply(uint8_t* matrix_a, uint8_t* matrix_b, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b) {
+void matrix_multiply(u32* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b) {
 	for (size_t i = 0; i < num_rows_a; i++) {
 		for (size_t j = 0; j < num_cols_b; j++) {
 			for (size_t k = 0; k < num_inner_dim; k++) {
-				result[i * num_cols_b + j] += (matrix_a[i * num_inner_dim + k] * matrix_b[k * num_cols_b + j]) >> 8;
+				result[i * num_cols_b + j] += (matrice_buffer[i * num_inner_dim + k] * matrice_buffer[(num_rows_a * num_inner_dim) + k * num_cols_b + j]) >> 8;
 			}
 		}
 	}
