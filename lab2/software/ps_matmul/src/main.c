@@ -9,10 +9,17 @@
 #include "xllfifo.h"
 #include "xtmrctr.h"
 
+#include <stdint.h>
+
+#ifdef USE_TEST_MATRICES
+#include "test_matrices.h"
+#endif
+
 /************************** Variable Definitions ***************************/
 XLlFifo FifoInstance;
 XUartPs Uart_Ps;
 XTmrCtr TimerCounter;
+uint8_t result_matrix[64];
 
 // Constant definitions
 #ifndef SDT
@@ -33,6 +40,10 @@ XTmrCtr TimerCounter;
 #define NO_INPUT_ELEMENTS 4
 #define ELEMENT_SIZE_IN_BYTES 4
 #define INPUT_BYTES NO_INPUT_ELEMENTS*ELEMENT_SIZE_IN_BYTES
+
+/* Function prototypes */
+void matrix_multiply(uint8_t* matrix_a, uint8_t* matrix_b, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b);
+
 /***************************************************************************/
 /**
 *
@@ -44,7 +55,16 @@ XTmrCtr TimerCounter;
 *
 ****************************************************************************/
 int main(void)
-{
+{	
+	matrix_multiply(matrix_a, matrix_b, result_matrix, 64, 8, 1);
+	for (size_t i = 0; i < 64; i++)
+	{
+		xil_printf("Result: %d, Label: %d\n", result_matrix[i], labels_matrix[i]);
+	}
+	
+
+	while(1);
+
 	int Status = XST_SUCCESS;
 	u8 ReceiveBuffer[INPUT_BYTES];
 	u32 StartTime;
@@ -84,4 +104,14 @@ int main(void)
 	xil_printf("--- Exiting main() ---\n\r");
 
 	return XST_SUCCESS;
+}
+
+void matrix_multiply(uint8_t* matrix_a, uint8_t* matrix_b, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b) {
+	for (size_t i = 0; i < num_rows_a; i++) {
+		for (size_t j = 0; j < num_cols_b; j++) {
+			for (size_t k = 0; k < num_inner_dim; k++) {
+				result[i * num_cols_b + j] += (matrix_a[i * num_inner_dim + k] * matrix_b[k * num_cols_b + j]) >> 8;
+			}
+		}
+	}
 }
