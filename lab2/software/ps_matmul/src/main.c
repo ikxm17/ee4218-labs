@@ -144,13 +144,8 @@ int main(void)
 	// Receive data from AXI FIFO in loopback mode
 	XLlFifo_RxReceive(&XLlFifo_RxConfig);
 	// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
-	matrix_multiply(AXI_ReceiveBuffer, result_matrix, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
-#ifdef USE_TEST_MATRICES
-	for (size_t i = 0; i < 64; i++)
-	{
-		xil_printf("Result: %d, Label: %d\n", result_matrix[i], labels_matrix[i]);
-	}
-#endif
+	matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
+
 	// Write to UART 
 	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
 	// After completing write to UART
