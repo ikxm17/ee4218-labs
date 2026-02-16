@@ -15,14 +15,14 @@
  * @brief
  *
  * @param TxConfig
- * @return u8
+ * @return uint8_t
  */
-u8 XLlFifo_TxSend(XLlFifo_TxConfig *TxConfig)
+uint8_t XLlFifo_TxSend(XLlFifo_TxConfig *TxConfig)
 {
     /* Write into the FIFO Transmit Port Buffer */
-    for (u8 packet = 0; packet < TxConfig->tx_params->number_of_packets; packet++)
+    for (size_t packet = 0; packet < TxConfig->tx_params->number_of_packets; packet++)
     {
-        for (u8 len = 0; len < TxConfig->tx_params->max_packet_length; len++)
+        for (size_t len = 0; len < TxConfig->tx_params->max_packet_length; len++)
         {
             if (XLlFifo_iTxVacancy(TxConfig->instance_ptr))
             {
@@ -44,15 +44,21 @@ u8 XLlFifo_TxSend(XLlFifo_TxConfig *TxConfig)
     return XST_SUCCESS;
 }
 
-u8 XLlFifo_RxReceive(XLlFifo_RxConfig *RxConfig)
+/**
+ * @brief 
+ * 
+ * @param RxConfig 
+ * @return uint8_t 
+ */
+uint8_t XLlFifo_RxReceive(XLlFifo_RxConfig *RxConfig)
 {
-    u32 rx_word;
-    static u32 rcv_len;
+    uint32_t rx_word;
+    static uint32_t rcv_len;
     while (XLlFifo_iRxOccupancy(RxConfig->instance_ptr) == 0)
     {
         rcv_len = XLlFifo_iRxGetLen(RxConfig->instance_ptr) / RxConfig->rx_params->word_size;
     }
-    for (u32 len = 0; len < rcv_len; len++)
+    for (size_t len = 0; len < rcv_len; len++)
     {
         rx_word = XLlFifo_RxGetWord(RxConfig->instance_ptr);
         *(RxConfig->destination_addr + len) = rx_word;

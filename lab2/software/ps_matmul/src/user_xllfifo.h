@@ -19,32 +19,33 @@ extern "C" {
  * INCLUDES
 */
 #include "xllfifo.h"
+#include <stdint.h>
 
 typedef struct {
-    u32 word_size;
-    u32 number_of_packets;
-    u32 max_packet_length;
-    u32 transmission_length;
+    uint32_t word_size;
+    uint32_t number_of_packets;
+    uint32_t max_packet_length;
+    uint32_t transmission_length;
 } XLlFifo_TxParams;
 
 typedef struct {
     XLlFifo* instance_ptr;
-    u32* source_addr;
+    uint32_t* source_addr;
     XLlFifo_TxParams* tx_params;
 } XLlFifo_TxConfig;
 
 typedef struct {
-    u32 word_size;
+    uint32_t word_size;
 } XLlFifo_RxParams;
 
 typedef struct {
     XLlFifo* instance_ptr;
-    u32* destination_addr;
+    uint32_t* destination_addr;
     XLlFifo_RxParams* rx_params;
 } XLlFifo_RxConfig;
 
-u8 XLlFifo_TxSend(XLlFifo_TxConfig* TxConfig);
-u8 XLlFifo_RxReceive(XLlFifo_RxConfig* RxConfig);
+uint8_t XLlFifo_TxSend(XLlFifo_TxConfig* TxConfig);
+uint8_t XLlFifo_RxReceive(XLlFifo_RxConfig* RxConfig);
 
 #ifdef __cplusplus
 }
