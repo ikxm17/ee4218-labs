@@ -22,7 +22,7 @@
         "vlnv": "xilinx.com:ip:zynq_ultra_ps_e:3.5",
         "ip_revision": "8",
         "xci_name": "design_1_zynq_ultra_ps_e_0_0",
-        "xci_path": "ip\\design_1_zynq_ultra_ps_e_0_0\\design_1_zynq_ultra_ps_e_0_0.xci",
+        "xci_path": "ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci",
         "inst_hier_path": "zynq_ultra_ps_e_0",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -1149,12 +1149,21 @@
         "vlnv": "xilinx.com:ip:axi_fifo_mm_s:4.3",
         "ip_revision": "7",
         "xci_name": "design_1_axi_fifo_mm_s_0_0",
-        "xci_path": "ip\\design_1_axi_fifo_mm_s_0_0\\design_1_axi_fifo_mm_s_0_0.xci",
+        "xci_path": "ip/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0.xci",
         "inst_hier_path": "axi_fifo_mm_s_0",
         "has_run_ip_tcl": "true",
         "parameters": {
           "C_DATA_INTERFACE_TYPE": {
             "value": "1"
+          },
+          "C_RX_FIFO_DEPTH": {
+            "value": "1024"
+          },
+          "C_RX_FIFO_PE_THRESHOLD": {
+            "value": "5"
+          },
+          "C_RX_FIFO_PF_THRESHOLD": {
+            "value": "507"
           },
           "C_TX_FIFO_DEPTH": {
             "value": "1024"
@@ -1171,7 +1180,7 @@
         "vlnv": "xilinx.com:ip:smartconnect:1.0",
         "ip_revision": "28",
         "xci_name": "design_1_axi_smc_0",
-        "xci_path": "ip\\design_1_axi_smc_0\\design_1_axi_smc_0.xci",
+        "xci_path": "ip/design_1_axi_smc_0/design_1_axi_smc_0.xci",
         "inst_hier_path": "axi_smc",
         "has_run_ip_tcl": "true",
         "parameters": {
@@ -1328,7 +1337,7 @@
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "ip_revision": "17",
         "xci_name": "design_1_rst_ps8_0_99M_0",
-        "xci_path": "ip\\design_1_rst_ps8_0_99M_0\\design_1_rst_ps8_0_99M_0.xci",
+        "xci_path": "ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0.xci",
         "inst_hier_path": "rst_ps8_0_99M",
         "has_run_ip_tcl": "true"
       },
@@ -1336,7 +1345,7 @@
         "vlnv": "xilinx.com:ip:axi_timer:2.0",
         "ip_revision": "37",
         "xci_name": "design_1_axi_timer_0_0",
-        "xci_path": "ip\\design_1_axi_timer_0_0\\design_1_axi_timer_0_0.xci",
+        "xci_path": "ip/design_1_axi_timer_0_0/design_1_axi_timer_0_0.xci",
         "inst_hier_path": "axi_timer_0",
         "has_run_ip_tcl": "true",
         "parameters": {
