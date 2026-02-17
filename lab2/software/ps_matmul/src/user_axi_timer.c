@@ -47,8 +47,8 @@
 
 u32 TIMER_Start(XTmrCtr *TmrCtrInstancePtr, u8 TmrCtrNumber)
 {
-    u32 start_val = XTmrCtr_GetValue(TmrCtrInstancePtr, TmrCtrNumber);
-	XTmrCtr_Start(TmrCtrInstancePtr, TmrCtrNumber);
+    XTmrCtr_Start(TmrCtrInstancePtr, TmrCtrNumber);
+	u32 start_val = XTmrCtr_GetValue(TmrCtrInstancePtr, TmrCtrNumber);
 	return start_val;
 }
 
