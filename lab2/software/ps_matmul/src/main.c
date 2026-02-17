@@ -112,37 +112,36 @@ int main(void)
 	XLlFifo_TxConfig XLlFifo_TxConfig = {&AxiFifo, UART_ReceiveBuffer, &TX_PARAMS};
 	XLlFifo_RxConfig XLlFifo_RxConfig = {&AxiFifo, AXI_ReceiveBuffer, &RX_PARAMS};
 
-	// Receive data from UART to Rxbuffer
-	UART_RxToBuffer(&Uart_Ps, UART_ReceiveBuffer, INPUT_BYTES);
-	if (Status != XST_SUCCESS) {
-		xil_printf("Failed to read into ReceiveBuffer \n\r");
-		xil_printf("--- Exiting main() ---\n\r");
-		return XST_FAILURE;
+	// infinite loop to receive data via uart and send res back
+	while (1){
+		// Receive data from UART to Rxbuffer
+		UART_RxToBuffer(&Uart_Ps, UART_ReceiveBuffer, INPUT_BYTES);
+		if (Status != XST_SUCCESS) {
+			xil_printf("Failed to read into ReceiveBuffer \n\r");
+			xil_printf("--- Exiting main() ---\n\r");
+			return XST_FAILURE;
+		}
+		// Start Timer
+		StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
+		
+		// Send data from RxBuffer to AXI FIFO
+		XLlFifo_TxSend(&XLlFifo_TxConfig);
+		// Receive data from AXI FIFO in loopback mode
+		XLlFifo_RxReceive(&XLlFifo_RxConfig);
+		AxiSendDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
+
+		// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
+		matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
+		MatmulDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, AxiSendDuration);
+		Status = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
+		
+		// Write to UART 
+		UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
+		
+		// After completing write to UART
+		xil_printf("Time taken to receive %d bytes over UART: %d clock cycles\n\r", INPUT_BYTES, AxiSendDuration);
+		xil_printf("Time taken to perform matrix multiplication: %d clock cycles\n\r", MatmulDuration);
 	}
-	// Start Timer
-	StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
-	
-	// Send data from RxBuffer to AXI FIFO
-	XLlFifo_TxSend(&XLlFifo_TxConfig);
-	// Receive data from AXI FIFO in loopback mode
-	XLlFifo_RxReceive(&XLlFifo_RxConfig);
-	AxiSendDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
-
-	// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
-	matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
-	MatmulDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, AxiSendDuration);
-	Status = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
-	
-	// Write to UART 
-	// xil_printf("Sending Res"); // signal to the python server to store OUTPUT_BYTES to csv
-	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
-	
-	// After completing write to UART
-	xil_printf("Time taken to receive %d bytes over UART: %d clock cycles\n\r", INPUT_BYTES, AxiSendDuration);
-	xil_printf("Time taken to perform matrix multiplication: %d clock cycles\n\r", MatmulDuration);
-	xil_printf("Successfully \n\r");
-	xil_printf("--- Exiting main() ---\n\r");
-
 	return XST_SUCCESS;
 }
 
