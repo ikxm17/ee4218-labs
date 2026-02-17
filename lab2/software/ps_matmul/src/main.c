@@ -139,7 +139,7 @@ int main(void)
 		UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
 		
 		// After completing write to UART
-		xil_printf("Time taken to receive %d bytes over UART: %d clock cycles\n\r", INPUT_BYTES, AxiSendDuration);
+		xil_printf("Time taken to pass %d bytes through AXI Loopback: %d clock cycles\n\r", INPUT_BYTES, AxiSendDuration);
 		xil_printf("Time taken to perform matrix multiplication: %d clock cycles\n\r", MatmulDuration);
 	}
 	return XST_SUCCESS;
