@@ -84,7 +84,8 @@ int main(void)
 	u32 AXI_ReceiveBuffer[INPUT_BYTES];
 	u8 UART_TransmitBuffer[OUTPUT_BYTES];
 	u32 StartTime;
-	u32 Duration; 
+	u32 AxiSendDuration; 
+	u32 MatmulDuration; 
 
 	// Initalise UART
 	#ifndef SDT
@@ -101,29 +102,11 @@ int main(void)
 	#endif
 
 	// Initialise AXI
-	XLlFifo_Config *Config;
 	#ifndef SDT
-	Config = XLlFfio_LookupConfig(FIFO_DEV_ID);
+	AXI_Init(&AxiFifo, FIFO_DEV_ID);
 	#else
-	Config = XLlFfio_LookupConfig(XLLFIFO_BASEADDRESS);
+	AXI_Init(&AxiFifo, XLLFIFO_BASEADDRESS);
 	#endif
-
-	Status = XLlFifo_CfgInitialize(&AxiFifo, Config, Config->BaseAddress);
-	if (Status != XST_SUCCESS) {
-		xil_printf("Failed to initialize AXI FIFO \n\r");
-		xil_printf("--- Exiting main() ---\n\r");
-		return XST_FAILURE;
-	}
-
-	Status = XLlFifo_Status(&AxiFifo);
-	XLlFifo_IntClear(&AxiFifo,0xffffffff);
-	Status = XLlFifo_Status(&AxiFifo);
-	if(Status != 0x0) {
-		xil_printf("\n ERROR : Reset value of ISR0 : 0x%x\t"
-			    "Expected : 0x0\n\r",
-			    XLlFifo_Status(&AxiFifo));
-		return XST_FAILURE;
-	};
 
 	// Initalise AXI FIFO
 	XLlFifo_TxConfig XLlFifo_TxConfig = {&AxiFifo, UART_ReceiveBuffer, &TX_PARAMS};
@@ -143,15 +126,20 @@ int main(void)
 	XLlFifo_TxSend(&XLlFifo_TxConfig);
 	// Receive data from AXI FIFO in loopback mode
 	XLlFifo_RxReceive(&XLlFifo_RxConfig);
+	AxiSendDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
+
 	// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
 	matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
-
-	// Write to UART 
-	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
-	// After completing write to UART
-	Duration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
+	MatmulDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, AxiSendDuration);
 	Status = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
-	xil_printf("Time taken to receive %d bytes over UART: %d clock cycles\n\r", INPUT_BYTES, Duration);
+	
+	// Write to UART 
+	// xil_printf("Sending Res"); // signal to the python server to store OUTPUT_BYTES to csv
+	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
+	
+	// After completing write to UART
+	xil_printf("Time taken to receive %d bytes over UART: %d clock cycles\n\r", INPUT_BYTES, AxiSendDuration);
+	xil_printf("Time taken to perform matrix multiplication: %d clock cycles\n\r", MatmulDuration);
 	xil_printf("Successfully \n\r");
 	xil_printf("--- Exiting main() ---\n\r");
 
@@ -161,9 +149,12 @@ int main(void)
 void matrix_multiply(u32* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b) {
 	for (size_t i = 0; i < num_rows_a; i++) {
 		for (size_t j = 0; j < num_cols_b; j++) {
+			u32 temp = 0;
 			for (size_t k = 0; k < num_inner_dim; k++) {
-				result[i * num_cols_b + j] += (matrice_buffer[i * num_inner_dim + k] * matrice_buffer[(num_rows_a * num_inner_dim) + k * num_cols_b + j]) >> 8;
+				temp += (matrice_buffer[i * num_inner_dim + k] * matrice_buffer[(num_rows_a * num_inner_dim) + k * num_cols_b + j]);
 			}
+			result[i * num_cols_b + j] = temp >> 8;
 		}
 	}
+	
 }

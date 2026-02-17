@@ -65,5 +65,7 @@ u32 UART_RxToBuffer(XUartPs *Uart_Ps, u32 *BufferPtr, u32 NumBytes){
 }
 /* Read from Buffer into UART */
 u32 UART_TxFromBuffer(XUartPs *Uart_Ps, u8 *BufferPtr, u32 NumBytes){
-	return XUartPs_Send(Uart_Ps, BufferPtr, NumBytes);
+	u32 bytes_sent = XUartPs_Send(Uart_Ps, BufferPtr, NumBytes);
+	while (XUartPs_IsSending(Uart_Ps));
+	return bytes_sent;
 }
