@@ -11,6 +11,39 @@
 
 #include "user_xllfifo.h"
 
+/* Init Function for AXI FIFO Instance */
+#ifndef SDT
+    int AXI_Init(XLlFifo *AxiFifo, u8 DeviceId)
+#else
+    int AXI_Init(XLlFifo *AxiFifo, u32 BaseAddress)
+#endif
+{
+    int Status = XST_SUCCESS;
+    XLlFifo_Config *Config;
+	#ifndef SDT
+	Config = XLlFfio_LookupConfig(DeviceId);
+	#else
+	Config = XLlFfio_LookupConfig(BaseAddress);
+	#endif
+
+	Status = XLlFifo_CfgInitialize(AxiFifo, Config, Config->BaseAddress);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Failed to initialize AXI FIFO \n\r");
+		xil_printf("--- Exiting main() ---\n\r");
+		return XST_FAILURE;
+	}
+
+	Status = XLlFifo_Status(AxiFifo);
+	XLlFifo_IntClear(AxiFifo,0xffffffff);
+	Status = XLlFifo_Status(AxiFifo);
+	if(Status != 0x0) {
+		xil_printf("\n ERROR : Reset value of ISR0 : 0x%x\t"
+			    "Expected : 0x0\n\r",
+			    XLlFifo_Status(AxiFifo));
+		return XST_FAILURE;
+	}
+    return Status;
+}
 /**
  * @brief
  *
