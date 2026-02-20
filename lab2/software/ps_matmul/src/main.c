@@ -135,14 +135,8 @@ int main(void)
 
 		// Write to UART
 		UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
-
-		// After completing write to UART
-		u8 AxiSendDurationBuffer[4];
-		u8 MatmulDurationBuffer[4];
-		memcpy(AxiSendDurationBuffer, &AxiSendDuration, sizeof(uint32_t));
-		memcpy(MatmulDurationBuffer, &MatmulDuration, sizeof(uint32_t));
-		UART_TxFromBuffer(&Uart_Ps, AxiSendDurationBuffer, 4);
-		UART_TxFromBuffer(&Uart_Ps, MatmulDurationBuffer, 4);
+		UART_TxFromBuffer(&Uart_Ps, (u8*)&AxiSendDuration, 4);
+		UART_TxFromBuffer(&Uart_Ps, (u8*)&MatmulDuration, 4);
 	}
 	return XST_SUCCESS;
 }
