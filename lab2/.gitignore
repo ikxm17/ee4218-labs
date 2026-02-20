@@ -12,7 +12,6 @@ _ide/
 *.bin
 *.bit
 *.pdi
-*.xsa
 *.zip
 
 # Ignore specific component files if they have absolute paths
