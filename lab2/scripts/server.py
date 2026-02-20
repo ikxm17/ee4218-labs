@@ -8,7 +8,7 @@ BAUD_RATE = 115200
 INPUT_CSV = 'AB.csv'
 OUTPUT_CSV = 'RES.csv'
 TIMEOUT = 5              # Increased timeout to wait for FPGA processing
-OUTPUT_BYTES = 2        # Number of bytes expected back
+OUTPUT_BYTES = 2        # Parameterized: Number of bytes expected back
 
 def send_and_receive_fpga():
     try:
@@ -26,15 +26,15 @@ def send_and_receive_fpga():
         
         print("Transfer to FPGA Complete. Waiting for 'Res'...")
 
-        # --- Phase 2: Receiving Data ---
+        # --- Phase 2: Receive and Store Data ---
         # Read the specific number of bytes
-        raw_payload = ser.read(OUTPUT_BYTES)
+        raw_payload = ser.read(OUTPUT_BYTES+8)
         
-        if len(raw_payload) < OUTPUT_BYTES:
-            print(f"Warning: Only received {len(raw_payload)}/{OUTPUT_BYTES} bytes.")
+        if len(raw_payload) < OUTPUT_BYTES+8:
+            print(f"Warning: Only received {len(raw_payload)}/{OUTPUT_BYTES+8} bytes.")
 
         # Convert bytes to Hex strings
-        hex_data = [f"0x{b:02X}" for b in raw_payload]
+        hex_data = [f"0x{b:02X}" for b in raw_payload[:2]]
 
         # Save to CSV
         with open(OUTPUT_CSV, mode='w', newline='') as outfile:
@@ -42,6 +42,13 @@ def send_and_receive_fpga():
             writer.writerow(hex_data) # Saves as a single row of hex values
 
         print(f"Success: {len(hex_data)} bytes saved to {OUTPUT_CSV}")
+
+        # --- Phase 3: Receive Clock Cycle data ---
+        axi_loopback_cycles = int.from_bytes(raw_payload[2:6], byteorder='little')
+        matmul_cycles = int.from_bytes(raw_payload[6:10], byteorder='little')
+        print(f"Time taken to pass  bytes through AXI Loopback: {axi_loopback_cycles} clock cycles")
+        print(f"Time taken to perform matrix multiplication: {matmul_cycles} clock cycles")
+
         ser.close()
 
     except FileNotFoundError:
@@ -52,4 +59,5 @@ def send_and_receive_fpga():
         print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
-    send_and_receive_fpga()
+    for i in range(1):
+        send_and_receive_fpga()

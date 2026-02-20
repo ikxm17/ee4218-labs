@@ -120,7 +120,7 @@ int main(void)
 		}
 		// Start Timer
 		StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
-
+		
 		// Send data from RxBuffer to AXI FIFO
 		XLlFifo_TxSend(&XLlFifo_TxConfig);
 		// Receive data from AXI FIFO in loopback mode
@@ -136,8 +136,12 @@ int main(void)
 		UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
 
 		// After completing write to UART
-		xil_printf("Time taken to pass %d bytes through AXI Loopback: %d clock cycles\n\r", INPUT_BYTES, AxiSendDuration);
-		xil_printf("Time taken to perform matrix multiplication: %d clock cycles\n\r", MatmulDuration);
+		u8 AxiSendDurationBuffer[4];
+		u8 MatmulDurationBuffer[4];
+		memcpy(AxiSendDurationBuffer, &AxiSendDuration, sizeof(uint32_t));
+		memcpy(MatmulDurationBuffer, &MatmulDuration, sizeof(uint32_t));
+		UART_TxFromBuffer(&Uart_Ps, AxiSendDurationBuffer, 4);
+		UART_TxFromBuffer(&Uart_Ps, MatmulDurationBuffer, 4);
 	}
 	return XST_SUCCESS;
 }
