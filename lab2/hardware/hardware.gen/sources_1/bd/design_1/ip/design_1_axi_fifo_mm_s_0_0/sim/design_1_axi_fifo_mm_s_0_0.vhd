@@ -118,11 +118,6 @@ ENTITY design_1_axi_fifo_mm_s_0_0 IS
     axi_str_txd_tready : IN STD_LOGIC;
     axi_str_txd_tlast : OUT STD_LOGIC;
     axi_str_txd_tdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    mm2s_cntrl_reset_out_n : OUT STD_LOGIC;
-    axi_str_txc_tvalid : OUT STD_LOGIC;
-    axi_str_txc_tready : IN STD_LOGIC;
-    axi_str_txc_tlast : OUT STD_LOGIC;
-    axi_str_txc_tdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     s2mm_prmry_reset_out_n : OUT STD_LOGIC;
     axi_str_rxd_tvalid : IN STD_LOGIC;
     axi_str_rxd_tready : OUT STD_LOGIC;
@@ -269,12 +264,6 @@ ARCHITECTURE design_1_axi_fifo_mm_s_0_0_arch OF design_1_axi_fifo_mm_s_0_0 IS
   ATTRIBUTE X_INTERFACE_INFO OF axi_str_rxd_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_RXD TVALID";
   ATTRIBUTE X_INTERFACE_MODE OF axi_str_rxd_tvalid: SIGNAL IS "slave AXI_STR_RXD";
   ATTRIBUTE X_INTERFACE_PARAMETER OF axi_str_rxd_tvalid: SIGNAL IS "XIL_INTERFACENAME AXI_STR_RXD, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
-  ATTRIBUTE X_INTERFACE_INFO OF axi_str_txc_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXC TDATA";
-  ATTRIBUTE X_INTERFACE_INFO OF axi_str_txc_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXC TLAST";
-  ATTRIBUTE X_INTERFACE_INFO OF axi_str_txc_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXC TREADY";
-  ATTRIBUTE X_INTERFACE_INFO OF axi_str_txc_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXC TVALID";
-  ATTRIBUTE X_INTERFACE_MODE OF axi_str_txc_tvalid: SIGNAL IS "master AXI_STR_TXC";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF axi_str_txc_tvalid: SIGNAL IS "XIL_INTERFACENAME AXI_STR_TXC, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF axi_str_txd_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXD TDATA";
   ATTRIBUTE X_INTERFACE_INFO OF axi_str_txd_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXD TLAST";
   ATTRIBUTE X_INTERFACE_INFO OF axi_str_txd_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_STR_TXD TREADY";
@@ -284,9 +273,6 @@ ARCHITECTURE design_1_axi_fifo_mm_s_0_0_arch OF design_1_axi_fifo_mm_s_0_0 IS
   ATTRIBUTE X_INTERFACE_INFO OF interrupt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 interrupt_intf INTERRUPT";
   ATTRIBUTE X_INTERFACE_MODE OF interrupt: SIGNAL IS "master interrupt_intf";
   ATTRIBUTE X_INTERFACE_PARAMETER OF interrupt: SIGNAL IS "XIL_INTERFACENAME interrupt_intf, SENSITIVITY LEVEL_HIGH, PortWidth 1";
-  ATTRIBUTE X_INTERFACE_INFO OF mm2s_cntrl_reset_out_n: SIGNAL IS "xilinx.com:signal:reset:1.0 rst_axi_str_txc RST";
-  ATTRIBUTE X_INTERFACE_MODE OF mm2s_cntrl_reset_out_n: SIGNAL IS "master rst_axi_str_txc";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF mm2s_cntrl_reset_out_n: SIGNAL IS "XIL_INTERFACENAME rst_axi_str_txc, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF mm2s_prmry_reset_out_n: SIGNAL IS "xilinx.com:signal:reset:1.0 rst_axi_str_txd RST";
   ATTRIBUTE X_INTERFACE_MODE OF mm2s_prmry_reset_out_n: SIGNAL IS "master rst_axi_str_txd";
   ATTRIBUTE X_INTERFACE_PARAMETER OF mm2s_prmry_reset_out_n: SIGNAL IS "XIL_INTERFACENAME rst_axi_str_txd, POLARITY ACTIVE_LOW, INSERT_VIP 0";
@@ -365,8 +351,8 @@ BEGIN
       C_S_AXI_ADDR_WIDTH => 32,
       C_S_AXI_DATA_WIDTH => 32,
       C_S_AXI4_DATA_WIDTH => 32,
-      C_TX_FIFO_DEPTH => 1024,
-      C_RX_FIFO_DEPTH => 1024,
+      C_TX_FIFO_DEPTH => 4096,
+      C_RX_FIFO_DEPTH => 4096,
       C_TX_CASCADE_HEIGHT => 0,
       C_RX_CASCADE_HEIGHT => 0,
       C_TX_FIFO_PF_THRESHOLD => 507,
@@ -393,7 +379,7 @@ BEGIN
       C_AXIS_TUSER_WIDTH => 4,
       C_USE_RX_CUT_THROUGH => 0,
       C_USE_TX_DATA => 1,
-      C_USE_TX_CTRL => 1,
+      C_USE_TX_CTRL => 0,
       C_USE_RX_DATA => 1
     )
     PORT MAP (
@@ -457,11 +443,7 @@ BEGIN
       axi_str_txd_tready => axi_str_txd_tready,
       axi_str_txd_tlast => axi_str_txd_tlast,
       axi_str_txd_tdata => axi_str_txd_tdata,
-      mm2s_cntrl_reset_out_n => mm2s_cntrl_reset_out_n,
-      axi_str_txc_tvalid => axi_str_txc_tvalid,
-      axi_str_txc_tready => axi_str_txc_tready,
-      axi_str_txc_tlast => axi_str_txc_tlast,
-      axi_str_txc_tdata => axi_str_txc_tdata,
+      axi_str_txc_tready => '0',
       s2mm_prmry_reset_out_n => s2mm_prmry_reset_out_n,
       axi_str_rxd_tvalid => axi_str_rxd_tvalid,
       axi_str_rxd_tready => axi_str_rxd_tready,

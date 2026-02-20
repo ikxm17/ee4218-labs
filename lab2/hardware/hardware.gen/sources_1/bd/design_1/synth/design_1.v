@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-//Date        : Mon Feb 16 15:59:15 2026
-//Host        : leeeyG14 running 64-bit Ubuntu 22.04.5 LTS
+//Date        : Fri Feb 20 23:04:31 2026
+//Host        : framework running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
 //Purpose     : IP block netlist
@@ -131,7 +131,6 @@ module design_1
         .axi_str_rxd_tlast(axi_fifo_mm_s_0_AXI_STR_TXD_TLAST),
         .axi_str_rxd_tready(axi_fifo_mm_s_0_AXI_STR_TXD_TREADY),
         .axi_str_rxd_tvalid(axi_fifo_mm_s_0_AXI_STR_TXD_TVALID),
-        .axi_str_txc_tready(1'b1),
         .axi_str_txd_tdata(axi_fifo_mm_s_0_AXI_STR_TXD_TDATA),
         .axi_str_txd_tlast(axi_fifo_mm_s_0_AXI_STR_TXD_TLAST),
         .axi_str_txd_tready(axi_fifo_mm_s_0_AXI_STR_TXD_TREADY),

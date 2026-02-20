@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
--- Date        : Wed Feb 11 16:43:26 2026
--- Host        : LEEEY-ZEPHYRUS running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/User/Downloads/EE4218_Labs/ee4218-labs/lab2/hardware/hardware.gen/sources_1/bd/design_1/ip/design_1_axi_timer_0_0/design_1_axi_timer_0_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+-- Date        : Fri Feb 20 19:04:46 2026
+-- Host        : framework running 64-bit Ubuntu 22.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_axi_timer_0_0 -prefix
+--               design_1_axi_timer_0_0_ design_1_axi_timer_0_0_sim_netlist.vhdl
 -- Design      : design_1_axi_timer_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -30,8 +30,6 @@ entity design_1_axi_timer_0_0_counter_f is
     loadReg_DBus_32 : in STD_LOGIC_VECTOR ( 10 downto 0 );
     \INFERRED_GEN.icount_out_reg[31]_1\ : in STD_LOGIC_VECTOR ( 20 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_counter_f : entity is "counter_f";
 end design_1_axi_timer_0_0_counter_f;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_counter_f is
@@ -1277,8 +1275,6 @@ entity design_1_axi_timer_0_0_mux_onehot_f is
     \GEN.DATA_WIDTH_GEN[31].NUM_BUSES_GEN[0].MUXCY_GEN.MUXCY_I_0\ : in STD_LOGIC;
     \GEN.DATA_WIDTH_GEN[31].NUM_BUSES_GEN[1].MUXCY_GEN.MUXCY_I_0\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_mux_onehot_f : entity is "mux_onehot_f";
 end design_1_axi_timer_0_0_mux_onehot_f;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_mux_onehot_f is
@@ -2000,8 +1996,6 @@ entity design_1_axi_timer_0_0_pselect_f is
     ce_expnd_i_7 : out STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[0].ce_out_i_reg[0]\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_pselect_f : entity is "pselect_f";
 end design_1_axi_timer_0_0_pselect_f;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_pselect_f is
@@ -2162,8 +2156,6 @@ entity design_1_axi_timer_0_0_xpm_cdc_single is
   attribute DEST_SYNC_FF of design_1_axi_timer_0_0_xpm_cdc_single : entity is 4;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of design_1_axi_timer_0_0_xpm_cdc_single : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_xpm_cdc_single : entity is "xpm_cdc_single";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of design_1_axi_timer_0_0_xpm_cdc_single : entity is 0;
   attribute SRC_INPUT_REG : integer;
@@ -2543,8 +2535,6 @@ entity design_1_axi_timer_0_0_address_decoder is
     bus2ip_rnw_i : in STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[7].ce_out_i_reg[7]_0\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_address_decoder : entity is "address_decoder";
 end design_1_axi_timer_0_0_address_decoder;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_address_decoder is
@@ -3985,8 +3975,6 @@ entity design_1_axi_timer_0_0_count_module is
     s_axi_aresetn : in STD_LOGIC;
     p_0_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_count_module : entity is "count_module";
 end design_1_axi_timer_0_0_count_module;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_count_module is
@@ -4549,8 +4537,6 @@ entity design_1_axi_timer_0_0_timer_control is
     pwm0 : in STD_LOGIC;
     counterReg_DBus_32 : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_timer_control : entity is "timer_control";
 end design_1_axi_timer_0_0_timer_control;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_timer_control is
@@ -5640,8 +5626,6 @@ entity design_1_axi_timer_0_0_slave_attachment is
     read_done0 : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_slave_attachment : entity is "slave_attachment";
 end design_1_axi_timer_0_0_slave_attachment;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_slave_attachment is
@@ -6767,8 +6751,6 @@ entity design_1_axi_timer_0_0_tc_core is
     \GEN.DATA_WIDTH_GEN[31].NUM_BUSES_GEN[0].MUXCY_GEN.MUXCY_I_0\ : in STD_LOGIC;
     \GEN.DATA_WIDTH_GEN[31].NUM_BUSES_GEN[0].MUXCY_GEN.MUXCY_I_1\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_tc_core : entity is "tc_core";
 end design_1_axi_timer_0_0_tc_core;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_tc_core is
@@ -7112,8 +7094,6 @@ entity design_1_axi_timer_0_0_axi_lite_ipif is
     read_done0 : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_axi_lite_ipif : entity is "axi_lite_ipif";
 end design_1_axi_timer_0_0_axi_lite_ipif;
 
 architecture STRUCTURE of design_1_axi_timer_0_0_axi_lite_ipif is
@@ -7354,8 +7334,6 @@ entity design_1_axi_timer_0_0_axi_timer is
   attribute C_TRIG0_ASSERT of design_1_axi_timer_0_0_axi_timer : entity is "1'b1";
   attribute C_TRIG1_ASSERT : string;
   attribute C_TRIG1_ASSERT of design_1_axi_timer_0_0_axi_timer : entity is "1'b1";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_timer_0_0_axi_timer : entity is "axi_timer";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_axi_timer_0_0_axi_timer : entity is "yes";
 end design_1_axi_timer_0_0_axi_timer;

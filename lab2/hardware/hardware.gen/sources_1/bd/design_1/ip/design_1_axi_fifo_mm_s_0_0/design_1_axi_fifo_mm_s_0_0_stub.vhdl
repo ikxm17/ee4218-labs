@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
--- Date        : Mon Feb 16 15:59:53 2026
--- Host        : leeeyG14 running 64-bit Ubuntu 22.04.5 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/leeey/Downloads/ee4218-labs/lab2/hardware/hardware.gen/sources_1/bd/design_1/ip/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0_stub.vhdl
+-- Date        : Fri Feb 20 20:10:39 2026
+-- Host        : framework running 64-bit Ubuntu 22.04.5 LTS
+-- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_axi_fifo_mm_s_0_0 -prefix
+--               design_1_axi_fifo_mm_s_0_0_ design_1_axi_fifo_mm_s_0_0_stub.vhdl
 -- Design      : design_1_axi_fifo_mm_s_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xck26-sfvc784-2LV-c
@@ -75,11 +75,6 @@ entity design_1_axi_fifo_mm_s_0_0 is
     axi_str_txd_tready : in STD_LOGIC;
     axi_str_txd_tlast : out STD_LOGIC;
     axi_str_txd_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    mm2s_cntrl_reset_out_n : out STD_LOGIC;
-    axi_str_txc_tvalid : out STD_LOGIC;
-    axi_str_txc_tready : in STD_LOGIC;
-    axi_str_txc_tlast : out STD_LOGIC;
-    axi_str_txc_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     s2mm_prmry_reset_out_n : out STD_LOGIC;
     axi_str_rxd_tvalid : in STD_LOGIC;
     axi_str_rxd_tready : out STD_LOGIC;
@@ -90,7 +85,7 @@ entity design_1_axi_fifo_mm_s_0_0 is
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of design_1_axi_fifo_mm_s_0_0 : entity is "design_1_axi_fifo_mm_s_0_0,axi_fifo_mm_s,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of design_1_axi_fifo_mm_s_0_0 : entity is "design_1_axi_fifo_mm_s_0_0,axi_fifo_mm_s,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_fifo_mm_s,x_ipVersion=4.3,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynquplus,C_S_AXI_ID_WIDTH=1,C_S_AXI_ADDR_WIDTH=32,C_S_AXI_DATA_WIDTH=32,C_S_AXI4_DATA_WIDTH=32,C_TX_FIFO_DEPTH=1024,C_RX_FIFO_DEPTH=1024,C_TX_CASCADE_HEIGHT=0,C_RX_CASCADE_HEIGHT=0,C_TX_FIFO_PF_THRESHOLD=507,C_TX_FIFO_PE_THRESHOLD=5,C_RX_FIFO_PF_THRESHOLD=507,C_RX_FIFO_PE_THRESHOLD=5,C_USE_TX_CUT_THROUGH=0,C_DATA_INTERFACE_TYPE=1,C_TX_ENABLE_ECC=0,C_RX_ENABLE_ECC=0,C_TX_HAS_ECC_ERR_INJECT=0,C_RX_HAS_ECC_ERR_INJECT=0,C_BASEADDR=0xA0000000,C_HIGHADDR=0xA000FFFF,C_AXI4_BASEADDR=0xA0010000,C_AXI4_HIGHADDR=0xA001FFFF,C_HAS_AXIS_TID=0,C_HAS_AXIS_TDEST=0,C_HAS_AXIS_TUSER=0,C_HAS_AXIS_TSTRB=0,C_HAS_AXIS_TKEEP=0,C_AXIS_TID_WIDTH=4,C_AXIS_TDEST_WIDTH=4,C_AXIS_TUSER_WIDTH=4,C_USE_RX_CUT_THROUGH=0,C_USE_TX_DATA=1,C_USE_TX_CTRL=1,C_USE_RX_DATA=1}";
+  attribute core_generation_info of design_1_axi_fifo_mm_s_0_0 : entity is "design_1_axi_fifo_mm_s_0_0,axi_fifo_mm_s,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_fifo_mm_s,x_ipVersion=4.3,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynquplus,C_S_AXI_ID_WIDTH=1,C_S_AXI_ADDR_WIDTH=32,C_S_AXI_DATA_WIDTH=32,C_S_AXI4_DATA_WIDTH=32,C_TX_FIFO_DEPTH=4096,C_RX_FIFO_DEPTH=4096,C_TX_CASCADE_HEIGHT=0,C_RX_CASCADE_HEIGHT=0,C_TX_FIFO_PF_THRESHOLD=507,C_TX_FIFO_PE_THRESHOLD=5,C_RX_FIFO_PF_THRESHOLD=507,C_RX_FIFO_PE_THRESHOLD=5,C_USE_TX_CUT_THROUGH=0,C_DATA_INTERFACE_TYPE=1,C_TX_ENABLE_ECC=0,C_RX_ENABLE_ECC=0,C_TX_HAS_ECC_ERR_INJECT=0,C_RX_HAS_ECC_ERR_INJECT=0,C_BASEADDR=0xA0000000,C_HIGHADDR=0xA000FFFF,C_AXI4_BASEADDR=0xA0010000,C_AXI4_HIGHADDR=0xA001FFFF,C_HAS_AXIS_TID=0,C_HAS_AXIS_TDEST=0,C_HAS_AXIS_TUSER=0,C_HAS_AXIS_TSTRB=0,C_HAS_AXIS_TKEEP=0,C_AXIS_TID_WIDTH=4,C_AXIS_TDEST_WIDTH=4,C_AXIS_TUSER_WIDTH=4,C_USE_RX_CUT_THROUGH=0,C_USE_TX_DATA=1,C_USE_TX_CTRL=0,C_USE_RX_DATA=1}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_axi_fifo_mm_s_0_0 : entity is "yes";
 end design_1_axi_fifo_mm_s_0_0;
@@ -99,7 +94,7 @@ architecture stub of design_1_axi_fifo_mm_s_0_0 is
   attribute syn_black_box : boolean;
   attribute black_box_pad_pin : string;
   attribute syn_black_box of stub : architecture is true;
-  attribute black_box_pad_pin of stub : architecture is "interrupt,s_axi_aclk,s_axi_aresetn,s_axi_awaddr[31:0],s_axi_awvalid,s_axi_awready,s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid,s_axi_wready,s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_araddr[31:0],s_axi_arvalid,s_axi_arready,s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid,s_axi_rready,s_axi4_awid[0:0],s_axi4_awaddr[31:0],s_axi4_awlen[7:0],s_axi4_awsize[2:0],s_axi4_awburst[1:0],s_axi4_awlock,s_axi4_awcache[3:0],s_axi4_awprot[2:0],s_axi4_awvalid,s_axi4_awready,s_axi4_wdata[31:0],s_axi4_wstrb[3:0],s_axi4_wlast,s_axi4_wvalid,s_axi4_wready,s_axi4_bid[0:0],s_axi4_bresp[1:0],s_axi4_bvalid,s_axi4_bready,s_axi4_arid[0:0],s_axi4_araddr[31:0],s_axi4_arlen[7:0],s_axi4_arsize[2:0],s_axi4_arburst[1:0],s_axi4_arlock,s_axi4_arcache[3:0],s_axi4_arprot[2:0],s_axi4_arvalid,s_axi4_arready,s_axi4_rid[0:0],s_axi4_rdata[31:0],s_axi4_rresp[1:0],s_axi4_rlast,s_axi4_rvalid,s_axi4_rready,mm2s_prmry_reset_out_n,axi_str_txd_tvalid,axi_str_txd_tready,axi_str_txd_tlast,axi_str_txd_tdata[31:0],mm2s_cntrl_reset_out_n,axi_str_txc_tvalid,axi_str_txc_tready,axi_str_txc_tlast,axi_str_txc_tdata[31:0],s2mm_prmry_reset_out_n,axi_str_rxd_tvalid,axi_str_rxd_tready,axi_str_rxd_tlast,axi_str_rxd_tdata[31:0]";
+  attribute black_box_pad_pin of stub : architecture is "interrupt,s_axi_aclk,s_axi_aresetn,s_axi_awaddr[31:0],s_axi_awvalid,s_axi_awready,s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid,s_axi_wready,s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_araddr[31:0],s_axi_arvalid,s_axi_arready,s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid,s_axi_rready,s_axi4_awid[0:0],s_axi4_awaddr[31:0],s_axi4_awlen[7:0],s_axi4_awsize[2:0],s_axi4_awburst[1:0],s_axi4_awlock,s_axi4_awcache[3:0],s_axi4_awprot[2:0],s_axi4_awvalid,s_axi4_awready,s_axi4_wdata[31:0],s_axi4_wstrb[3:0],s_axi4_wlast,s_axi4_wvalid,s_axi4_wready,s_axi4_bid[0:0],s_axi4_bresp[1:0],s_axi4_bvalid,s_axi4_bready,s_axi4_arid[0:0],s_axi4_araddr[31:0],s_axi4_arlen[7:0],s_axi4_arsize[2:0],s_axi4_arburst[1:0],s_axi4_arlock,s_axi4_arcache[3:0],s_axi4_arprot[2:0],s_axi4_arvalid,s_axi4_arready,s_axi4_rid[0:0],s_axi4_rdata[31:0],s_axi4_rresp[1:0],s_axi4_rlast,s_axi4_rvalid,s_axi4_rready,mm2s_prmry_reset_out_n,axi_str_txd_tvalid,axi_str_txd_tready,axi_str_txd_tlast,axi_str_txd_tdata[31:0],s2mm_prmry_reset_out_n,axi_str_rxd_tvalid,axi_str_rxd_tready,axi_str_rxd_tlast,axi_str_rxd_tdata[31:0]";
   attribute x_interface_info : string;
   attribute x_interface_info of interrupt : signal is "xilinx.com:signal:interrupt:1.0 interrupt_intf INTERRUPT";
   attribute x_interface_mode : string;
@@ -177,15 +172,6 @@ architecture stub of design_1_axi_fifo_mm_s_0_0 is
   attribute x_interface_info of axi_str_txd_tready : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXD TREADY";
   attribute x_interface_info of axi_str_txd_tlast : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXD TLAST";
   attribute x_interface_info of axi_str_txd_tdata : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXD TDATA";
-  attribute x_interface_info of mm2s_cntrl_reset_out_n : signal is "xilinx.com:signal:reset:1.0 rst_axi_str_txc RST";
-  attribute x_interface_mode of mm2s_cntrl_reset_out_n : signal is "master rst_axi_str_txc";
-  attribute x_interface_parameter of mm2s_cntrl_reset_out_n : signal is "XIL_INTERFACENAME rst_axi_str_txc, POLARITY ACTIVE_LOW, INSERT_VIP 0";
-  attribute x_interface_info of axi_str_txc_tvalid : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXC TVALID";
-  attribute x_interface_mode of axi_str_txc_tvalid : signal is "master AXI_STR_TXC";
-  attribute x_interface_parameter of axi_str_txc_tvalid : signal is "XIL_INTERFACENAME AXI_STR_TXC, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 99999001, PHASE 0.0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
-  attribute x_interface_info of axi_str_txc_tready : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXC TREADY";
-  attribute x_interface_info of axi_str_txc_tlast : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXC TLAST";
-  attribute x_interface_info of axi_str_txc_tdata : signal is "xilinx.com:interface:axis:1.0 AXI_STR_TXC TDATA";
   attribute x_interface_info of s2mm_prmry_reset_out_n : signal is "xilinx.com:signal:reset:1.0 rst_axi_str_rxd RST";
   attribute x_interface_mode of s2mm_prmry_reset_out_n : signal is "master rst_axi_str_rxd";
   attribute x_interface_parameter of s2mm_prmry_reset_out_n : signal is "XIL_INTERFACENAME rst_axi_str_rxd, POLARITY ACTIVE_LOW, INSERT_VIP 0";
