@@ -110,6 +110,14 @@ int main(void)
 	XLlFifo_TxConfig XLlFifo_TxConfig = { &AxiFifo, UART_ReceiveBuffer, &TX_PARAMS };
 	XLlFifo_RxConfig XLlFifo_RxConfig = { &AxiFifo, AXI_ReceiveBuffer, &RX_PARAMS };
 
+#ifdef PROFILING
+	while (1) {
+		XLlFifo_TxSend(&XLlFifo_TxConfig);
+		XLlFifo_RxReceive(&XLlFifo_RxConfig);
+		matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
+	}
+#endif
+
 	// infinite loop to receive data via uart and send res back
 	while (1) {
 		// Receive data from UART to Rxbuffer
