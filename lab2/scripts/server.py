@@ -8,7 +8,7 @@ BAUD_RATE = 115200
 INPUT_CSV = "AB.csv"
 OUTPUT_CSV = "RES.csv"
 TIMEOUT = 5  # Increased timeout to wait for FPGA processing
-OUTPUT_BYTES = 2  # Parameterized: Number of bytes expected back
+OUTPUT_BYTES = 64  # Parameterized: Number of bytes expected back
 
 
 def send_and_receive_fpga():
@@ -35,7 +35,7 @@ def send_and_receive_fpga():
             print(f"Warning: Only received {len(raw_payload)}/{OUTPUT_BYTES+8} bytes.")
 
         # Convert bytes to Hex strings
-        hex_data = [f"0x{b:02X}" for b in raw_payload[:2]]
+        hex_data = [f"0x{b:02X}" for b in raw_payload[:OUTPUT_BYTES]]
 
         # Save to CSV
         with open(OUTPUT_CSV, mode="w", newline="") as outfile:
@@ -45,8 +45,12 @@ def send_and_receive_fpga():
         print(f"Success: {len(hex_data)} bytes saved to {OUTPUT_CSV}")
 
         # --- Phase 3: Receive Clock Cycle data ---
-        axi_loopback_cycles = int.from_bytes(raw_payload[2:6], byteorder="little")
-        matmul_cycles = int.from_bytes(raw_payload[6:10], byteorder="little")
+        axi_loopback_cycles = int.from_bytes(
+            raw_payload[OUTPUT_BYTES : OUTPUT_BYTES + 4], byteorder="little"
+        )
+        matmul_cycles = int.from_bytes(
+            raw_payload[OUTPUT_BYTES + 4 : OUTPUT_BYTES + 8], byteorder="little"
+        )
         print(
             f"Time taken to pass  bytes through AXI Loopback: {axi_loopback_cycles} clock cycles"
         )
@@ -65,5 +69,5 @@ def send_and_receive_fpga():
 
 
 if __name__ == "__main__":
-    for i in range(1):
+    for i in range(20):
         send_and_receive_fpga()

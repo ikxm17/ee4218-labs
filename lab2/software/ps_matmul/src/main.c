@@ -43,8 +43,8 @@ uint8_t result_matrix[64];
 #define XLLFIFO_BASEADDRESS XPAR_XLLFIFO_0_BASEADDR
 #endif
 
-#define NUM_ROWS_A    2
-#define NUM_INNER_DIM 4
+#define NUM_ROWS_A    64
+#define NUM_INNER_DIM 8
 #define NUM_COLS_B    1
 
 #define WORD_SIZE_IN_BYTES    4
@@ -129,7 +129,7 @@ int main(void)
 		}
 		// Start Timer
 		StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
-		
+
 		// Send data from RxBuffer to AXI FIFO
 		XLlFifo_TxSend(&XLlFifo_TxConfig);
 		// Receive data from AXI FIFO in loopback mode
