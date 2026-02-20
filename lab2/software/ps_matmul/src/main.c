@@ -47,19 +47,20 @@ uint8_t result_matrix[64];
 #define NUM_INNER_DIM 4
 #define NUM_COLS_B    1
 
+#define WORD_SIZE_IN_BYTES    4
 #define NO_INPUT_ELEMENTS     (NUM_ROWS_A * NUM_INNER_DIM + NUM_INNER_DIM * NUM_COLS_B)
 #define ELEMENT_SIZE_IN_BYTES 1
 #define INPUT_BYTES           NO_INPUT_ELEMENTS* ELEMENT_SIZE_IN_BYTES
 #define OUTPUT_BYTES          (NUM_ROWS_A * NUM_COLS_B) * ELEMENT_SIZE_IN_BYTES
 
 const XLlFifo_TxParams TX_PARAMS = {
-	.word_size           = 4, // in bytes
+	.word_size           = WORD_SIZE_IN_BYTES, // in bytes
 	.number_of_packets   = 1,
 	.max_packet_length   = INPUT_BYTES,
-	.transmission_length = 4 * INPUT_BYTES // in bytes
+	.transmission_length = WORD_SIZE_IN_BYTES * INPUT_BYTES // in bytes
 };
 
-const XLlFifo_RxParams RX_PARAMS = { .word_size = 4 };
+const XLlFifo_RxParams RX_PARAMS = { .word_size = WORD_SIZE_IN_BYTES };
 
 /* Function prototypes */
 void matrix_multiply(u32* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b);
