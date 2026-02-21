@@ -53,8 +53,8 @@ int AXI_Init(XLlFifo* AxiFifo, u8 DeviceId);
 #else
 int AXI_Init(XLlFifo* AxiFifo, u32 BaseAddress);
 #endif
-uint8_t XLlFifo_TxSend(XLlFifo_TxConfig* TxConfig);
-uint8_t XLlFifo_RxReceive(XLlFifo_RxConfig* RxConfig);
+u8 XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
+u8 XLlFifo_RxReceive(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
 
 #ifdef __cplusplus
 }

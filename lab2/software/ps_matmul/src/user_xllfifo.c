@@ -47,53 +47,40 @@ int AXI_Init(XLlFifo* AxiFifo, u32 BaseAddress)
 	return Status;
 }
 
-/**
- * @brief
- *
- * @param TxConfig
- * @return uint8_t
- */
-uint8_t XLlFifo_TxSend(XLlFifo_TxConfig* TxConfig)
+u8 XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords)
 {
-	u32 TotalWords = TxConfig->tx_params->number_of_packets * TxConfig->tx_params->max_packet_length;
-
-	for (size_t i = 0; i < TotalWords; i++) {
-		// Wait until there is at least one slot available
-		while (XLlFifo_iTxVacancy(TxConfig->instance_ptr) == 0)
-			;
-
-		XLlFifo_TxPutWord(TxConfig->instance_ptr, *(TxConfig->source_addr + i));
+	u32       words_written     = 0;
+	u32       words_transmitted = 0;
+	const u32 words_to_bytes    = 4;
+	u32 volatile vacancy = XLlFifo_iTxVacancy(InstancePtr);
+	while (words_transmitted < NumWords) {
+		words_written = 0;
+		while (XLlFifo_iTxVacancy(InstancePtr) != 0 && (words_transmitted + words_written) < NumWords) {
+			XLlFifo_TxPutWord(InstancePtr, BufferPtr[words_transmitted + words_written]);
+			words_written++;
+		}
+		XLlFifo_IntClear(InstancePtr, XLLF_INT_TC_MASK);
+		XLlFifo_iTxSetLen(InstancePtr, words_written * words_to_bytes);
+		while (!XLlFifo_IsTxDone(InstancePtr));
+		words_transmitted += words_written;
 	}
-
-	// TLR write must be in BYTES (Words * 4)
-	XLlFifo_iTxSetLen(TxConfig->instance_ptr, TxConfig->tx_params->transmission_length);
-
-	while (!(XLlFifo_IsTxDone(TxConfig->instance_ptr)))
-		;
-
 	return XST_SUCCESS;
 }
 
-/**
- * @brief
- *
- * @param RxConfig
- * @return uint8_t
- */
-uint8_t XLlFifo_RxReceive(XLlFifo_RxConfig* RxConfig)
+u8 XLlFifo_RxReceive(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords)
 {
-	// 1. Wait for the FIFO to report that at least one packet is available
-	while (XLlFifo_iRxOccupancy(RxConfig->instance_ptr) == 0)
-		;
+	u32       words_received = 0;
+	const u32 bytes_per_word = 4;
 
-	// 2. Read the length register ONCE to "unlock" the packet
-	u32 BytesToRead = XLlFifo_iRxGetLen(RxConfig->instance_ptr);
-	u32 WordsToRead = BytesToRead / 4;
+	while (words_received < NumWords) {
+		while (!XLlFifo_iRxOccupancy(InstancePtr));
+		u32 packet_bytes = XLlFifo_iRxGetLen(InstancePtr);
+		u32 packet_words = packet_bytes / bytes_per_word;
 
-	// 3. Read the words
-	for (size_t i = 0; i < WordsToRead; i++) {
-		*(RxConfig->destination_addr + i) = XLlFifo_RxGetWord(RxConfig->instance_ptr);
+		for (size_t words = 0; words < packet_words; words++) {
+			BufferPtr[words_received + words] = XLlFifo_RxGetWord(InstancePtr);
+		}
+		words_received += packet_words;
 	}
-
-	return XLlFifo_IsRxDone(RxConfig->instance_ptr) ? XST_SUCCESS : XST_FAILURE;
+	return XST_SUCCESS;
 }

@@ -131,9 +131,9 @@ int main(void)
 		StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
 
 		// Send data from RxBuffer to AXI FIFO
-		XLlFifo_TxSend(&XLlFifo_TxConfig);
+		XLlFifo_TxSend(&AxiFifo, UART_ReceiveBuffer, sizeof(UART_ReceiveBuffer) / sizeof(UART_ReceiveBuffer[0]));
 		// Receive data from AXI FIFO in loopback mode
-		XLlFifo_RxReceive(&XLlFifo_RxConfig);
+		XLlFifo_RxReceive(&AxiFifo, AXI_ReceiveBuffer, sizeof(AXI_ReceiveBuffer) / sizeof(AXI_ReceiveBuffer[0]));
 		AxiSendDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
 
 		// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
