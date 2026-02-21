@@ -57,7 +57,6 @@ XUartPs Uart_Ps;
 XTmrCtr TimerCounter;
 XLlFifo AxiFifo;
 
-u8  Status = XST_SUCCESS;
 u32 StartTime;
 u32 AxiSendDuration;
 u32 MatmulDuration;
@@ -95,11 +94,6 @@ void user_loop(void)
 {
 	// Receive data from UART to Rxbuffer
 	UART_RxToBuffer(&Uart_Ps, UART_ReceiveBuffer, INPUT_BYTES);
-	if (Status != XST_SUCCESS) {
-		xil_printf("Failed to read into ReceiveBuffer \n\r");
-		xil_printf("--- Exiting main() ---\n\r");
-		return XST_FAILURE;
-	}
 	// Start Timer
 	StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
 
@@ -112,7 +106,6 @@ void user_loop(void)
 	// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
 	matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
 	MatmulDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, AxiSendDuration);
-	Status         = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
 
 	// Write to UART
 	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
