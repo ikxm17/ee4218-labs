@@ -47,12 +47,19 @@ int AXI_Init(XLlFifo* AxiFifo, u32 BaseAddress)
 	return Status;
 }
 
+/**
+ * @brief Transmit function for AXI FIFO.
+ *
+ * @param InstancePtr
+ * @param BufferPtr
+ * @param NumWords
+ * @return u8
+ */
 u8 XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords)
 {
 	u32       words_written     = 0;
 	u32       words_transmitted = 0;
 	const u32 words_to_bytes    = 4;
-	u32 volatile vacancy = XLlFifo_iTxVacancy(InstancePtr);
 	while (words_transmitted < NumWords) {
 		words_written = 0;
 		while (XLlFifo_iTxVacancy(InstancePtr) != 0 && (words_transmitted + words_written) < NumWords) {
@@ -67,6 +74,14 @@ u8 XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords)
 	return XST_SUCCESS;
 }
 
+/**
+ * @brief Receive function for AXI FIFO.
+ *
+ * @param InstancePtr
+ * @param BufferPtr
+ * @param NumWords
+ * @return u8
+ */
 u8 XLlFifo_RxReceive(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords)
 {
 	u32       words_received = 0;

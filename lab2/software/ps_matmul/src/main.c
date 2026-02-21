@@ -16,14 +16,7 @@
 #include "test_matrices.h"
 #endif
 
-/************************** Variable Definitions ***************************/
-XLlFifo FifoInstance;
-XUartPs Uart_Ps;
-XTmrCtr TimerCounter;
-XLlFifo AxiFifo;
-uint8_t result_matrix[64];
-
-// Constant definitions
+/************************** Constant Definitions ***************************/
 #ifndef SDT
 #define UART_DEVICE_ID XPAR_XUARTPS_0_DEVICE_ID
 #else
@@ -47,44 +40,35 @@ uint8_t result_matrix[64];
 #define NUM_INNER_DIM 8
 #define NUM_COLS_B    1
 
-#define WORD_SIZE_IN_BYTES    4
 #define NO_INPUT_ELEMENTS     (NUM_ROWS_A * NUM_INNER_DIM + NUM_INNER_DIM * NUM_COLS_B)
 #define ELEMENT_SIZE_IN_BYTES 1
-#define INPUT_BYTES           NO_INPUT_ELEMENTS* ELEMENT_SIZE_IN_BYTES
+#define INPUT_BYTES           NO_INPUT_ELEMENTS * ELEMENT_SIZE_IN_BYTES
 #define OUTPUT_BYTES          (NUM_ROWS_A * NUM_COLS_B) * ELEMENT_SIZE_IN_BYTES
 
-const XLlFifo_TxParams TX_PARAMS = {
-	.word_size           = WORD_SIZE_IN_BYTES, // in bytes
-	.number_of_packets   = 1,
-	.max_packet_length   = INPUT_BYTES,
-	.transmission_length = WORD_SIZE_IN_BYTES * INPUT_BYTES // in bytes
-};
+/************************** Variable Definitions ***************************/
+// Buffers
+u8  UART_TransmitBuffer[OUTPUT_BYTES];
+u32 UART_ReceiveBuffer[INPUT_BYTES];
+u32 AXI_ReceiveBuffer[INPUT_BYTES];
 
-const XLlFifo_RxParams RX_PARAMS = { .word_size = WORD_SIZE_IN_BYTES };
+// Peripherals
+XLlFifo FifoInstance;
+XUartPs Uart_Ps;
+XTmrCtr TimerCounter;
+XLlFifo AxiFifo;
 
-/* Function prototypes */
+u8  Status = XST_SUCCESS;
+u32 StartTime;
+u32 AxiSendDuration;
+u32 MatmulDuration;
+
+/************************** Function Prototypes ***************************/
+void user_setup(void);
+void user_loop(void);
 void matrix_multiply(u32* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b);
 
-/***************************************************************************/
-/**
- *
- * Main function to call UART to AXI FIFO function
- *
- * @return	XST_SUCCESS if successful, XST_FAILURE if unsuccessful
- *
- * @note		None
- *
- ****************************************************************************/
-int main(void)
+void user_setup(void)
 {
-	int Status = XST_SUCCESS;
-	u32 UART_ReceiveBuffer[INPUT_BYTES];
-	u32 AXI_ReceiveBuffer[INPUT_BYTES];
-	u8  UART_TransmitBuffer[OUTPUT_BYTES];
-	u32 StartTime;
-	u32 AxiSendDuration;
-	u32 MatmulDuration;
-
 // Initalise UART
 #ifndef SDT
 	UART_Init(&Uart_Ps, UART_DEVICE_ID);
@@ -105,48 +89,50 @@ int main(void)
 #else
 	AXI_Init(&AxiFifo, XLLFIFO_BASEADDRESS);
 #endif
+}
 
-	// Initalise AXI FIFO
-	XLlFifo_TxConfig XLlFifo_TxConfig = { &AxiFifo, UART_ReceiveBuffer, &TX_PARAMS };
-	XLlFifo_RxConfig XLlFifo_RxConfig = { &AxiFifo, AXI_ReceiveBuffer, &RX_PARAMS };
+void user_loop(void)
+{
+	// Receive data from UART to Rxbuffer
+	UART_RxToBuffer(&Uart_Ps, UART_ReceiveBuffer, INPUT_BYTES);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Failed to read into ReceiveBuffer \n\r");
+		xil_printf("--- Exiting main() ---\n\r");
+		return XST_FAILURE;
+	}
+	// Start Timer
+	StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
 
-#ifdef PROFILING
+	// Send data from RxBuffer to AXI FIFO
+	XLlFifo_TxSend(&AxiFifo, UART_ReceiveBuffer, sizeof(UART_ReceiveBuffer) / sizeof(UART_ReceiveBuffer[0]));
+	// Receive data from AXI FIFO in loopback mode
+	XLlFifo_RxReceive(&AxiFifo, AXI_ReceiveBuffer, sizeof(AXI_ReceiveBuffer) / sizeof(AXI_ReceiveBuffer[0]));
+	AxiSendDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
+
+	// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
+	matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
+	MatmulDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, AxiSendDuration);
+	Status         = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
+
+	// Write to UART
+	UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
+	UART_TxFromBuffer(&Uart_Ps, (u8*)&AxiSendDuration, 4);
+	UART_TxFromBuffer(&Uart_Ps, (u8*)&MatmulDuration, 4);
+}
+
+int main(void)
+{
+	user_setup();
 	while (1) {
+#ifndef PROFILING
+		user_loop();
+#else
 		XLlFifo_TxSend(&XLlFifo_TxConfig);
 		XLlFifo_RxReceive(&XLlFifo_RxConfig);
 		matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
-	}
 #endif
-
-	// infinite loop to receive data via uart and send res back
-	while (1) {
-		// Receive data from UART to Rxbuffer
-		UART_RxToBuffer(&Uart_Ps, UART_ReceiveBuffer, INPUT_BYTES);
-		if (Status != XST_SUCCESS) {
-			xil_printf("Failed to read into ReceiveBuffer \n\r");
-			xil_printf("--- Exiting main() ---\n\r");
-			return XST_FAILURE;
-		}
-		// Start Timer
-		StartTime = TIMER_Start(&TimerCounter, TIMER_COUNTER_0);
-
-		// Send data from RxBuffer to AXI FIFO
-		XLlFifo_TxSend(&AxiFifo, UART_ReceiveBuffer, sizeof(UART_ReceiveBuffer) / sizeof(UART_ReceiveBuffer[0]));
-		// Receive data from AXI FIFO in loopback mode
-		XLlFifo_RxReceive(&AxiFifo, AXI_ReceiveBuffer, sizeof(AXI_ReceiveBuffer) / sizeof(AXI_ReceiveBuffer[0]));
-		AxiSendDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, StartTime);
-
-		// Perform Matmul on ouput of AXI FIFO and store in SendBuffer
-		matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
-		MatmulDuration = TIMER_GetDurationFromStart(&TimerCounter, TIMER_COUNTER_0, AxiSendDuration);
-		Status         = TIMER_Stop(&TimerCounter, TIMER_COUNTER_0);
-
-		// Write to UART
-		UART_TxFromBuffer(&Uart_Ps, UART_TransmitBuffer, OUTPUT_BYTES);
-		UART_TxFromBuffer(&Uart_Ps, (u8*)&AxiSendDuration, 4);
-		UART_TxFromBuffer(&Uart_Ps, (u8*)&MatmulDuration, 4);
 	}
-	return XST_SUCCESS;
+	return 1;
 }
 
 void matrix_multiply(u32* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b)
