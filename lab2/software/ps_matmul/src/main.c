@@ -120,8 +120,8 @@ int main(void)
 #ifndef PROFILING
 		user_loop();
 #else
-		XLlFifo_TxSend(&XLlFifo_TxConfig);
-		XLlFifo_RxReceive(&XLlFifo_RxConfig);
+		XLlFifo_TxSend(&AxiFifo, UART_ReceiveBuffer, sizeof(UART_ReceiveBuffer) / sizeof(UART_ReceiveBuffer[0]));
+		XLlFifo_RxReceive(&AxiFifo, AXI_ReceiveBuffer, sizeof(AXI_ReceiveBuffer) / sizeof(AXI_ReceiveBuffer[0]));
 		matrix_multiply(AXI_ReceiveBuffer, UART_TransmitBuffer, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
 #endif
 	}
