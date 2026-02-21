@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
--- Date        : Fri Feb 20 20:10:39 2026
+-- Date        : Sat Feb 21 20:55:19 2026
 -- Host        : framework running 64-bit Ubuntu 22.04.5 LTS
--- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_axi_fifo_mm_s_0_0 -prefix
---               design_1_axi_fifo_mm_s_0_0_ design_1_axi_fifo_mm_s_0_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/ikxm/workspace/ee4218/ee4218-labs/lab2/hardware/hardware.gen/sources_1/bd/design_1/ip/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0_stub.vhdl
 -- Design      : design_1_axi_fifo_mm_s_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xck26-sfvc784-2LV-c
@@ -85,7 +85,7 @@ entity design_1_axi_fifo_mm_s_0_0 is
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of design_1_axi_fifo_mm_s_0_0 : entity is "design_1_axi_fifo_mm_s_0_0,axi_fifo_mm_s,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of design_1_axi_fifo_mm_s_0_0 : entity is "design_1_axi_fifo_mm_s_0_0,axi_fifo_mm_s,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_fifo_mm_s,x_ipVersion=4.3,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynquplus,C_S_AXI_ID_WIDTH=1,C_S_AXI_ADDR_WIDTH=32,C_S_AXI_DATA_WIDTH=32,C_S_AXI4_DATA_WIDTH=32,C_TX_FIFO_DEPTH=4096,C_RX_FIFO_DEPTH=4096,C_TX_CASCADE_HEIGHT=0,C_RX_CASCADE_HEIGHT=0,C_TX_FIFO_PF_THRESHOLD=507,C_TX_FIFO_PE_THRESHOLD=5,C_RX_FIFO_PF_THRESHOLD=507,C_RX_FIFO_PE_THRESHOLD=5,C_USE_TX_CUT_THROUGH=0,C_DATA_INTERFACE_TYPE=1,C_TX_ENABLE_ECC=0,C_RX_ENABLE_ECC=0,C_TX_HAS_ECC_ERR_INJECT=0,C_RX_HAS_ECC_ERR_INJECT=0,C_BASEADDR=0xA0000000,C_HIGHADDR=0xA000FFFF,C_AXI4_BASEADDR=0xA0010000,C_AXI4_HIGHADDR=0xA001FFFF,C_HAS_AXIS_TID=0,C_HAS_AXIS_TDEST=0,C_HAS_AXIS_TUSER=0,C_HAS_AXIS_TSTRB=0,C_HAS_AXIS_TKEEP=0,C_AXIS_TID_WIDTH=4,C_AXIS_TDEST_WIDTH=4,C_AXIS_TUSER_WIDTH=4,C_USE_RX_CUT_THROUGH=0,C_USE_TX_DATA=1,C_USE_TX_CTRL=0,C_USE_RX_DATA=1}";
+  attribute core_generation_info of design_1_axi_fifo_mm_s_0_0 : entity is "design_1_axi_fifo_mm_s_0_0,axi_fifo_mm_s,{x_ipProduct=Vivado 2025.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_fifo_mm_s,x_ipVersion=4.3,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynquplus,C_S_AXI_ID_WIDTH=1,C_S_AXI_ADDR_WIDTH=32,C_S_AXI_DATA_WIDTH=32,C_S_AXI4_DATA_WIDTH=32,C_TX_FIFO_DEPTH=512,C_RX_FIFO_DEPTH=1024,C_TX_CASCADE_HEIGHT=0,C_RX_CASCADE_HEIGHT=0,C_TX_FIFO_PF_THRESHOLD=507,C_TX_FIFO_PE_THRESHOLD=5,C_RX_FIFO_PF_THRESHOLD=507,C_RX_FIFO_PE_THRESHOLD=5,C_USE_TX_CUT_THROUGH=0,C_DATA_INTERFACE_TYPE=1,C_TX_ENABLE_ECC=0,C_RX_ENABLE_ECC=0,C_TX_HAS_ECC_ERR_INJECT=0,C_RX_HAS_ECC_ERR_INJECT=0,C_BASEADDR=0xA0000000,C_HIGHADDR=0xA000FFFF,C_AXI4_BASEADDR=0xA0010000,C_AXI4_HIGHADDR=0xA001FFFF,C_HAS_AXIS_TID=0,C_HAS_AXIS_TDEST=0,C_HAS_AXIS_TUSER=0,C_HAS_AXIS_TSTRB=0,C_HAS_AXIS_TKEEP=0,C_AXIS_TID_WIDTH=4,C_AXIS_TDEST_WIDTH=4,C_AXIS_TUSER_WIDTH=4,C_USE_RX_CUT_THROUGH=0,C_USE_TX_DATA=1,C_USE_TX_CTRL=0,C_USE_RX_DATA=1}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_axi_fifo_mm_s_0_0 : entity is "yes";
 end design_1_axi_fifo_mm_s_0_0;
