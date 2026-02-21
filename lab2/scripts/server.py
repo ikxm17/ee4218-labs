@@ -52,7 +52,7 @@ def send_and_receive_fpga():
             raw_payload[OUTPUT_BYTES + 4 : OUTPUT_BYTES + 8], byteorder="little"
         )
         print(
-            f"Time taken to pass  bytes through AXI Loopback: {axi_loopback_cycles} clock cycles"
+            f"Time taken to pass bytes through AXI Loopback: {axi_loopback_cycles} clock cycles"
         )
         print(
             f"Time taken to perform matrix multiplication: {matmul_cycles} clock cycles"
