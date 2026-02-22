@@ -1,0 +1,2 @@
+Time taken to pass 12 bytes through AXI Loopback: 1845 clock cycles
+Time taken to perform matrix multiplication: 130 clock cycles

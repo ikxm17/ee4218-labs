@@ -1,0 +1,14 @@
+# ignore everything
+*
+
+# unignore
+!.gitignore
+!ps_matmul/
+ps_matmul/*
+!ps_matmul/src/
+!ps_matmul/src/**
+
+# ignore
+ps_matmul/src/app.yaml
+ps_matmul/src/compile_commands.json
+ps_matmul/src/.cache
