@@ -1167,7 +1167,7 @@
             "value": "507"
           },
           "C_TX_FIFO_DEPTH": {
-            "value": "512"
+            "value": "1024"
           },
           "C_TX_FIFO_PE_THRESHOLD": {
             "value": "5"
