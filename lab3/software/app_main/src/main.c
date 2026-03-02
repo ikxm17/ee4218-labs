@@ -13,6 +13,7 @@
 #include "user_axi_timer.h"
 #include "user_uart.h"
 #include "user_xllfifo.h"
+#include "user_axi_dma.h"
 
 #include "xil_printf.h"
 #include "xil_types.h"
@@ -27,11 +28,13 @@ uint32_t axi_rxbuf[INPUT_BYTES];
 XLlFifo axi_fifo;
 XUartPs uart_ps;
 XTmrCtr timer_counter;
+XAxiDma axi_dma;
 
 // Variables for measuring time taken
 uint32_t start_time;
 uint32_t matmul_with_software_duration;
 uint32_t matmul_with_fifo_duration;
+uint32_t matmul_with_dma_duration;
 
 /************************** Function Prototypes ***************************/
 void user_setup(void), user_loop(void);
@@ -62,12 +65,16 @@ void user_setup(void)
 	TIMER_Init(&timer_counter, XTMRCTR_BASEADDRESS, TIMER_COUNTER_0);
 #endif
 
-// Initialise AXI
+// Initialise AXI FIFO
 #ifndef SDT
 	AXI_Init(&axi_fifo, FIFO_DEV_ID);
 #else
 	AXI_Init(&axi_fifo, XLLFIFO_BASEADDRESS);
 #endif
+
+// Initialise AXI DMA
+DMA_Init(&axi_dma, DMA_DEV_ID);
+
 }
 
 void user_loop(void)
@@ -98,6 +105,16 @@ void user_loop(void)
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_fifo_duration, 4);
 
 	/* TODO: Co-processor matrix multiplication interaced with AXI DMA */
+	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);
+	DMA_TxSend(&axi_dma, uart_rxbuf, (u32*)TX_BUFFER_BASE, sizeof(uart_rxbuf) / sizeof(uart_rxbuf[0]));
+	DMA_RxReceive(&axi_dma, (u32*)RX_BUFFER_BASE, axi_rxbuf, OUTPUT_BYTES);
+	matmul_with_dma_duration = TIMER_GetDurationFromStart(&timer_counter, TIMER_COUNTER_0, start_time);
+	// Transmit result and time taken for co-processor matrix multiplication through UART
+	// if we are converting from u32 to u8 instead of directly writing to DDR in u8, lowkey isnt it wasting the DMA's potential
+	u32_to_u8(axi_rxbuf, uart_txbuf, OUTPUT_BYTES); 
+	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
+	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_dma_duration, 4);
+
 }
 
 void matrix_multiply(uint32_t* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b)

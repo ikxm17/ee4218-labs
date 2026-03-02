@@ -10,6 +10,7 @@ TIMEOUT = 5
 INPUT_CSV = "AB.csv"
 SW_RESULT_CSV = "RES_SW.csv"
 FIFO_RESULT_CSV = "RES_FIFO.csv"
+DMA_RESULT_CSV = "RES_DMA.csv"
 
 OUTPUT_BYTES = 64
 DURATION_BYTES = 4
@@ -130,13 +131,35 @@ def main():
         print(f"Result saved to {FIFO_RESULT_CSV}")
         verify_result("AXI FIFO matmul", fifo_result_bytes, expected)
 
+        # --- Receive AXI DMA matmul result ---
+        print("\n--- AXI DMA Matrix Multiplication ---")
+        dma_payload = ser.read(OUTPUT_BYTES + DURATION_BYTES)
+        if len(dma_payload) < OUTPUT_BYTES + DURATION_BYTES:
+            print(
+                f"Warning: Only received {len(dma_payload)}/{OUTPUT_BYTES + DURATION_BYTES} bytes"
+            )
+
+        dma_result_bytes = dma_payload[:OUTPUT_BYTES]
+        dma_cycles = int.from_bytes(
+            dma_payload[OUTPUT_BYTES : OUTPUT_BYTES + DURATION_BYTES],
+            byteorder="little",
+        )
+        print(f"Duration: {dma_cycles} clock cycles")
+
+        save_result_csv(DMA_RESULT_CSV, dma_result_bytes, OUTPUT_BYTES)
+        print(f"Result saved to {DMA_RESULT_CSV}")
+        verify_result("AXI DMA matmul", dma_result_bytes, expected)
+
         # --- Summary ---
         if sw_cycles > 0:
-            speedup = sw_cycles / fifo_cycles if fifo_cycles > 0 else float("inf")
+            fifo_speedup = sw_cycles / fifo_cycles if fifo_cycles > 0 else float("inf")
+            dma_speedup = sw_cycles / dma_cycles if dma_cycles > 0 else float("inf")
             print(f"\n--- Summary ---")
             print(f"Software:{sw_cycles} cycles")
             print(f"AXI FIFO:{fifo_cycles} cycles")
-            print(f"Speedup:{speedup:.2f}x")
+            print(f"AXI DMA:{dma_cycles} cycles")
+            print(f"Speedup (FIFO):{fifo_speedup:.2f}x")
+            print(f"Speedup (DMA):{dma_speedup:.2f}x")
 
         ser.close()
 
