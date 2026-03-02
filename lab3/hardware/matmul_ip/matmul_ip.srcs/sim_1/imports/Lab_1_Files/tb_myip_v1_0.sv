@@ -16,6 +16,7 @@
 */
 
 //`define BEHAV_SIM // ! Comment when running post-synthesis simulations. This can be automated by making another simulation set.
+// `define NON_CONTINUOUS_SIM // ! Uncomment to enable non-continuous TLAST and TREADY behavior for stress testing.
 
 module tb_myip_v1_0(
 
@@ -54,6 +55,12 @@ module tb_myip_v1_0(
 	// Total number of output words
 	localparam NUMBER_OF_OUTPUT_WORDS = NUMBER_OF_A_ROWS * NUMBER_OF_B_COLS;
 
+	// Non-continuous simulation parameters
+	localparam PACKET_SIZE = 64;              // Words per TX packet before asserting TLAST
+	localparam SEND_GAP_CYCLES = 4;           // Idle cycles (TVALID low) between TX packets
+	localparam RECV_BURST_SIZE = 16;          // Words to accept before applying back-pressure
+	localparam RECV_BACKPRESSURE_CYCLES = 3;  // Cycles to hold TREADY low during back-pressure
+
 	// Inputs for A and B matrices are loaded from test_input.mem
 	logic [WIDTH-1:0] expected_A_memory [0:NUMBER_OF_A_WORDS-1];
 	logic [WIDTH-1:0] expected_B_memory [0:NUMBER_OF_B_WORDS-1];
@@ -63,6 +70,9 @@ module tb_myip_v1_0(
 	logic [WIDTH-1:0] output_words_memory [0:NUMBER_OF_OUTPUT_WORDS-1];
 	
 	integer i, testcase_num, input_word_count, output_word_count, cycle_count;
+`ifdef NON_CONTINUOUS_SIM
+	integer packet_word_count, recv_burst_count, gap_i;
+`endif
 	logic prev_M_AXIS_TLAST = 1'b0;
 
 	/* DUT instantiation */
@@ -238,6 +248,42 @@ module tb_myip_v1_0(
 			/* Simulating as the master */
 			/* Set signals to load test vectors into DUT's RAMs */
 			cycle_count = 0; // reset cycle counter everytime a new testcase starts
+`ifdef NON_CONTINUOUS_SIM
+			// NON-CONTINUOUS SEND: Assert TLAST at packet boundaries, insert gaps between packets.
+			input_word_count = 0;
+			packet_word_count = 0;
+			S_AXIS_TVALID = 1'b1;
+			while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
+				if (S_AXIS_TREADY) begin
+					S_AXIS_TDATA = input_words_memory[testcase_num * NUMBER_OF_INPUT_WORDS + input_word_count];
+					// Assert TLAST at end of each packet OR on the very last word
+					if (input_word_count == (NUMBER_OF_INPUT_WORDS) - 1)
+						S_AXIS_TLAST = 1'b1;
+					else if (packet_word_count == PACKET_SIZE - 1)
+						S_AXIS_TLAST = 1'b1;
+					else
+						S_AXIS_TLAST = 1'b0;
+					input_word_count = input_word_count + 1;
+					packet_word_count = packet_word_count + 1;
+					// After completing a packet (and there are more words to send), insert a gap
+					if (packet_word_count == PACKET_SIZE && input_word_count < NUMBER_OF_INPUT_WORDS) begin
+						#CLOCK_PERIOD; // let coprocessor capture last word of packet
+						S_AXIS_TVALID = 1'b0;
+						S_AXIS_TLAST = 1'b0;
+						S_AXIS_TDATA = 32'hxxxx;
+						for (gap_i = 0; gap_i < SEND_GAP_CYCLES; gap_i = gap_i + 1)
+							#CLOCK_PERIOD;
+						S_AXIS_TVALID = 1'b1;
+						packet_word_count = 0;
+					end else begin
+						#CLOCK_PERIOD;
+					end
+				end else begin
+					#CLOCK_PERIOD;
+				end
+			end
+`else		
+			// CONTINUOUS SEND
 			input_word_count = 0;
 			S_AXIS_TVALID = 1'b1; // assert to indicate valid data is placed on S_AXIS_TDATA
 			while (input_word_count < NUMBER_OF_INPUT_WORDS) begin
@@ -248,10 +294,11 @@ module tb_myip_v1_0(
 					else
 						S_AXIS_TLAST = 1'b0;
 					input_word_count = input_word_count + 1;
-				end							
+				end
 				#CLOCK_PERIOD;				// wait for one clock cycle for co-processor to capture data (if S_AXIS_TREADY was set)
 											// or before checking S_AXIS_TREADY again (if S_AXIS_TREADY was not set)
 			end
+`endif
 			// no longer give data to co-processor
 			S_AXIS_TDATA = 32'hxxxx; // no valid data
 			S_AXIS_TVALID = 1'b0; // deassert S_AXIS_TVALID since no more data to send
@@ -260,6 +307,31 @@ module tb_myip_v1_0(
 			/* Simulating as the slave */
 			output_word_count = 0;
 			M_AXIS_TREADY = 1'b1; // assert to indicate ready to receive data from co-processor
+`ifdef NON_CONTINUOUS_SIM
+			// NON-CONTINUOUS RECEIVE: Periodically deassert TREADY to simulate back-pressure
+			recv_burst_count = 0;
+			while (M_AXIS_TLAST | ~prev_M_AXIS_TLAST) begin // receive data until the falling edge of M_AXIS_TLAST
+				if (M_AXIS_TVALID && M_AXIS_TREADY) begin // proper AXI handshake
+					output_words_memory[output_word_count] = M_AXIS_TDATA;
+					output_word_count = output_word_count + 1;
+					recv_burst_count = recv_burst_count + 1;
+					// After receiving RECV_BURST_SIZE words, apply back-pressure (unless TLAST is asserted)
+					if (recv_burst_count == RECV_BURST_SIZE && !(M_AXIS_TLAST)) begin
+						#CLOCK_PERIOD;
+						M_AXIS_TREADY = 1'b0;
+						for (gap_i = 0; gap_i < RECV_BACKPRESSURE_CYCLES; gap_i = gap_i + 1)
+							#CLOCK_PERIOD;
+						M_AXIS_TREADY = 1'b1;
+						recv_burst_count = 0;
+					end else begin
+						#CLOCK_PERIOD;
+					end
+				end else begin
+					#CLOCK_PERIOD;
+				end
+			end
+`else		
+			// CONTINUOUS RECEIVE
 			while (M_AXIS_TLAST | ~prev_M_AXIS_TLAST) begin // receive data until the falling edge of M_AXIS_TLAST
 				if (M_AXIS_TVALID) begin
 					output_words_memory[output_word_count] = M_AXIS_TDATA;
@@ -267,6 +339,7 @@ module tb_myip_v1_0(
 				end
 				#CLOCK_PERIOD;
 			end
+`endif
 			M_AXIS_TREADY = 1'b0; // deassert M_AXIS_TREADY since no more data to receive
 
 			repeat (1) @(posedge ACLK); // wait for a one clock cycle before checking results
