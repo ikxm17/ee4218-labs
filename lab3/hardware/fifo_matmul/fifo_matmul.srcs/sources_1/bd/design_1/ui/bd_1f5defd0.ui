@@ -17,19 +17,19 @@ preplace inst axi_smc_1 -pg 1 -lvl 2 -x 560 -y 310 -defaultsOSRD
 preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 5 390 410 NJ 410 1430 420 1810 440 2200J
 preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 6 20 230 380 420 760 420 1420 410 1800 430 2180J
 preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 4 20 430 NJ 430 NJ 430 1380
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 3 1440 780 NJ 780 2180
+preplace netloc axi_dma_0_M_AXI_MM2S 1 1 5 420 450 NJ 450 NJ 450 NJ 450 2180
+preplace netloc axi_dma_0_M_AXI_S2MM 1 1 5 400 460 NJ 460 NJ 460 NJ 460 2190
+preplace netloc axi_dma_0_M_AXI_SG 1 1 5 410 770 NJ 770 NJ 770 1720J 790 2200
+preplace netloc axi_fifo_mm_s_0_AXI_STR_TXD 1 5 1 N 290
+preplace netloc axi_smc_1_M00_AXI 1 2 1 700 290n
 preplace netloc axi_smc_M00_AXI 1 4 1 1730 280n
 preplace netloc axi_smc_M01_AXI 1 4 1 1730 310n
 preplace netloc axi_smc_M02_AXI 1 4 1 1720 60n
-preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 3 1 N 300
-preplace netloc axi_fifo_mm_s_0_AXI_STR_TXD 1 5 1 N 290
-preplace netloc pl_matmul_0_M_AXIS 1 4 3 1820 420 NJ 420 2420
-preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 3 1440 780 NJ 780 2180
-preplace netloc pl_matmul_1_M_AXIS 1 4 1 1820 570n
 preplace netloc axi_smc_M03_AXI 1 4 1 1720 350n
-preplace netloc axi_dma_0_M_AXI_MM2S 1 1 5 420 450 NJ 450 NJ 450 NJ 450 2180
-preplace netloc axi_smc_1_M00_AXI 1 2 1 700 290n
-preplace netloc axi_dma_0_M_AXI_S2MM 1 1 5 400 460 NJ 460 NJ 460 NJ 460 2190
-preplace netloc axi_dma_0_M_AXI_SG 1 1 5 410 770 NJ 770 NJ 770 1720J 790 2200
+preplace netloc pl_matmul_0_M_AXIS 1 4 3 1820 420 NJ 420 2420
+preplace netloc pl_matmul_1_M_AXIS 1 4 1 1820 570n
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 3 1 N 300
 levelinfo -pg 1 0 200 560 1070 1580 2000 2310 2440
 pagesize -pg 1 -db -bbox -sgen 0 0 2580 1820
 "

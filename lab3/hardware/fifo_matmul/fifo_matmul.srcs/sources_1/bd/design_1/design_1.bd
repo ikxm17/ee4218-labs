@@ -51,11 +51,17 @@
           "PSU_DDR_RAM_LOWADDR_OFFSET": {
             "value": "0x80000000"
           },
+          "PSU_MIO_0_DIRECTION": {
+            "value": "out"
+          },
           "PSU_MIO_0_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_0_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_10_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_10_DRIVE_STRENGTH": {
             "value": "4"
@@ -63,11 +69,17 @@
           "PSU_MIO_10_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_11_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_11_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_11_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_12_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_12_DRIVE_STRENGTH": {
             "value": "4"
@@ -75,11 +87,17 @@
           "PSU_MIO_12_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_13_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_13_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_13_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_14_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_14_DRIVE_STRENGTH": {
             "value": "4"
@@ -87,11 +105,17 @@
           "PSU_MIO_14_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_15_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_15_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_15_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_16_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_16_DRIVE_STRENGTH": {
             "value": "4"
@@ -99,11 +123,17 @@
           "PSU_MIO_16_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_17_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_17_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_17_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_18_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_18_DRIVE_STRENGTH": {
             "value": "4"
@@ -111,11 +141,17 @@
           "PSU_MIO_18_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_19_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_19_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_19_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_1_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_1_DRIVE_STRENGTH": {
             "value": "4"
@@ -123,11 +159,17 @@
           "PSU_MIO_1_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_20_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_20_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_20_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_21_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_21_DRIVE_STRENGTH": {
             "value": "4"
@@ -135,11 +177,17 @@
           "PSU_MIO_21_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_22_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_22_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_22_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_23_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_23_DRIVE_STRENGTH": {
             "value": "4"
@@ -147,11 +195,17 @@
           "PSU_MIO_23_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_24_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_24_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_24_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_25_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_25_DRIVE_STRENGTH": {
             "value": "4"
@@ -159,11 +213,23 @@
           "PSU_MIO_25_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_26_DIRECTION": {
+            "value": "in"
+          },
+          "PSU_MIO_27_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_27_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_27_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_28_DIRECTION": {
+            "value": "inout"
+          },
+          "PSU_MIO_29_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_29_DRIVE_STRENGTH": {
             "value": "4"
@@ -171,11 +237,23 @@
           "PSU_MIO_29_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_2_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_2_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_2_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_30_DIRECTION": {
+            "value": "inout"
+          },
+          "PSU_MIO_31_DIRECTION": {
+            "value": "in"
+          },
+          "PSU_MIO_32_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_32_DRIVE_STRENGTH": {
             "value": "4"
@@ -183,17 +261,26 @@
           "PSU_MIO_32_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_33_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_33_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_33_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_34_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_34_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_34_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_35_DIRECTION": {
+            "value": "out"
           },
           "PSU_MIO_35_DRIVE_STRENGTH": {
             "value": "4"
@@ -207,11 +294,17 @@
           "PSU_MIO_36_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_38_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_38_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_38_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_39_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_39_DRIVE_STRENGTH": {
             "value": "4"
@@ -219,11 +312,17 @@
           "PSU_MIO_39_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_3_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_3_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_3_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_40_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_40_DRIVE_STRENGTH": {
             "value": "4"
@@ -231,11 +330,17 @@
           "PSU_MIO_40_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_41_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_41_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_41_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_42_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_42_DRIVE_STRENGTH": {
             "value": "4"
@@ -243,11 +348,17 @@
           "PSU_MIO_42_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_43_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_43_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_43_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_44_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_44_DRIVE_STRENGTH": {
             "value": "4"
@@ -255,11 +366,20 @@
           "PSU_MIO_44_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_45_DIRECTION": {
+            "value": "inout"
+          },
+          "PSU_MIO_46_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_46_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_46_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_47_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_47_DRIVE_STRENGTH": {
             "value": "4"
@@ -267,11 +387,17 @@
           "PSU_MIO_47_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_48_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_48_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_48_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_49_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_49_DRIVE_STRENGTH": {
             "value": "4"
@@ -279,17 +405,26 @@
           "PSU_MIO_49_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_4_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_4_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_4_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_50_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_50_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_50_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_51_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_51_DRIVE_STRENGTH": {
             "value": "4"
@@ -326,6 +461,9 @@
           },
           "PSU_MIO_59_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_5_DIRECTION": {
+            "value": "out"
           },
           "PSU_MIO_5_DRIVE_STRENGTH": {
             "value": "4"
@@ -393,6 +531,9 @@
           "PSU_MIO_69_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_6_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_6_DRIVE_STRENGTH": {
             "value": "4"
           },
@@ -411,17 +552,26 @@
           "PSU_MIO_77_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_7_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_7_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_7_SLEW": {
             "value": "slow"
           },
+          "PSU_MIO_8_DIRECTION": {
+            "value": "inout"
+          },
           "PSU_MIO_8_DRIVE_STRENGTH": {
             "value": "4"
           },
           "PSU_MIO_8_SLEW": {
             "value": "slow"
+          },
+          "PSU_MIO_9_DIRECTION": {
+            "value": "inout"
           },
           "PSU_MIO_9_DRIVE_STRENGTH": {
             "value": "4"
@@ -473,9 +623,6 @@
           },
           "PSU__CRF_APB__DBG_FPD_CTRL__SRCSEL": {
             "value": "IOPLL"
-          },
-          "PSU__CRF_APB__DBG_TRACE_CTRL__FREQMHZ": {
-            "value": "250"
           },
           "PSU__CRF_APB__DBG_TRACE_CTRL__SRCSEL": {
             "value": "IOPLL"
@@ -676,7 +823,7 @@
             "value": "99.999001"
           },
           "PSU__CSUPMU__PERIPHERAL__VALID": {
-            "value": "1"
+            "value": "0"
           },
           "PSU__DDRC__BG_ADDR_COUNT": {
             "value": "1"
@@ -860,6 +1007,16 @@
           },
           "PSU__PRESET_APPLIED": {
             "value": "1"
+          },
+          "PSU__PROTECTION__FPD_SEGMENTS": {
+            "value": [
+              "SA:0xFD1A0000; SIZE:1280; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware |  SA:0xFD000000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware |",
+              " SA:0xFD010000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware |  SA:0xFD020000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware | ",
+              "SA:0xFD030000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware |  SA:0xFD040000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware | ",
+              "SA:0xFD050000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware |  SA:0xFD610000; SIZE:512; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware | ",
+              "SA:0xFD5D0000; SIZE:64; UNIT:KB; RegionTZ:Secure; WrAllowed:Read/Write; subsystemId:PMU Firmware | SA:0xFD1A0000 ; SIZE:1280; UNIT:KB; RegionTZ:Secure ; WrAllowed:Read/Write; subsystemId:Secure",
+              "Subsystem"
+            ]
           },
           "PSU__PROTECTION__MASTERS": {
             "value": "USB1:NonSecure;0|USB0:NonSecure;0|S_AXI_LPD:NA;0|S_AXI_HPC1_FPD:NA;0|S_AXI_HPC0_FPD:NA;1|S_AXI_HP3_FPD:NA;0|S_AXI_HP2_FPD:NA;0|S_AXI_HP1_FPD:NA;0|S_AXI_HP0_FPD:NA;0|S_AXI_ACP:NA;0|S_AXI_ACE:NA;0|SD1:NonSecure;0|SD0:NonSecure;0|SATA1:NonSecure;0|SATA0:NonSecure;0|RPU1:Secure;1|RPU0:Secure;1|QSPI:NonSecure;0|PMU:NA;1|PCIe:NonSecure;0|NAND:NonSecure;0|LDMA:NonSecure;1|GPU:NonSecure;1|GEM3:NonSecure;0|GEM2:NonSecure;0|GEM1:NonSecure;0|GEM0:NonSecure;0|FDMA:NonSecure;1|DP:NonSecure;0|DAP:NA;1|Coresight:NA;1|CSU:NA;1|APU:NA;1"
@@ -1616,20 +1773,18 @@
       "rst_ps8_0_99M_peripheral_aresetn": {
         "ports": [
           "rst_ps8_0_99M/peripheral_aresetn",
-          "axi_smc/aresetn",
           "axi_timer_0/s_axi_aresetn",
           "axi_fifo_mm_s_0/s_axi_aresetn",
           "pl_matmul_0/ARESETN",
           "axi_dma_0/axi_resetn",
           "pl_matmul_1/ARESETN",
-          "axi_smc_1/aresetn"
+          "axi_smc_1/aresetn",
+          "axi_smc/aresetn"
         ]
       },
       "zynq_ultra_ps_e_0_pl_clk0": {
         "ports": [
           "zynq_ultra_ps_e_0/pl_clk0",
-          "zynq_ultra_ps_e_0/maxihpm0_fpd_aclk",
-          "axi_smc/aclk",
           "rst_ps8_0_99M/slowest_sync_clk",
           "axi_timer_0/s_axi_aclk",
           "axi_fifo_mm_s_0/s_axi_aclk",
@@ -1639,8 +1794,10 @@
           "axi_dma_0/m_axi_mm2s_aclk",
           "axi_dma_0/m_axi_s2mm_aclk",
           "axi_smc_1/aclk",
-          "zynq_ultra_ps_e_0/saxihpc0_fpd_aclk",
-          "axi_dma_0/m_axi_sg_aclk"
+          "axi_dma_0/m_axi_sg_aclk",
+          "axi_smc/aclk",
+          "zynq_ultra_ps_e_0/maxihpm0_fpd_aclk",
+          "zynq_ultra_ps_e_0/saxihpc0_fpd_aclk"
         ]
       },
       "zynq_ultra_ps_e_0_pl_resetn0": {
