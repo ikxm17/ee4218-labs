@@ -1,7 +1,7 @@
 
 `timescale 1 ns / 1 ps
 
-	module pl_fifo_matmul_slave_lite_v1_0_S00_AXI #
+	module pl_matmul_slave_lite_v1_0_S00_AXI #
 	(
 		// Users to add parameters here
 

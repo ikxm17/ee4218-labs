@@ -1,6 +1,6 @@
 
 
 /***************************** Include Files *******************************/
-#include "pl_fifo_matmul.h"
+#include "pl_matmul.h"
 
 /************************** Function Definitions ***************************/

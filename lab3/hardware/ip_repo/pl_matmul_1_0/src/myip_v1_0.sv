@@ -140,7 +140,7 @@ module myip_v1_0 # (
 	always_comb begin: next_state_logic
 		case (state)
 			Idle: 	if (S_AXIS_TVALID == 1) next_state = Read_Inputs; else next_state = Idle;
-			Read_Inputs: if ((read_counter == NUMBER_OF_INPUT_WORDS - 1) || S_AXIS_TLAST) next_state = Compute; else next_state = Read_Inputs;
+			Read_Inputs: if (read_counter == NUMBER_OF_INPUT_WORDS - 1) next_state = Compute; else next_state = Read_Inputs;
 			Compute: if (Done) next_state = Write_Outputs; else next_state = Compute;
 			Write_Outputs: if (write_counter == NUMBER_OF_OUTPUT_WORDS - 1) next_state = Idle; else next_state = Write_Outputs;
 			default: next_state = Idle;

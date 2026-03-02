@@ -1,14 +1,14 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "design_1_pl_fifo_matmul_0_0",
-    "cell_name": "pl_fifo_matmul_0",
-    "component_reference": "user.org:user:pl_fifo_matmul:1.0",
+    "xci_name": "design_1_pl_matmul_1_0",
+    "cell_name": "pl_matmul_1",
+    "component_reference": "user.org:user:pl_matmul:1.0",
     "ip_revision": "2",
-    "gen_directory": "../../../../../../fifo_matmul.gen/sources_1/bd/design_1/ip/design_1_pl_fifo_matmul_0_0",
+    "gen_directory": "../../../../../../fifo_matmul.gen/sources_1/bd/design_1/ip/design_1_pl_matmul_1_0",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "design_1_pl_fifo_matmul_0_0", "resolve_type": "user", "usage": "all" } ],
+        "Component_Name": [ { "value": "design_1_pl_matmul_1_0", "resolve_type": "user", "usage": "all" } ],
         "NUMBER_OF_A_ROWS": [ { "value": "64", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "NUMBER_OF_INNER_DIMENSIONS": [ { "value": "8", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "NUMBER_OF_B_COLS": [ { "value": "1", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -43,7 +43,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "2" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../fifo_matmul.gen/sources_1/bd/design_1/ip/design_1_pl_fifo_matmul_0_0" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../fifo_matmul.gen/sources_1/bd/design_1/ip/design_1_pl_matmul_1_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2025.2" } ],
@@ -149,5 +149,5 @@
       }
     }
   },
-  "checksum": "5af71425"
+  "checksum": "f57f1fd9"
 }

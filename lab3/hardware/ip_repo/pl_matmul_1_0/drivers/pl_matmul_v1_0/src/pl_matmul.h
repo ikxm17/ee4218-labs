@@ -1,26 +1,26 @@
 
-#ifndef PL_FIFO_MATMUL_H
-#define PL_FIFO_MATMUL_H
+#ifndef PL_MATMUL_H
+#define PL_MATMUL_H
 
 
 /****************** Include Files ********************/
 #include "xil_types.h"
 #include "xstatus.h"
 
-#define PL_FIFO_MATMUL_S00_AXI_SLV_REG0_OFFSET 0
-#define PL_FIFO_MATMUL_S00_AXI_SLV_REG1_OFFSET 4
-#define PL_FIFO_MATMUL_S00_AXI_SLV_REG2_OFFSET 8
-#define PL_FIFO_MATMUL_S00_AXI_SLV_REG3_OFFSET 12
+#define PL_MATMUL_S00_AXI_SLV_REG0_OFFSET 0
+#define PL_MATMUL_S00_AXI_SLV_REG1_OFFSET 4
+#define PL_MATMUL_S00_AXI_SLV_REG2_OFFSET 8
+#define PL_MATMUL_S00_AXI_SLV_REG3_OFFSET 12
 
 
 /**************************** Type Definitions *****************************/
 /**
  *
- * Write a value to a PL_FIFO_MATMUL register. A 32 bit write is performed.
+ * Write a value to a PL_MATMUL register. A 32 bit write is performed.
  * If the component is implemented in a smaller width, only the least
  * significant data is written.
  *
- * @param   BaseAddress is the base address of the PL_FIFO_MATMULdevice.
+ * @param   BaseAddress is the base address of the PL_MATMULdevice.
  * @param   RegOffset is the register offset from the base to write to.
  * @param   Data is the data written to the register.
  *
@@ -28,30 +28,30 @@
  *
  * @note
  * C-style signature:
- * 	void PL_FIFO_MATMUL_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32 Data)
+ * 	void PL_MATMUL_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32 Data)
  *
  */
-#define PL_FIFO_MATMUL_mWriteReg(BaseAddress, RegOffset, Data) \
+#define PL_MATMUL_mWriteReg(BaseAddress, RegOffset, Data) \
   	Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
 
 /**
  *
- * Read a value from a PL_FIFO_MATMUL register. A 32 bit read is performed.
+ * Read a value from a PL_MATMUL register. A 32 bit read is performed.
  * If the component is implemented in a smaller width, only the least
  * significant data is read from the register. The most significant data
  * will be read as 0.
  *
- * @param   BaseAddress is the base address of the PL_FIFO_MATMUL device.
+ * @param   BaseAddress is the base address of the PL_MATMUL device.
  * @param   RegOffset is the register offset from the base to write to.
  *
  * @return  Data is the data from the register.
  *
  * @note
  * C-style signature:
- * 	u32 PL_FIFO_MATMUL_mReadReg(u32 BaseAddress, unsigned RegOffset)
+ * 	u32 PL_MATMUL_mReadReg(u32 BaseAddress, unsigned RegOffset)
  *
  */
-#define PL_FIFO_MATMUL_mReadReg(BaseAddress, RegOffset) \
+#define PL_MATMUL_mReadReg(BaseAddress, RegOffset) \
     Xil_In32((BaseAddress) + (RegOffset))
 
 /************************** Function Prototypes ****************************/
@@ -63,7 +63,7 @@
  * If the hardware system is not built correctly, this function may never
  * return to the caller.
  *
- * @param   baseaddr_p is the base address of the PL_FIFO_MATMUL instance to be worked on.
+ * @param   baseaddr_p is the base address of the PL_MATMUL instance to be worked on.
  *
  * @return
  *
@@ -74,6 +74,6 @@
  * @note    Self test may fail if data memory and device are not on the same bus.
  *
  */
-XStatus PL_FIFO_MATMUL_Reg_SelfTest(void * baseaddr_p);
+XStatus PL_MATMUL_Reg_SelfTest(void * baseaddr_p);
 
-#endif // PL_FIFO_MATMUL_H
+#endif // PL_MATMUL_H
