@@ -5,6 +5,7 @@
 !.gitignore
 !app_main/
 app_main/*
+!app_main/compile_commands.json
 !app_main/vitis-comp.json
 !app_main/src/
 !app_main/src/**
