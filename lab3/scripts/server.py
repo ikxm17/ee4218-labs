@@ -170,5 +170,8 @@ def main():
         raise
 
 
+NUM_RUNS = 1
+
 if __name__ == "__main__":
-    main()
+    for _ in range(NUM_RUNS):
+        main()
