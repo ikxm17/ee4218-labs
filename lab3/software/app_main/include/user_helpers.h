@@ -1,12 +1,12 @@
 /**
  * @file user_helpers.h
  * @author your name (you@domain.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2026-02-25
- * 
+ *
  * @copyright Copyright (c) 2026
- * 
+ *
  */
 
 #ifndef USER_HELPERS_H
@@ -16,8 +16,8 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 void u8_to_u32(uint8_t* source, uint32_t* destination, uint32_t len);
 void u32_to_u8(uint32_t* source, uint8_t* destination, uint32_t len);

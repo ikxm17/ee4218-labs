@@ -21,8 +21,8 @@ extern "C" {
 #include "xllfifo.h"
 
 int AXI_Init(XLlFifo* AxiFifo, u32 BaseAddress);
-u8 XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
-u8 XLlFifo_RxReceive(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
+u8  XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
+u8  XLlFifo_RxReceive(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
 
 #ifdef __cplusplus
 }

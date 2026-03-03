@@ -1,12 +1,12 @@
 #include "user_axi_timer.h"
+#include "xil_printf.h"
 #include "xparameters.h"
 #include "xtmrctr.h"
-#include "xil_printf.h"
 
-// FUNCTIONS 
+// FUNCTIONS
 
-//initialise Timer, return Status
-	int TIMER_Init(XTmrCtr *TmrCtrInstancePtr, UINTPTR BaseAddr, u8 TmrCtrNumber)
+// initialise Timer, return Status
+int TIMER_Init(XTmrCtr* TmrCtrInstancePtr, UINTPTR BaseAddr, u8 TmrCtrNumber)
 {
 	int Status;
 
@@ -32,25 +32,25 @@
 	/*
 	 * Enable the Autoreload mode of the timer counters.
 	 */
-	XTmrCtr_SetOptions(TmrCtrInstancePtr, TmrCtrNumber,
-			   XTC_AUTO_RELOAD_OPTION);
-    return Status;
+	XTmrCtr_SetOptions(TmrCtrInstancePtr, TmrCtrNumber, XTC_AUTO_RELOAD_OPTION);
+	return Status;
 }
 
-u32 TIMER_Start(XTmrCtr *TmrCtrInstancePtr, u8 TmrCtrNumber)
+u32 TIMER_Start(XTmrCtr* TmrCtrInstancePtr, u8 TmrCtrNumber)
 {
-    XTmrCtr_Start(TmrCtrInstancePtr, TmrCtrNumber);
+	XTmrCtr_Start(TmrCtrInstancePtr, TmrCtrNumber);
 	u32 start_val = XTmrCtr_GetValue(TmrCtrInstancePtr, TmrCtrNumber);
 	return start_val;
 }
 
-u32 TIMER_GetDurationFromStart(XTmrCtr *TmrCtrInstancePtr, u8 TmrCtrNumber, u32 start_val)
+u32 TIMER_GetDurationFromStart(XTmrCtr* TmrCtrInstancePtr, u8 TmrCtrNumber, u32 start_val)
 {
-    u32 current_val = XTmrCtr_GetValue(TmrCtrInstancePtr, TmrCtrNumber);
-    return (current_val - start_val);
+	u32 current_val = XTmrCtr_GetValue(TmrCtrInstancePtr, TmrCtrNumber);
+	return (current_val - start_val);
 }
-int TIMER_Stop(XTmrCtr *TmrCtrInstancePtr, u8 TmrCtrNumber)
+
+int TIMER_Stop(XTmrCtr* TmrCtrInstancePtr, u8 TmrCtrNumber)
 {
-    XTmrCtr_Stop(TmrCtrInstancePtr, TmrCtrNumber);
-    return XST_SUCCESS;
+	XTmrCtr_Stop(TmrCtrInstancePtr, TmrCtrNumber);
+	return XST_SUCCESS;
 }

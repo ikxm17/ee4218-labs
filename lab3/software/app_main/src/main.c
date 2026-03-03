@@ -10,11 +10,11 @@
  */
 
 #include "main.h"
+#include "user_axi_dma.h"
 #include "user_axi_timer.h"
+#include "user_helpers.h"
 #include "user_uart.h"
 #include "user_xllfifo.h"
-#include "user_axi_dma.h"
-#include "user_helpers.h"
 
 #include "xil_printf.h"
 #include "xil_types.h"
@@ -52,17 +52,16 @@ int main(void)
 
 void user_setup(void)
 {
-
-// Initalise UART
+	// Initalise UART
 	UART_Init(&uart_ps, XUARTPS_BASEADDRESS);
 
-// Initalise Timer
+	// Initalise Timer
 	TIMER_Init(&timer_counter, XTMRCTR_BASEADDRESS, TIMER_COUNTER_0);
 
-// Initialise AXI FIFO
+	// Initialise AXI FIFO
 	AXI_Init(&axi_fifo, XLLFIFO_BASEADDRESS);
 
-DMA_Init(&axi_dma, AXIDMA_BASE_ADDR);
+	DMA_Init(&axi_dma, AXIDMA_BASE_ADDR);
 }
 
 void user_loop(void)
@@ -71,8 +70,8 @@ void user_loop(void)
 	UART_RxToBuffer(&uart_ps, uart_rxbuf, INPUT_BYTES);
 
 	/* Software matrix multiplication */
-	// Start timer for collecting time measurements
-	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);
+	memset(uart_txbuf, 0, OUTPUT_BYTES);                       // Set output buffer to 0 for proper result checking
+	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0); // Start timer for collecting time measurements
 	matrix_multiply(uart_rxbuf, uart_txbuf, NUM_ROWS_A, NUM_INNER_DIM, NUM_COLS_B);
 	matmul_with_software_duration = TIMER_GetDurationFromStart(&timer_counter, TIMER_COUNTER_0, start_time);
 	// Transmit result and time taken for software matrix multiplication through UART
@@ -80,9 +79,8 @@ void user_loop(void)
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_software_duration, 4);
 
 	/* Co-processor matrix multiplication interfaced via AXI Stream FIFO */
-	// Start timer for collecting time measurements
-	memset(uart_txbuf, 0, OUTPUT_BYTES); 
-	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);
+	memset(uart_txbuf, 0, OUTPUT_BYTES);                       // Set output buffer to 0 for proper result checking
+	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0); // Start timer for collecting time measurements
 	// Send input matrices from UART receive buffer to AXI Stream FIFO
 	XLlFifo_TxSend(&axi_fifo, uart_rxbuf, sizeof(uart_rxbuf) / sizeof(uart_rxbuf[0]));
 	// Receive result from co-processor through AXI Stream FIFO
@@ -94,8 +92,7 @@ void user_loop(void)
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_fifo_duration, 4);
 
 	/* Co-processor matrix multiplication interfaced with AXI DMA */
-	// set output buffer to 0 for proper result checking
-	memset(uart_txbuf, 0, OUTPUT_BYTES); 
+	memset(uart_txbuf, 0, OUTPUT_BYTES); // Set output buffer to 0 for proper result checking
 	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);
 	DMA_TxSend(&axi_dma, (uintptr_t)AXIDMA_TX_BUFFER_ADDR, (uintptr_t)uart_rxbuf, INPUT_BYTES * sizeof(uint32_t));
 	DMA_RxReceive(&axi_dma, (uintptr_t)AXIDMA_RX_BUFFER_ADDR, (uintptr_t)axi_rxbuf, OUTPUT_BYTES * sizeof(uint32_t));
@@ -103,7 +100,6 @@ void user_loop(void)
 	u32_to_u8(axi_rxbuf, uart_txbuf, OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_dma_duration, 4);
-
 }
 
 void matrix_multiply(uint32_t* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b)
