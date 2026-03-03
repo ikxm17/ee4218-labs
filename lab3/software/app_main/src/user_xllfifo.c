@@ -14,19 +14,11 @@
 #include <xllfifo_hw.h>
 
 /* Init Function for AXI FIFO Instance */
-#ifndef SDT
-int AXI_Init(XLlFifo* AxiFifo, u8 DeviceId)
-#else
 int AXI_Init(XLlFifo* AxiFifo, u32 BaseAddress)
-#endif
 {
 	int             Status = XST_SUCCESS;
 	XLlFifo_Config* Config;
-#ifndef SDT
-	Config = XLlFfio_LookupConfig(DeviceId);
-#else
 	Config = XLlFfio_LookupConfig(BaseAddress);
-#endif
 
 	Status = XLlFifo_CfgInitialize(AxiFifo, Config, Config->BaseAddress);
 	if (Status != XST_SUCCESS) {

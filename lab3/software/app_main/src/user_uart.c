@@ -16,11 +16,7 @@
 
 /**************************************************************************/
 /* Init function for UART Driver Instance */
-#ifndef SDT
-	int UART_Init(XUartPs *Uart_Ps, u16 DeviceId)
-#else
 	int UART_Init(XUartPs *Uart_Ps, UINTPTR BaseAddress)
-#endif
 {	
 	int Status = XST_SUCCESS;
 	XUartPs_Config *Config;
@@ -29,11 +25,7 @@
 	 * Initialize the UART driver so that it's ready to use
 	 * Look up the configuration in the config table and then initialize it.
 	 */
-#ifndef SDT
-	Config = XUartPs_LookupConfig(DeviceId);
-#else
 	Config = XUartPs_LookupConfig(BaseAddress);
-#endif
 	if (NULL == Config) {
 		return XST_FAILURE;
 	}

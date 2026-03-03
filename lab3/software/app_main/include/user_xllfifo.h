@@ -48,11 +48,7 @@ typedef struct
 	XLlFifo_RxParams* rx_params;
 } XLlFifo_RxConfig;
 
-#ifndef SDT
-int AXI_Init(XLlFifo* AxiFifo, u8 DeviceId);
-#else
 int AXI_Init(XLlFifo* AxiFifo, u32 BaseAddress);
-#endif
 u8 XLlFifo_TxSend(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
 u8 XLlFifo_RxReceive(XLlFifo* InstancePtr, u32* BufferPtr, u32 NumWords);
 

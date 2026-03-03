@@ -6,11 +6,7 @@
 // FUNCTIONS 
 
 //initialise Timer, return Status
-#ifndef SDT
-	int TIMER_Init(XTmrCtr *TmrCtrInstancePtr, u16 DeviceId, u8 TmrCtrNumber)
-#else
 	int TIMER_Init(XTmrCtr *TmrCtrInstancePtr, UINTPTR BaseAddr, u8 TmrCtrNumber)
-#endif
 {
 	int Status;
 
@@ -18,11 +14,7 @@
 	 * Initialize the timer counter so that it's ready to use,
 	 * specify the device ID that is generated in xparameters.h
 	 */
-#ifndef SDT
-	Status = XTmrCtr_Initialize(TmrCtrInstancePtr, DeviceId);
-#else
 	Status = XTmrCtr_Initialize(TmrCtrInstancePtr, BaseAddr);
-#endif
 
 	if (Status != XST_SUCCESS) {
 		return XST_FAILURE;

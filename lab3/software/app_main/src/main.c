@@ -54,25 +54,13 @@ void user_setup(void)
 {
 
 // Initalise UART
-#ifndef SDT
-	UART_Init(&uart_ps, UART_DEVICE_ID);
-#else
-	UART_Init(&uart_ps, XPAR_XUARTPS_0_BASEADDR);
-#endif
+	UART_Init(&uart_ps, XUARTPS_BASEADDRESS);
 
 // Initalise Timer
-#ifndef SDT
-	TIMER_Init(&timer_counter, TMRCTR_DEVICE_ID, TIMER_COUNTER_0);
-#else
 	TIMER_Init(&timer_counter, XTMRCTR_BASEADDRESS, TIMER_COUNTER_0);
-#endif
 
 // Initialise AXI FIFO
-#ifndef SDT
-	AXI_Init(&axi_fifo, FIFO_DEV_ID);
-#else
 	AXI_Init(&axi_fifo, XLLFIFO_BASEADDRESS);
-#endif
 
 DMA_Init(&axi_dma, AXIDMA_BASE_ADDR);
 }
@@ -105,7 +93,7 @@ void user_loop(void)
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_fifo_duration, 4);
 
-	/* TODO: Co-processor matrix multiplication interaced with AXI DMA */
+	/* Co-processor matrix multiplication interfaced with AXI DMA */
 	// set output buffer to 0 for proper result checking
 	memset(uart_txbuf, 0, OUTPUT_BYTES); 
 	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);

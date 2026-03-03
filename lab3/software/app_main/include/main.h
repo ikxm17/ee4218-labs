@@ -10,26 +10,13 @@
  */
 
 /************************** Constant Definitions ***************************/
-// TODO: Remove all the non-SDT definitions, i.e. DEVICE IDs. The generated BSPs are in SDT-style (only BASEADDR defined in
-// "xparameters.h")
-#ifndef SDT
-#define UART_DEVICE_ID XPAR_XUARTPS_0_DEVICE_ID
-#else
+// UART constants
 #define XUARTPS_BASEADDRESS XPAR_XUARTPS_0_BASEADDR
-#endif
-// timer constants
-#ifndef SDT
-#define TMRCTR_DEVICE_ID XPAR_TMRCTR_0_DEVICE_ID
-#else
+// Timer constants
 #define XTMRCTR_BASEADDRESS XPAR_XTMRCTR_0_BASEADDR
-#endif
 #define TIMER_COUNTER_0 0
 // AXI FIFO constants
-#ifndef SDT
-#define FIFO_DEV_ID XPAR_AXI_FIFO_0_DEVICE_ID
-#else
 #define XLLFIFO_BASEADDRESS XPAR_XLLFIFO_0_BASEADDR
-#endif
 
 // AXI DMA constants
 #define AXIDMA_BASE_ADDR XPAR_AXI_DMA_0_BASEADDR
