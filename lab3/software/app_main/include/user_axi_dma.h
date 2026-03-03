@@ -14,3 +14,4 @@
 int DMA_Init(XAxiDma *AxiDma, u16 DeviceId);
 int DMA_TxSend(XAxiDma *AxiDma, u32* SrcBufferPtr,  u32* DestBufferPtr, u32 NumWords);
 int DMA_RxReceive(XAxiDma *AxiDma, u32* SrcBufferPtr, u32* DestBufferPtr, u32 NumWords);
+int DMA_RxTx(XAxiDma *AxiDma, u32* InputSrcBufferPtr, u32* OutputDestBufferPtr, u32 NumInputWords, u32 NumOutputWords);
