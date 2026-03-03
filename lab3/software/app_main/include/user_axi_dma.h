@@ -11,7 +11,6 @@
 
 /************************** Function Prototypes ****************************/
 
-int DMA_Init(XAxiDma *AxiDma, u16 DeviceId);
-int DMA_TxSend(XAxiDma *AxiDma, u32* SrcBufferPtr,  u32* DestBufferPtr, u32 NumWords);
-int DMA_RxReceive(XAxiDma *AxiDma, u32* SrcBufferPtr, u32* DestBufferPtr, u32 NumWords);
-int DMA_RxTx(XAxiDma *AxiDma, u32* InputSrcBufferPtr, u32* OutputDestBufferPtr, u32 NumInputWords, u32 NumOutputWords);
+int DMA_Init(XAxiDma *AxiDma, uintptr_t DeviceId);
+uint8_t DMA_TxSend(XAxiDma* AxiDma, uintptr_t TxBufferPtr, uintptr_t SrcBufferPtr, uint32_t NumBytes);
+uint8_t DMA_RxReceive(XAxiDma* AxiDma, uintptr_t RxBufferPtr, uintptr_t DestBufferPtr, uint32_t NumBytes);
