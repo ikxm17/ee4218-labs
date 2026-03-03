@@ -100,10 +100,6 @@ void user_loop(void)
 	DMA_TxSend(&axi_dma, (uintptr_t)AXIDMA_TX_BUFFER_ADDR, (uintptr_t)uart_rxbuf, INPUT_BYTES * sizeof(uint32_t));
 	DMA_RxReceive(&axi_dma, (uintptr_t)AXIDMA_RX_BUFFER_ADDR, (uintptr_t)axi_rxbuf, OUTPUT_BYTES * sizeof(uint32_t));
 	matmul_with_dma_duration = TIMER_GetDurationFromStart(&timer_counter, TIMER_COUNTER_0, start_time);
-	// DEBUG: checking reason for early exit from busy state
-	// u32 status = XAxiDma_ReadReg((&axi_dma)->RegBase, XAXIDMA_RX_OFFSET + XAXIDMA_SR_OFFSET);
-	// Transmit result and time taken for co-processor matrix multiplication through UART
-	// if we are converting from u32 to u8 instead of directly writing to DDR in u8, lowkey isnt it wasting the DMA's potential
 	u32_to_u8(axi_rxbuf, uart_txbuf, OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_dma_duration, 4);
