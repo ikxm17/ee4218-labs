@@ -1491,23 +1491,12 @@
         "xci_path": "ip/design_1_axi_dma_0_0/design_1_axi_dma_0_0.xci",
         "inst_hier_path": "axi_dma_0",
         "has_run_ip_tcl": "true",
+        "parameters": {
+          "c_include_sg": {
+            "value": "0"
+          }
+        },
         "interface_ports": {
-          "M_AXI_SG": {
-            "bd_attributes": {
-              "TYPE": {
-                "value": "END_POINT",
-                "value_src": "auto"
-              }
-            },
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "mode": "Master",
-            "address_space_ref": "Data_SG",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFF",
-              "width": "32"
-            }
-          },
           "M_AXI_MM2S": {
             "bd_attributes": {
               "TYPE": {
@@ -1708,12 +1697,6 @@
           "axi_smc_1/S01_AXI"
         ]
       },
-      "axi_dma_0_M_AXI_SG": {
-        "interface_ports": [
-          "axi_dma_0/M_AXI_SG",
-          "axi_smc_1/S02_AXI"
-        ]
-      },
       "axi_fifo_mm_s_0_AXI_STR_TXD": {
         "interface_ports": [
           "axi_fifo_mm_s_0/AXI_STR_TXD",
@@ -1794,7 +1777,6 @@
           "axi_dma_0/m_axi_mm2s_aclk",
           "axi_dma_0/m_axi_s2mm_aclk",
           "axi_smc_1/aclk",
-          "axi_dma_0/m_axi_sg_aclk",
           "axi_smc/aclk",
           "zynq_ultra_ps_e_0/maxihpm0_fpd_aclk",
           "zynq_ultra_ps_e_0/saxihpc0_fpd_aclk"
