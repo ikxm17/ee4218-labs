@@ -93,10 +93,13 @@ void user_loop(void)
 
 	/* Co-processor matrix multiplication interfaced with AXI DMA */
 	memset(uart_txbuf, 0, OUTPUT_BYTES); // Set output buffer to 0 for proper result checking
+	memcpy((void*)AXIDMA_TX_BUFFER_ADDR, (void*)uart_rxbuf, INPUT_BYTES * sizeof(uint32_t));
 	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);
-	DMA_TxSend(&axi_dma, (uintptr_t)AXIDMA_TX_BUFFER_ADDR, (uintptr_t)uart_rxbuf, INPUT_BYTES * sizeof(uint32_t));
-	DMA_RxReceive(&axi_dma, (uintptr_t)AXIDMA_RX_BUFFER_ADDR, (uintptr_t)axi_rxbuf, OUTPUT_BYTES * sizeof(uint32_t));
+	DMA_TxSend(&axi_dma, (uintptr_t)AXIDMA_TX_BUFFER_ADDR, INPUT_BYTES * sizeof(uint32_t));
+	DMA_RxReceive(&axi_dma, (uintptr_t)AXIDMA_RX_BUFFER_ADDR, OUTPUT_BYTES * sizeof(uint32_t));
 	matmul_with_dma_duration = TIMER_GetDurationFromStart(&timer_counter, TIMER_COUNTER_0, start_time);
+	// send result to UART
+	memcpy((void*)axi_rxbuf, (void*)AXIDMA_RX_BUFFER_ADDR, OUTPUT_BYTES * sizeof(uint32_t));
 	u32_to_u8(axi_rxbuf, uart_txbuf, OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&matmul_with_dma_duration, 4);
