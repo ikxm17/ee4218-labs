@@ -35,16 +35,12 @@ int DMA_Init(XAxiDma* AxiDma, uintptr_t DeviceId)
  * @brief Transmit data to connected device with AXI DMA
  *
  * @param AxiDma
- * @param SrcBufferPtr
- * @param DestBufferPtr
+ * @param TxBufferPtr
  * @param NumBytes
  * @return uint8_t
  */
-uint8_t DMA_TxSend(XAxiDma* AxiDma, uintptr_t TxBufferPtr, uintptr_t SrcBufferPtr, uint32_t NumBytes)
+uint8_t DMA_TxSend(XAxiDma* AxiDma, uintptr_t TxBufferPtr, uint32_t NumBytes)
 {
-	// Write data to the specified TX buffer address
-	memcpy((void*)TxBufferPtr, (void*)SrcBufferPtr, NumBytes);
-
 	// Cache flush to update the memory in case the specified TX buffer address is in the cache line
 	Xil_DCacheFlushRange((uintptr_t)(TxBufferPtr), NumBytes);
 
@@ -63,11 +59,10 @@ uint8_t DMA_TxSend(XAxiDma* AxiDma, uintptr_t TxBufferPtr, uintptr_t SrcBufferPt
  *
  * @param AxiDma
  * @param RxBufferPtr
- * @param DestBufferPtr
  * @param NumBytes
  * @return uint8_t
  */
-uint8_t DMA_RxReceive(XAxiDma* AxiDma, uintptr_t RxBufferPtr, uintptr_t DestBufferPtr, uint32_t NumBytes)
+uint8_t DMA_RxReceive(XAxiDma* AxiDma, uintptr_t RxBufferPtr, uint32_t NumBytes)
 {
 	// Initiate a DMA transfer from the device to memory through AXI DMA
 	if (XAxiDma_SimpleTransfer(AxiDma, (uintptr_t)(RxBufferPtr), NumBytes, XAXIDMA_DEVICE_TO_DMA) != XST_SUCCESS) {
@@ -77,9 +72,6 @@ uint8_t DMA_RxReceive(XAxiDma* AxiDma, uintptr_t RxBufferPtr, uintptr_t DestBuff
 
 	// Invalidate to force a cache update in case the specifed RX buffer address is in the cache line
 	Xil_DCacheInvalidateRange((uintptr_t)(RxBufferPtr), NumBytes);
-
-	// Write data to the specified destination buffer address
-	memcpy((void*)DestBufferPtr, (void*)RxBufferPtr, NumBytes);
 
 	// Reception Complete
 	return XST_SUCCESS;
