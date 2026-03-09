@@ -1,0 +1,40 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.973268",
+   "Default View_TopLeft":"893,-127",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
+#  -string -flagsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 3 -x 1010 -y 400 -defaultsOSRD
+preplace inst axi_fifo_mm_s_0 -pg 1 -lvl 5 -x 1840 -y 390 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 4 -x 1480 -y 400 -defaultsOSRD
+preplace inst rst_ps8_0_99M -pg 1 -lvl 1 -x 210 -y 350 -defaultsOSRD
+preplace inst axi_timer_0 -pg 1 -lvl 5 -x 1840 -y 610 -defaultsOSRD
+preplace inst pl_matmul_0 -pg 1 -lvl 6 -x 2150 -y 380 -defaultsOSRD
+preplace inst pl_matmul_1 -pg 1 -lvl 4 -x 1480 -y 110 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 5 -x 1840 -y 140 -defaultsOSRD
+preplace inst axi_smc_1 -pg 1 -lvl 2 -x 560 -y 370 -defaultsOSRD
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 5 410 500 NJ 500 1340 190 1630 490 2040J
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 6 20 450 420 470 700 490 1330 200 1650 500 2030J
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 4 30 510 NJ 510 NJ 510 1320
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 3 1340 20 NJ 20 2040
+preplace netloc axi_dma_0_M_AXI_MM2S 1 1 5 420 260 NJ 260 NJ 260 NJ 260 2020
+preplace netloc axi_dma_0_M_AXI_S2MM 1 1 5 410 10 NJ 10 NJ 10 NJ 10 2030
+preplace netloc axi_fifo_mm_s_0_AXI_STR_TXD 1 5 1 N 360
+preplace netloc axi_smc_1_M00_AXI 1 2 1 N 370
+preplace netloc axi_smc_M00_AXI 1 4 1 1640 350n
+preplace netloc axi_smc_M01_AXI 1 4 1 N 390
+preplace netloc axi_smc_M02_AXI 1 4 1 1640 410n
+preplace netloc axi_smc_M03_AXI 1 4 1 1620 90n
+preplace netloc pl_matmul_0_M_AXIS 1 4 3 1660 290 NJ 290 2260
+preplace netloc pl_matmul_1_M_AXIS 1 4 1 N 110
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 3 1 N 380
+levelinfo -pg 1 0 210 560 1010 1480 1840 2150 2280
+pagesize -pg 1 -db -bbox -sgen 0 0 2280 720
+"
+}
+{
+   "da_axi4_cnt":"7",
+   "da_clkrst_cnt":"3",
+   "da_zynq_ultra_ps_e_cnt":"1"
+}

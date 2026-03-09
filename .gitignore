@@ -49,6 +49,7 @@ xvlog.*
 *.hw
 *.backup.*
 *.debug
+*.gen 
 
 unisims
 
