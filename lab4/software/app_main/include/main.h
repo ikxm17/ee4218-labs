@@ -1,0 +1,48 @@
+/**
+ * @file main.h
+ * @author your name (you@domain.com)
+ * @brief
+ * @version 0.1
+ * @date 2026-02-25
+ *
+ * @copyright Copyright (c) 2026
+ *
+ */
+
+/************************** Constant Definitions ***************************/
+// UART constants
+#define XUARTPS_BASEADDRESS XPAR_XUARTPS_0_BASEADDR
+// Timer constants
+#define XTMRCTR_BASEADDRESS XPAR_XTMRCTR_0_BASEADDR
+#define TIMER_COUNTER_0     0
+
+// AXI DMA constants
+#define AXIDMA_0_BASE_ADDR XPAR_AXI_DMA_0_BASEADDR
+#define AXIDMA_1_BASE_ADDR XPAR_AXI_DMA_1_BASEADDR
+// Memory and buffer constants
+#define DDR_BASE_ADDR XPAR_PSU_DDR_0_BASEADDRESS
+// ! DDR_0 address range is from 0x0000000 to 0x7ff00000, as long as the offsets do not exceed this range
+// ! Can refer to app_main.elf.size for size of memory segments
+#define AXIDMA_BUFFER_BASE_ADDR_OFFSET \
+    0x01000000
+#define AXIDMA_BUFFER_BASE_ADDR         DDR_BASE_ADDR + AXIDMA_BUFFER_BASE_ADDR_OFFSET
+// --- DMA 0 (HDL matmul) ---
+#define AXIDMA_0_TX_BUFFER_ADDR_OFFSET   0x00100000  // → 0x01100000
+#define AXIDMA_0_RX_BUFFER_ADDR_OFFSET   0x00300000  // → 0x01300000
+#define AXIDMA_0_TX_BUFFER_ADDR          AXIDMA_BUFFER_BASE_ADDR + AXIDMA_0_TX_BUFFER_ADDR_OFFSET
+#define AXIDMA_0_RX_BUFFER_ADDR          AXIDMA_BUFFER_BASE_ADDR + AXIDMA_0_RX_BUFFER_ADDR_OFFSET
+
+// --- DMA 1 (HLS matmul) ---
+#define AXIDMA_1_TX_BUFFER_ADDR_OFFSET   0x00500000  // → 0x01500000
+#define AXIDMA_1_RX_BUFFER_ADDR_OFFSET   0x00700000  // → 0x01700000
+#define AXIDMA_1_TX_BUFFER_ADDR          AXIDMA_BUFFER_BASE_ADDR + AXIDMA_1_TX_BUFFER_ADDR_OFFSET
+#define AXIDMA_1_RX_BUFFER_ADDR          AXIDMA_BUFFER_BASE_ADDR + AXIDMA_1_RX_BUFFER_ADDR_OFFSET
+
+#define NUM_ROWS_A    64
+#define NUM_INNER_DIM 8
+#define NUM_COLS_B    1
+
+#define NO_INPUT_ELEMENTS     (NUM_ROWS_A * NUM_INNER_DIM + NUM_INNER_DIM * NUM_COLS_B)
+#define ELEMENT_SIZE_IN_BYTES 1
+#define INPUT_BYTES           NO_INPUT_ELEMENTS* ELEMENT_SIZE_IN_BYTES
+#define OUTPUT_BYTES          (NUM_ROWS_A * NUM_COLS_B) * ELEMENT_SIZE_IN_BYTES

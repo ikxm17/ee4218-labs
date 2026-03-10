@@ -1,0 +1,20 @@
+Add these to a .gitignore file in your repository root: 
+
+# Vitis generated files
+.metadata/
+.settings/
+Debug/
+Release/
+build/
+_ide/
+*.log
+*.elf
+*.bin
+*.bit
+*.pdi
+*.zip
+
+# Ignore specific component files if they have absolute paths
+# (You may need to track these if you fixed them to be relative)
+# vitis-comp.json
+# app.yaml
