@@ -11,6 +11,7 @@ INPUT_CSV = "AB.csv"
 SW_RESULT_CSV = "RES_SW.csv"
 HDL_RESULT_CSV = "RES_HDL.csv"
 HLS_RESULT_CSV = "RES_HLS.csv"
+HLS_OPTIM_RESULT_CSV = "RES_HLS_OPTIM.csv"
 
 OUTPUT_BYTES = 64
 DURATION_BYTES = 4
@@ -150,16 +151,40 @@ def main():
         print(f"Result saved to {HLS_RESULT_CSV}")
         verify_result("HLS matmul", hls_result_bytes, expected)
 
+        # --- Receive HLS Optimised matmul result ---
+        print("\n--- HLS Optimised Matrix Multiplication ---")
+        hls_optim_payload = ser.read(OUTPUT_BYTES + DURATION_BYTES)
+        if len(hls_optim_payload) < OUTPUT_BYTES + DURATION_BYTES:
+            print(
+                f"Warning: Only received {len(hls_optim_payload)}/{OUTPUT_BYTES + DURATION_BYTES} bytes"
+            )
+
+        hls_optim_result_bytes = hls_optim_payload[:OUTPUT_BYTES]
+        hls_optim_cycles = int.from_bytes(
+            hls_optim_payload[OUTPUT_BYTES : OUTPUT_BYTES + DURATION_BYTES],
+            byteorder="little",
+        )
+        print(f"Duration: {hls_optim_cycles} clock cycles")
+
+        save_result_csv(HLS_OPTIM_RESULT_CSV, hls_optim_result_bytes, OUTPUT_BYTES)
+        print(f"Result saved to {HLS_OPTIM_RESULT_CSV}")
+        verify_result("HLS Optim matmul", hls_optim_result_bytes, expected)
+
         # --- Summary ---
         if sw_cycles > 0:
             hdl_speedup = sw_cycles / hdl_cycles if hdl_cycles > 0 else float("inf")
             hls_speedup = sw_cycles / hls_cycles if hls_cycles > 0 else float("inf")
+            hls_optim_speedup = sw_cycles / hls_optim_cycles if hls_optim_cycles > 0 else float("inf")
+
             print(f"\n--- Summary ---")
             print(f"Software:{sw_cycles} cycles")
             print(f"HDL IP:{hdl_cycles} cycles")
             print(f"HLS IP:{hls_cycles} cycles")
+            print(f"HLS Optim IP:{hls_optim_cycles} cycles")
+
             print(f"Speedup (HDL):{hdl_speedup:.2f}x")
             print(f"Speedup (HLS):{hls_speedup:.2f}x")
+            print(f"Speedup (HLS Optim):{hls_optim_speedup:.2f}x")
 
         ser.close()
 

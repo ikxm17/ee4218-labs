@@ -29,12 +29,14 @@ XUartPs uart_ps;
 XTmrCtr timer_counter;
 XAxiDma axi_dma_0;
 XAxiDma axi_dma_1;
+XAxiDma axi_dma_2;
 
 // Variables for measuring time taken
 uint32_t start_time;
 uint32_t matmul_with_software_duration;
 uint32_t hdl_matmul_duration;
 uint32_t hls_matmul_duration;
+uint32_t hls_optim_matmul_duration;
 
 /************************** Function Prototypes ***************************/
 void user_setup(void), user_loop(void);
@@ -60,6 +62,7 @@ void user_setup(void)
 	// Initialise AXI DMA
 	DMA_Init(&axi_dma_0, AXIDMA_0_BASE_ADDR);
 	DMA_Init(&axi_dma_1, AXIDMA_1_BASE_ADDR);
+	DMA_Init(&axi_dma_2, AXIDMA_2_BASE_ADDR);
 
 }
 
@@ -102,6 +105,19 @@ void user_loop(void)
 	u32_to_u8(axi_rxbuf, uart_txbuf, OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
 	UART_TxFromBuffer(&uart_ps, (uint8_t*)&hls_matmul_duration, 4);
+
+	/* HLS Optimised Co-processor matrix multiplication interfaced with AXI DMA 2 */
+	memset(uart_txbuf, 0, OUTPUT_BYTES); // Set output buffer to 0 for proper result checking
+	memcpy((void*)AXIDMA_2_TX_BUFFER_ADDR, (void*)uart_rxbuf, INPUT_BYTES * sizeof(uint32_t));
+	start_time = TIMER_Start(&timer_counter, TIMER_COUNTER_0);
+	DMA_TxSend(&axi_dma_2, (uintptr_t)AXIDMA_2_TX_BUFFER_ADDR, INPUT_BYTES * sizeof(uint32_t));
+	DMA_RxReceive(&axi_dma_2, (uintptr_t)AXIDMA_2_RX_BUFFER_ADDR, OUTPUT_BYTES * sizeof(uint32_t));
+	hls_optim_matmul_duration = TIMER_GetDurationFromStart(&timer_counter, TIMER_COUNTER_0, start_time);
+	// send result to UART
+	memcpy((void*)axi_rxbuf, (void*)AXIDMA_2_RX_BUFFER_ADDR, OUTPUT_BYTES * sizeof(uint32_t));
+	u32_to_u8(axi_rxbuf, uart_txbuf, OUTPUT_BYTES);
+	UART_TxFromBuffer(&uart_ps, (uint8_t*)(uart_txbuf), OUTPUT_BYTES);
+	UART_TxFromBuffer(&uart_ps, (uint8_t*)&hls_optim_matmul_duration, 4);
 }
 
 void matrix_multiply(uint32_t* matrice_buffer, uint8_t* result, uint8_t num_rows_a, uint8_t num_inner_dim, uint8_t num_cols_b)

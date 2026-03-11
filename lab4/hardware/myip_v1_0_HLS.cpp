@@ -44,6 +44,8 @@ void myip_v1_0_HLS(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS){
 	AXIS read_input, write_output;
 		// get matrices A and B
 		myip_v1_0_HLS_read_inputs:for(word_cnt = 0; word_cnt < NO_INPUT_ELEMENTS; word_cnt++){
+			#pragma HLS pipeline off 
+			#pragma HLS UNROLL off
 			read_input = S_AXIS.read();
 			if (word_cnt < MAT_A_SIZE) {
 				mat_A[word_cnt] = read_input.data;
@@ -55,6 +57,7 @@ void myip_v1_0_HLS(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS){
 		
 		// compute result
 		myip_v1_0_HLS_compute:for(size_t i = 0; i < NUM_ROWS_A; i++){
+			#pragma HLS pipeline off 
 			for (size_t j = 0; j < NUM_COLS_B; j++) {
 					ap_uint<32> temp = 0;
 					for (size_t k = 0; k < NUM_INNER_DIM; k++) {
@@ -67,6 +70,8 @@ void myip_v1_0_HLS(hls::stream<AXIS>& S_AXIS, hls::stream<AXIS>& M_AXIS){
 		
 		// write outputs
 		myip_v1_0_HLS_write_outputs:for(word_cnt = 0; word_cnt < NO_OUTPUT_ELEMENTS; word_cnt++){
+			#pragma HLS pipeline off 
+			#pragma HLS UNROLL off
 			write_output.data = mat_RES[word_cnt];
 			write_output.last = 0;
 			write_output.keep = 0xFU; //TODO: find out whwat keep and strb are
