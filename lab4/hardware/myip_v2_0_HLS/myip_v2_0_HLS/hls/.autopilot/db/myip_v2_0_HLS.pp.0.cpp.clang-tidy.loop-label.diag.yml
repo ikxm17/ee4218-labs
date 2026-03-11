@@ -1,0 +1,76 @@
+---
+MainSourceFile:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+Diagnostics:
+  - DiagnosticName:  xilinx-label-all-loops
+    DiagnosticMessage:
+      Message:         'Added loop label VITIS_LOOP_676_1:  '
+      FilePath:        '/opt/Xilinx/2025.2/Vitis/common/technology/autopilot/etc/ap_int_ref.h'
+      FileOffset:      676
+      Replacements:
+        - FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+          Offset:          283505
+          Length:          0
+          ReplacementText: 'VITIS_LOOP_676_1: '
+    Level:           Remark
+    BuildDirectory:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS'
+  - DiagnosticName:  xilinx-label-all-loops
+    DiagnosticMessage:
+      Message:         'Added loop label VITIS_LOOP_690_1:  '
+      FilePath:        '/opt/Xilinx/2025.2/Vitis/common/technology/autopilot/etc/ap_int_ref.h'
+      FileOffset:      690
+      Replacements:
+        - FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+          Offset:          283976
+          Length:          0
+          ReplacementText: 'VITIS_LOOP_690_1: '
+    Level:           Remark
+    BuildDirectory:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS'
+  - DiagnosticName:  xilinx-label-all-loops
+    DiagnosticMessage:
+      Message:         'Added loop label VITIS_LOOP_704_1:  '
+      FilePath:        '/opt/Xilinx/2025.2/Vitis/common/technology/autopilot/etc/ap_int_ref.h'
+      FileOffset:      704
+      Replacements:
+        - FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+          Offset:          284448
+          Length:          0
+          ReplacementText: 'VITIS_LOOP_704_1: '
+    Level:           Remark
+    BuildDirectory:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS'
+  - DiagnosticName:  xilinx-label-all-loops
+    DiagnosticMessage:
+      Message:         'Added loop label VITIS_LOOP_1251_1:  '
+      FilePath:        '/opt/Xilinx/2025.2/Vitis/common/technology/autopilot/etc/ap_fixed_base.h'
+      FileOffset:      1251
+      Replacements:
+        - FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+          Offset:          631325
+          Length:          0
+          ReplacementText: 'VITIS_LOOP_1251_1: '
+    Level:           Remark
+    BuildDirectory:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS'
+  - DiagnosticName:  xilinx-label-all-loops
+    DiagnosticMessage:
+      Message:         'Added loop label VITIS_LOOP_68_1:  '
+      FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS.cpp'
+      FileOffset:      68
+      Replacements:
+        - FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+          Offset:          2346104
+          Length:          0
+          ReplacementText: 'VITIS_LOOP_68_1: '
+    Level:           Remark
+    BuildDirectory:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS'
+  - DiagnosticName:  xilinx-label-all-loops
+    DiagnosticMessage:
+      Message:         'Added loop label VITIS_LOOP_70_2:  '
+      FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS.cpp'
+      FileOffset:      70
+      Replacements:
+        - FilePath:        '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+          Offset:          2346178
+          Length:          0
+          ReplacementText: 'VITIS_LOOP_70_2: '
+    Level:           Remark
+    BuildDirectory:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS'
+...

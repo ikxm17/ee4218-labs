@@ -1,0 +1,156 @@
+<ENTRY>
+{
+ "thisFile": "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/myip_v2_0_HLS.hlsrun_csim_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Mar 11 13:46:02 2026",
+ "timestampMillis": "1773211562518",
+ "buildStep": {
+  "cmdId": "d4f4f408-e645-4638-8b36-7efdb05e5508",
+  "name": "vitis-run",
+  "logFile": "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/logs/myip_v2_0_HLS.steps.log",
+  "commandLine": "/opt/Xilinx/2025.2/Vitis/bin/unwrapped/lnx64.o/vitis-run  --mode hls --csim --config /home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/hls_config.cfg --work_dir myip_v2_0_HLS ",
+  "args": [
+   "--mode",
+   "hls",
+   "--csim",
+   "--config",
+   "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/hls_config.cfg",
+   "--work_dir",
+   "myip_v2_0_HLS"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Mar 11 13:46:02 2026",
+ "timestampMillis": "1773211562518",
+ "status": {
+  "cmdId": "d4f4f408-e645-4638-8b36-7efdb05e5508",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Mar 11 13:46:05 2026",
+ "timestampMillis": "1773211565133",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_C_SIM",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "myip_v2_0_HLS",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Mar 11 13:46:05 2026",
+ "timestampMillis": "1773211565133",
+ "buildStep": {
+  "cmdId": "c7ea8541-04f9-44a9-9eca-4b5ff2803298",
+  "name": "",
+  "logFile": "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Mar 11 13:46:05 2026",
+ "timestampMillis": "1773211565133",
+ "status": {
+  "cmdId": "c7ea8541-04f9-44a9-9eca-4b5ff2803298",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Mar 11 13:46:06 2026",
+ "timestampMillis": "1773211566504",
+ "status": {
+  "cmdId": "c7ea8541-04f9-44a9-9eca-4b5ff2803298",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Mar 11 13:46:06 2026",
+ "timestampMillis": "1773211566574",
+ "status": {
+  "cmdId": "d4f4f408-e645-4638-8b36-7efdb05e5508",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Mar 11 13:46:06 2026",
+ "timestampMillis": "1773211566574",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Mar 11 13:46:06 2026",
+ "timestampMillis": "1773211566575",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

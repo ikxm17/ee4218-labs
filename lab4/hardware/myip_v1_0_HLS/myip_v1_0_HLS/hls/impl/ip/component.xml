@@ -200,7 +200,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a9b4ea51</spirit:value>
+            <spirit:value>7a1f1925</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -216,7 +216,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>3d08007b</spirit:value>
+            <spirit:value>d3d6f7d2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -232,7 +232,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c99eaa31</spirit:value>
+            <spirit:value>e25ae1fd</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -248,7 +248,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>3e221104</spirit:value>
+            <spirit:value>9a391890</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -538,10 +538,6 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_flow_control_loop_pipe_sequential_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/myip_v1_0_HLS_hls_deadlock_idx0_monitor.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -554,23 +550,15 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/myip_v1_0_HLS_mat_B_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/myip_v1_0_HLS_mat_RES_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/myip_v1_0_HLS_mul_32s_32s_32_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_compute.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_read_inputs.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_write_outputs.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -585,11 +573,6 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_flow_control_loop_pipe_sequential_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/myip_v1_0_HLS_hls_deadlock_idx0_monitor.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -605,27 +588,17 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/verilog/myip_v1_0_HLS_mat_B_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/myip_v1_0_HLS_mat_RES_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/myip_v1_0_HLS_mul_32s_32s_32_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_compute.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_read_inputs.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_write_outputs.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -648,11 +621,11 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/myip_v1_0_HLS_mat_A_RAM_AUTO_1R1W.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_mat_A_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/myip_v1_0_HLS_mat_B_RAM_AUTO_1R1W.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -661,18 +634,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/myip_v1_0_HLS_mul_32s_32s_32_1_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_compute.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_read_inputs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_write_outputs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -682,18 +643,18 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/myip_v1_0_HLS.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_086d7740</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_19cba4bf</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/myip_v1_0_HLS_mat_A_RAM_AUTO_1R1W.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_mat_A_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/myip_v1_0_HLS_mat_B_RAM_AUTO_1R1W.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -704,21 +665,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/myip_v1_0_HLS_mul_32s_32s_32_1_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_compute.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_read_inputs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/myip_v1_0_HLS_myip_v1_0_HLS_Pipeline_myip_v1_0_HLS_write_outputs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -785,11 +731,11 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="4">662</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="4">1228</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.II" spirit:order="5">663</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.II" spirit:order="5">1229</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -802,8 +748,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Myip_v1_0_hls</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114514712</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2026-03-10T02:52:45Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114516350</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2026-03-11T06:10:36Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -812,9 +758,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="272d9b1e"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4c27db88"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9e030617"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="2225b966"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="19565968"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="6a63d213"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

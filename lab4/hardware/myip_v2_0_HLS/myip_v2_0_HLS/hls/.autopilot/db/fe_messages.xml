@@ -1,0 +1,69 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_DATAFLOW" msg_id="214-114" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:46:9" msg_body="Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="directive:1:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=myip_v2_0_HLS" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:16:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="ap_ctrl_none port=return" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:17:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=S_AXIS" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:18:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=M_AXIS" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:26:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=mat_A cyclic factor=8 dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:30:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=mat_B complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:34:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=mat_RES complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:46:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaType="dataflow" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:53:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=2" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:67:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=2" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:75:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-6999" msg_severity="WARNING" msg_loc="../myip_v2_0_HLS.cpp:86:1" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="hls" ARG_PragmaFunction="myip_v2_0_HLS" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=2" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:68:26" msg_body="Loop 'VITIS_LOOP_68_1' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_68_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:70:30" msg_body="Loop 'VITIS_LOOP_70_2' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_70_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_68_1' (../myip_v2_0_HLS.cpp:68:26) in function 'myip_v2_0_HLS' completely with a factor of 1">
+        <args Factor="1" LoopLoc="../myip_v2_0_HLS.cpp:68:26" LoopName="VITIS_LOOP_68_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:15:0" msg_body="Unrolling loop 'VITIS_LOOP_70_2' (../myip_v2_0_HLS.cpp:70:30) in function 'myip_v2_0_HLS' completely with a factor of 8">
+        <args Factor="8" LoopLoc="../myip_v2_0_HLS.cpp:70:30" LoopName="VITIS_LOOP_70_2"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:20:17" msg_body="Applying array_partition to 'mat_A': Cyclic partitioning with factor 8 on dimension 1.">
+        <args Dim="1" Factor="8" Mode="Cyclic" UOName="mat_A"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:21:17" msg_body="Applying array_partition to 'mat_B': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="mat_B"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:22:17" msg_body="Applying array_partition to 'mat_RES': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="mat_RES"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-455" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:50:5" msg_body="Changing loop 'Loop_myip_v2_0_HLS_read_inputs_proc' (../myip_v2_0_HLS.cpp:50:5) to a process function for dataflow in function 'myip_v2_0_HLS'">
+        <args LoopLoc="../myip_v2_0_HLS.cpp:50:5" LoopName="Loop_myip_v2_0_HLS_read_inputs_proc" Name="myip_v2_0_HLS"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-455" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:63:5" msg_body="Changing loop 'Loop_myip_v2_0_HLS_compute_proc' (../myip_v2_0_HLS.cpp:63:5) to a process function for dataflow in function 'myip_v2_0_HLS'">
+        <args LoopLoc="../myip_v2_0_HLS.cpp:63:5" LoopName="Loop_myip_v2_0_HLS_compute_proc" Name="myip_v2_0_HLS"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-455" msg_severity="INFO" msg_loc="../myip_v2_0_HLS.cpp:84:5" msg_body="Changing loop 'Loop_myip_v2_0_HLS_write_outputs_proc' (../myip_v2_0_HLS.cpp:84:5) to a process function for dataflow in function 'myip_v2_0_HLS'">
+        <args LoopLoc="../myip_v2_0_HLS.cpp:84:5" LoopName="Loop_myip_v2_0_HLS_write_outputs_proc" Name="myip_v2_0_HLS"/>
+    </msg>
+</xilinx:hls_fe_msgs>

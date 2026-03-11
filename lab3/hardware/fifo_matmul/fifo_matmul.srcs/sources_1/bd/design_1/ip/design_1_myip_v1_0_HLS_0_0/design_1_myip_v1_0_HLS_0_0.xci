@@ -4,7 +4,7 @@
     "xci_name": "design_1_myip_v1_0_HLS_0_0",
     "cell_name": "myip_v1_0_HLS_0",
     "component_reference": "xilinx.com:hls:myip_v1_0_HLS:1.0",
-    "ip_revision": "2114514712",
+    "ip_revision": "2114516350",
     "gen_directory": "../../../../../../fifo_matmul.gen/sources_1/bd/design_1/ip/design_1_myip_v1_0_HLS_0_0",
     "parameters": {
       "component_parameters": {
@@ -12,8 +12,8 @@
         "clk_period": [ { "value": "10", "enabled": false, "usage": "all" } ],
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
-        "latency": [ { "value": "662", "enabled": false, "usage": "all" } ],
-        "II": [ { "value": "663", "enabled": false, "usage": "all" } ]
+        "latency": [ { "value": "1228", "enabled": false, "usage": "all" } ],
+        "II": [ { "value": "1229", "enabled": false, "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynquplus", "resolve_type": "generated", "usage": "all" } ],
@@ -30,7 +30,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114514712" } ],
+        "IPREVISION": [ { "value": "2114516350" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../fifo_matmul.gen/sources_1/bd/design_1/ip/design_1_myip_v1_0_HLS_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
@@ -146,5 +146,5 @@
       }
     }
   },
-  "checksum": "c1999d25"
+  "checksum": "0a5531a7"
 }

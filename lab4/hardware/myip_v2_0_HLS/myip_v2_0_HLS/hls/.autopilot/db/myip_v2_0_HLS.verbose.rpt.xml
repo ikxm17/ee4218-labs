@@ -1,0 +1,212 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'myip_v2_0_HLS'" level="0">
+<item name = "Date">Wed Mar 11 13:46:28 2026
+</item>
+<item name = "Version">2025.2 (Build 6295257 on Nov 14 2025)</item>
+<item name = "Project">myip_v2_0_HLS</item>
+<item name = "Solution">hls (Vivado IP Flow Target)</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xck26-sfvc784-2LV-c</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00 ns, 6.404 ns, 2.70 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">782, 782, 7.820 us, 7.820 us, 520, 520, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="Loop_myip_v2_0_HLS_read_inputs_proc_U0">Loop_myip_v2_0_HLS_read_inputs_proc, 521, 521, 5.210 us, 5.210 us, 520, 520, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="Loop_myip_v2_0_HLS_compute_proc_U0">Loop_myip_v2_0_HLS_compute_proc, 130, 130, 1.300 us, 1.300 us, 128, 128, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="Loop_myip_v2_0_HLS_write_outputs_proc_U0">Loop_myip_v2_0_HLS_write_outputs_proc, 129, 129, 1.290 us, 1.290 us, 128, 128, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 12, -</column>
+<column name="FIFO">-, -, 7128, 4824, -</column>
+<column name="Instance">-, 12, 4105, 1587, -</column>
+<column name="Memory">16, -, 0, 0, 0</column>
+<column name="Multiplexer">-, -, 0, 27, -</column>
+<column name="Register">-, -, 3, -, -</column>
+<specialColumn name="Available">288, 1248, 234240, 117120, 64</specialColumn>
+<specialColumn name="Utilization (%)">5, ~0, 4, 5, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="Loop_myip_v2_0_HLS_compute_proc_U0">Loop_myip_v2_0_HLS_compute_proc, 0, 12, 3571, 1081, 0</column>
+<column name="Loop_myip_v2_0_HLS_read_inputs_proc_U0">Loop_myip_v2_0_HLS_read_inputs_proc, 0, 0, 524, 153, 0</column>
+<column name="Loop_myip_v2_0_HLS_write_outputs_proc_U0">Loop_myip_v2_0_HLS_write_outputs_proc, 0, 0, 10, 353, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="mat_A_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_1_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_2_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_3_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_4_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_5_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_6_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+<column name="mat_A_7_U">mat_A_RAM_AUTO_1R1W, 2, 0, 0, 0, 64, 32, 1, 2048</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+<column name="mat_RES_0_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_10_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_11_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_12_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_13_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_14_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_15_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_16_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_17_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_18_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_19_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_1_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_20_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_21_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_22_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_23_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_24_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_25_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_26_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_27_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_28_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_29_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_2_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_30_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_31_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_32_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_33_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_34_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_35_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_36_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_37_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_38_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_39_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_3_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_40_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_41_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_42_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_43_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_44_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_45_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_46_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_47_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_48_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_49_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_4_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_50_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_51_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_52_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_53_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_54_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_55_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_56_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_57_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_58_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_59_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_5_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_60_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_61_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_62_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_63_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_6_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_7_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_8_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="mat_RES_9_0_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc18_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc19_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc20_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc21_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc22_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc23_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc24_channel_U">0, 99, 0, -, 2, 32, 64</column>
+<column name="p_loc_channel_U">0, 99, 0, -, 2, 32, 64</column>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="ap_channel_done_mat_A">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_mat_RES_0_0_loc_channel">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_p_loc24_channel">and, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_mat_A">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_mat_RES_0_0_loc_channel">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_p_loc24_channel">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_sync_reg_channel_write_mat_A">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_mat_RES_0_0_loc_channel">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_p_loc24_channel">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_sync_reg_channel_write_mat_A">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_mat_RES_0_0_loc_channel">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_p_loc24_channel">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_none, myip_v2_0_HLS, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, myip_v2_0_HLS, return value</column>
+<column name="S_AXIS_TDATA">in, 32, axis, S_AXIS_V_data_V, pointer</column>
+<column name="S_AXIS_TKEEP">in, 4, axis, S_AXIS_V_keep_V, pointer</column>
+<column name="S_AXIS_TSTRB">in, 4, axis, S_AXIS_V_strb_V, pointer</column>
+<column name="S_AXIS_TLAST">in, 1, axis, S_AXIS_V_last_V, pointer</column>
+<column name="S_AXIS_TVALID">in, 1, axis, S_AXIS_V_last_V, pointer</column>
+<column name="S_AXIS_TREADY">out, 1, axis, S_AXIS_V_last_V, pointer</column>
+<column name="M_AXIS_TDATA">out, 32, axis, M_AXIS_V_data_V, pointer</column>
+<column name="M_AXIS_TKEEP">out, 4, axis, M_AXIS_V_keep_V, pointer</column>
+<column name="M_AXIS_TSTRB">out, 4, axis, M_AXIS_V_strb_V, pointer</column>
+<column name="M_AXIS_TLAST">out, 1, axis, M_AXIS_V_last_V, pointer</column>
+<column name="M_AXIS_TVALID">out, 1, axis, M_AXIS_V_last_V, pointer</column>
+<column name="M_AXIS_TREADY">in, 1, axis, M_AXIS_V_last_V, pointer</column>
+</table>
+</item>
+</section>
+</profile>

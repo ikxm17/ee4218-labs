@@ -1,0 +1,3 @@
+relativeroot=/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS
+original_argv=--mode hls --package --config /home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/hls_config.cfg --work_dir myip_v2_0_HLS 
+
