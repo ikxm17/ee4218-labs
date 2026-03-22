@@ -1,0 +1,16 @@
+---
+MainSourceFile:  '/home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/.autopilot/db/myip_v2_0_HLS.pp.0.cpp'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-11] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region'
+    FileOffset:      '46:9'
+    FilePath:        '../myip_v2_0_HLS.cpp'
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-11] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region'
+    FileOffset:      '46:9'
+    FilePath:        '../myip_v2_0_HLS.cpp'
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-11] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region'
+    FileOffset:      '46:9'
+    FilePath:        '../myip_v2_0_HLS.cpp'
+...

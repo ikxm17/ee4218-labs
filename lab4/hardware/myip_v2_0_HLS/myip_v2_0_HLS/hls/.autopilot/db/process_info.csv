@@ -1,0 +1,4 @@
+,Loop_myip_v2_0_HLS_read_inputs_proc_U0,,status1.csv
+,Loop_myip_v2_0_HLS_compute_proc_U0,,status2.csv
+,Loop_myip_v2_0_HLS_write_outputs_proc_U0,,status3.csv
+,AESL_inst_myip_v2_0_HLS,,module_status1.csv

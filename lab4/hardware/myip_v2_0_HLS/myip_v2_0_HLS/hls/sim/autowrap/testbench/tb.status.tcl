@@ -1,0 +1,1 @@
+set ::AESL_AUTOSIM::gTopFileName /home/leeey/Downloads/ee4218-labs/lab4/hardware/myip_v2_0_HLS/myip_v2_0_HLS/hls/./sim/autowrap/testbench/myip_v2_0_HLS.cpp_pre.cpp.tb.cpp

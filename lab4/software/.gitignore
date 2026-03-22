@@ -1,0 +1,16 @@
+# ignore everything
+*
+
+# unignore
+!.gitignore
+!app_main/
+app_main/*
+!app_main/src/
+!app_main/src/**
+!app_main/include/
+!app_main/include/**
+
+# ignore
+app_main/src/app.yaml
+app_main/src/compile_commands.json
+app_main/src/.cache

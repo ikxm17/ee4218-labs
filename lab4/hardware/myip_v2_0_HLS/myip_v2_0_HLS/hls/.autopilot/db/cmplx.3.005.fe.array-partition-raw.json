@@ -1,0 +1,20 @@
+{
+  "0": {
+    "basicblocks": 94,
+    "calls": "",
+    "control_depth": 2,
+    "def_use_depth": 15,
+    "file": "myip_v2_0_HLS.cpp",
+    "fileloc": 15,
+    "instructions": 591,
+    "loads": {
+      "L": 81
+    },
+    "memory_accesses": 164,
+    "name": "myip_v2_0_HLS",
+    "stores": {
+      "L": 87
+    },
+    "total_instructions": 591
+  }
+}
